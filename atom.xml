@@ -5,7 +5,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://zbvae.com//"/>
-  <updated>2015-07-08T07:29:33.703Z</updated>
+  <updated>2015-07-08T11:48:07.539Z</updated>
   <id>http://zbvae.com//</id>
   
   <author>
@@ -14,6 +14,19 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hexo+github build your personal blog site]]></title>
+    <link href="http://zbvae.com/2015/07/08/Hexo-github-build-your-personal-blog-site/"/>
+    <id>http://zbvae.com/2015/07/08/Hexo-github-build-your-personal-blog-site/</id>
+    <published>2015-07-08T11:48:07.000Z</published>
+    <updated>2015-07-08T11:48:07.539Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[My First Post]]></title>
