@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   
   <title><![CDATA[zbvae's blog]]></title>
-  
+  <subtitle><![CDATA[学好数英计，走遍天下都不怕]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://zbvae.com//"/>
-  <updated>2015-07-08T12:35:18.467Z</updated>
+  <updated>2015-07-09T03:40:17.705Z</updated>
   <id>http://zbvae.com//</id>
   
   <author>
@@ -16,30 +16,21 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Hexo+github build your personal blog site]]></title>
-    <link href="http://zbvae.com/2015/07/08/Hexo-github-build-your-personal-blog-site/"/>
-    <id>http://zbvae.com/2015/07/08/Hexo-github-build-your-personal-blog-site/</id>
-    <published>2015-07-08T11:48:07.000Z</published>
-    <updated>2015-07-08T12:35:18.467Z</updated>
-    <content type="html"><![CDATA[<p>This is my first blog in handwriting.</p>
+    <title><![CDATA[第一篇Hexo博客]]></title>
+    <link href="http://zbvae.com/2015/07/09/%E7%AC%AC%E4%B8%80%E7%AF%87Hexo%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://zbvae.com/2015/07/09/第一篇Hexo博客/</id>
+    <published>2015-07-09T03:21:34.000Z</published>
+    <updated>2015-07-09T03:40:17.705Z</updated>
+    <content type="html"><![CDATA[<h1 id="引言">引言</h1><p>最近花了几天时间利用<em>Hexo</em>和<em>Github</em>搭建了个人博客网站，虽然够折腾，但是成功喜悦也是值得的！<a id="more"></a></p>
+<hr>
+<p><a href="http://github.com/zbvae" target="_blank" rel="external">http://github.com/zbvae</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>This is my first blog in handwriting.</p>
-]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[My First Post]]></title>
-    <link href="http://zbvae.com/2015/07/08/My-First-Post/"/>
-    <id>http://zbvae.com/2015/07/08/My-First-Post/</id>
-    <published>2015-07-08T07:29:33.000Z</published>
-    <updated>2015-07-08T07:29:33.703Z</updated>
-    <content type="html"></content>
-    <summary type="html">
+    <![CDATA[<h1 id="引言">引言</h1><p>最近花了几天时间利用<em>Hexo</em>和<em>Github</em>搭建了个人博客网站，虽然够折腾，但是成功喜悦也是值得的！]]>
     
     </summary>
+    
+      <category term="随笔" scheme="http://zbvae.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
