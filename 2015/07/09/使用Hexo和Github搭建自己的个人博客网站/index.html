@@ -13,7 +13,7 @@
 <meta property="og:description" content="最近花了几天时间利用Hexo和Github搭建自己的个人博客网站，虽然中间的过程也是折腾够了，但是结果还是非常令人满意的，毕竟现在网站已经跑起来，独乐乐不如众乐乐，所以决定写这篇文章，也给大家介绍一下经验，顺便也对Markdown写博客练一下手。好了，让我们进入正题吧!">
 <meta property="og:image" content="http://zbvae.com/images/node&npm.png">
 <meta property="og:image" content="http://zbvae.com/images/domain.png">
-<meta property="og:updated_time" content="2015-07-10T00:31:02.732Z">
+<meta property="og:updated_time" content="2015-07-10T01:07:39.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo和Github搭建自己的个人博客网站">
 <meta name="twitter:description" content="最近花了几天时间利用Hexo和Github搭建自己的个人博客网站，虽然中间的过程也是折腾够了，但是结果还是非常令人满意的，毕竟现在网站已经跑起来，独乐乐不如众乐乐，所以决定写这篇文章，也给大家介绍一下经验，顺便也对Markdown写博客练一下手。好了，让我们进入正题吧!">
@@ -243,6 +243,7 @@
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/litten</span><span class="regexp">/hexo-theme-yilia.git themes/yilia</span></span><br></pre></td></tr></table></figure>
 <p>然后在主配置文件中更改theme为yilia即可。</p>
 <h3 id="3-3主题配置">3.3主题配置</h3><p>　　下载下来的yilia主题，其实我们也可以做很多配置，主题配置文件存在于themes/yilia/下，也是_config.yml文件，与主配置文件一样，进行你自己的定制就可以了。</p>
+<p>　　这里介绍一个添加<strong>fork me on github</strong>到主题上的tip，进入themes/yilia/layout下，打开编辑layout.ejs文件，我所说的一切打开和编辑工作最好是在类似于notepad++或sublime text这种富文本编辑器中进行。在layout.ejs文件中的标签之前加上下面这句：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a <span class="variable">href=</span><span class="string">"https://github.com/zbvae"</span>&gt;&lt;img <span class="variable">style=</span><span class="string">"z-index:9999; position: absolute; top: 0; left: 0; border: 0;"</span> <span class="variable">src=</span><span class="string">"https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67"</span> <span class="variable">alt=</span><span class="string">"Fork me on GitHub"</span> <span class="variable">data-canonical-src=</span><span class="string">"https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"</span>&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <h2 id="4-将Hexo博客发布到Github上">4.将Hexo博客发布到Github上</h2><p>　　将本地新建好的Hexo博客发布到Github上，首先，你要在<a href="https://github.com" target="_blank" rel="external">Github</a>官网上，申请github账号，输入用户名和邮箱一定要谨慎，记住最好不要输入163邮箱了，本人亲身经历，163邮箱始终收不到github的验证邮件，导致开始建站一直访问不了，后面我只能重新新建了账户。<br>　　新建好github账户之后，需要在本地做一些安全性的配置(<strong>以下输入的用户名和邮箱都要与申请github账号时输入的一致</strong>)，主要有以下几个方面：</p>
 <blockquote>
 <ul>
