@@ -4,9 +4,9 @@
   <title><![CDATA[zbvae's blog]]></title>
   <subtitle><![CDATA[这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://zbvae.com//"/>
+  <link href="http://blog.zbvae.com//"/>
   <updated>2015-07-10T01:07:39.204Z</updated>
-  <id>http://zbvae.com//</id>
+  <id>http://blog.zbvae.com//</id>
   
   <author>
     <name><![CDATA[Bin Zhang]]></name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title><![CDATA[使用Hexo和Github搭建自己的个人博客网站]]></title>
-    <link href="http://zbvae.com/2015/07/09/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/"/>
-    <id>http://zbvae.com/2015/07/09/使用Hexo和Github搭建自己的个人博客网站/</id>
+    <link href="http://blog.zbvae.com/2015/07/09/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/"/>
+    <id>http://blog.zbvae.com/2015/07/09/使用Hexo和Github搭建自己的个人博客网站/</id>
     <published>2015-07-09T11:53:48.000Z</published>
     <updated>2015-07-10T01:07:39.204Z</updated>
     <content type="html"><![CDATA[<p>　　最近花了几天时间利用<strong>Hexo</strong>和<strong>Github</strong>搭建自己的个人博客网站，虽然中间的过程也是折腾够了，但是结果还是非常令人满意的，毕竟现在网站已经跑起来，独乐乐不如众乐乐，所以决定写这篇文章，也给大家介绍一下经验，顺便也对<strong>Markdown</strong>写博客练一下手。好了，让我们进入正题吧! <a id="more"></a></p>
@@ -85,7 +85,7 @@
     
     </summary>
     
-      <category term="技术交流" scheme="http://zbvae.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81/"/>
+      <category term="技术交流" scheme="http://blog.zbvae.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81/"/>
     
   </entry>
   
