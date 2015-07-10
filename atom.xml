@@ -5,7 +5,7 @@
   <subtitle><![CDATA[学好数英计，走遍天下都不怕]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://zbvae.com//"/>
-  <updated>2015-07-10T00:29:04.074Z</updated>
+  <updated>2015-07-10T00:31:02.732Z</updated>
   <id>http://zbvae.com//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zbvae.com/2015/07/09/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/"/>
     <id>http://zbvae.com/2015/07/09/使用Hexo和Github搭建自己的个人博客网站/</id>
     <published>2015-07-09T11:53:48.000Z</published>
-    <updated>2015-07-10T00:29:04.074Z</updated>
+    <updated>2015-07-10T00:31:02.732Z</updated>
     <content type="html"><![CDATA[<p>　　最近花了几天时间利用<strong>Hexo</strong>和<strong>Github</strong>搭建自己的个人博客网站，虽然中间的过程也是折腾够了，但是结果还是非常令人满意的，毕竟现在网站已经跑起来，独乐乐不如众乐乐，所以决定写这篇文章，也给大家介绍一下经验，顺便也对<strong>Markdown</strong>写博客练一下手。好了，让我们进入正题吧! <a id="more"></a></p>
 <h2 id="1-环境搭建">1.环境搭建</h2><p>　　使用Hexo+Github搭建自己的个人博客网站，主要分为两步：</p>
 <blockquote>
@@ -32,7 +32,7 @@
 <p>本文所有一切都是针对Windows 7系统，因此如果是Linux或其他操作系统请自行索取相关学习资料。</p>
 <h3 id="1-1Git安装">1.1Git安装</h3><p>　　由于新建好的Hexo博客需要与Github关联，因此首先安装<a href="http://git-scm.com/download/win" target="_blank" rel="external">Git</a>工具，直接下载安装。这时，在你的开始菜单会有Git工具选项，证明你已安装完成Git工具(非常好用的版本控制工具，可以用来管理你的项目)。</p>
 <h3 id="1-2Node-js安装">1.2Node.js安装</h3><p>　　为了下载Hexo，你还需要安装<a href="https://nodejs.org/download/" target="_blank" rel="external">node.js</a>，选择<strong>msi</strong>版本下载安装，系统会自动为你添加node和npm的环境变量(node.js中集成了npm模块)。这时候，可以选择在Dos命令行输入<code>node -v</code>和<code>npm -v</code>，如果出现以下内容</p>
-<center> <img src="../images/node&amp;npm.png" alt="node&amp;npm"> </center>
+<center> <img src="/images/node&amp;npm.png" alt="node&amp;npm"> </center>
 
 <p>说明你已完成node.js的安装和配置。</p>
 <h3 id="1-3Hexo安装">1.3Hexo安装</h3><p>　　终于进入我们正题的第一步了。找到开始菜单的Git工具，选择Git bash打开，输入<code>npm install hexo -g</code>，安装hexo全局环境。</p>
