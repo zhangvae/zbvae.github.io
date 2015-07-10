@@ -473,6 +473,7 @@ a {
   margin: 0.67em 0;
   font-family: Roboto, "Roboto", serif;
   font-size: 30px;
+  font-weight: 600;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
@@ -537,6 +538,7 @@ a {
   text-transform: uppercase;
   float: none;
   height: 150px;
+  margin-top: -16px;
   margin-left: -12px;
   text-align: center;
   display: -webkit-box;
@@ -581,7 +583,7 @@ a {
 }
 #header .header-nav .social {
   margin-right: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
   text-align: center;
 }
 #header .header-nav .social a {
@@ -621,6 +623,13 @@ a {
   border: 1px solid #ef7522;
 }
 #header .header-nav .social a.rss:hover {
+  border: 1px solid #cf5d0f;
+}
+#header .header-nav .social a.sitemap {
+  background: url("/img/sitemap.png") center no-repeat #ef7522;
+  border: 1px solid #ef7522;
+}
+#header .header-nav .social a.sitemap:hover {
   border: 1px solid #cf5d0f;
 }
 #header .header-nav .social a.github {
