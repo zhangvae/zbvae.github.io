@@ -249,7 +249,7 @@
     <link href="http://blog.zbvae.com/2015/07/11/Java-%E6%AF%94%E8%BE%83%E5%99%A8/"/>
     <id>http://blog.zbvae.com/2015/07/11/Java-比较器/</id>
     <published>2015-07-11T06:57:40.000Z</published>
-    <updated>2015-07-11T07:11:04.963Z</updated>
+    <updated>2015-07-11T08:02:10.333Z</updated>
     <content type="html"><![CDATA[<p><strong>摘要</strong>：Java中Arrays以及支持可排序功能的集合类等都提供了对象比较功能，那么它是如何实现的呢，能直接使用Arrays来比较两个自定义的对象数组吗，答案是否定的。下面本文从Arrays类出发，介绍对象数组的比较功能，以及两种比较器的实现方式。<a id="more"></a></p>
 <h2 id="1-Arrays类提供的比较功能">1.Arrays类提供的比较功能</h2><p>　　java.util包中Arrays类作为一个工具类，提供了大量用于数组操作的静态方法，其中包括数组二分查找，对象数组的比较以及对象数组的排序等功能，供用户方便使用。例如使用下面的例子对两个int数组进行比较如下：</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestCompare</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> b[] = &#123;<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line">		Arrays.sort(b);</span><br><span class="line">		System.<span class="keyword">out</span>.println(Arrays.equals(a,b));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -290,7 +290,7 @@
 <h2 id="4-两种比较方式的区别">4.两种比较方式的区别</h2><p>从网上看到的一些关于这两个接口的比较：</p>
 <ul>
 <li>Comparable接口位于java.lang包中，Comparator接口位于java.util包中</li>
-<li>Comparator属于自然顺序比较排序，对于TreeSet或者TreeMap中的Key可以实现有序映射，而不需要制定比较器</li>
+<li>Comparable属于自然顺序比较排序，对于TreeSet或者TreeMap中的Key可以实现有序映射，而不需要制定比较器</li>
 <li>Comparator属于一种策略模式，即不修改原对象，使用策略对象来达到修改原对象行为的目的</li>
 <li>Comparable接口是集合内部定义，自己完成比较；Comparator是外部程序实现比较。</li>
 </ul>
