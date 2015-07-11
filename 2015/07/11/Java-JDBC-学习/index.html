@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="zbvae's blog">
 <meta property="og:description" content="摘要：一些大型程序免不了要连接数据库，很多网络程序更是如此，因此掌握数据库的连接手段非常必要，本文以Oracle和mysql数据库为例，介绍Java程序通过jdbc连接并操作数据库的示例。">
 <meta property="og:image" content="http://blog.zbvae.com/images/jdbcjar.png">
-<meta property="og:updated_time" content="2015-07-11T05:42:57.450Z">
+<meta property="og:updated_time" content="2015-07-11T06:54:54.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java JDBC 学习">
 <meta name="twitter:description" content="摘要：一些大型程序免不了要连接数据库，很多网络程序更是如此，因此掌握数据库的连接手段非常必要，本文以Oracle和mysql数据库为例，介绍Java程序通过jdbc连接并操作数据库的示例。">
@@ -111,7 +111,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 10px;">技术交流</a>
+						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/Java技术/" style="font-size: 10px;">Java技术</a> <a href="/tags/技术交流/" style="font-size: 15px;">技术交流</a>
 					</div>
 				</section>
 				
@@ -214,10 +214,10 @@
       
         <p><strong>摘要</strong>：一些大型程序免不了要连接数据库，很多网络程序更是如此，因此掌握数据库的连接手段非常必要，本文以Oracle和mysql数据库为例，介绍Java程序通过jdbc连接并操作数据库的示例。<a id="more"></a></p>
 <h2 id="1-JDBC连接数据库">1.JDBC连接数据库</h2><p>　　Java通过JDBC连接和操作数据库，每个数据库厂商都定制了一套可以通过Java连接的JDBC接口，以jar包的形式发布。要实现Java程序连接数据库，受限需要下载相应的数据库可支持的JDBC jar包，Oracle安装目录下提供了与jdbc操作相关的很多jar文件，可直接使用，而mysql需要自己在网上下载，但是本人发现，通过classpath设置数据库驱动（即jar包），本地Java程序还是操作不了，因此，本文在eclipse环境下进行。</p>
-<h2 id="2-Eclipse_程序">2.Eclipse 程序</h2><h2 id="2-1准备">2.1准备</h2><p>　　首先，新建连接数据库的程序项目，设置项目属性，java build path，选择add external jar，上传项目需要的两个jar文件（oracle和mysql分别需要使用的驱动）.</p>
+<h2 id="2-Eclipse_程序">2.Eclipse 程序</h2><h3 id="2-1准备">2.1准备</h3><p>　　首先，新建连接数据库的程序项目，设置项目属性，java build path，选择add external jar，上传项目需要的两个jar文件（oracle和mysql分别需要使用的驱动）.</p>
 <center><img src="/images/jdbcjar.png" alt="add jdbc jar to eclipse"></center>
 
-<h2 id="2-2代码编写">2.2代码编写</h2><p>　　 下面正式开始代码的编写。我们新建DbConnection和DbHelper类，DbConnection负责通过制定连接数据库类型和配置文件路径打开和关闭与指定数据库的连接，将该连接作为参数设置到DbHelper实例，并由此类完成与指定数据库相关的增删改查操作。<br>DbConnection类：建立数据库连接有以下一般步骤:</p>
+<h3 id="2-2代码编写">2.2代码编写</h3><p>　　 下面正式开始代码的编写。我们新建DbConnection和DbHelper类，DbConnection负责通过制定连接数据库类型和配置文件路径打开和关闭与指定数据库的连接，将该连接作为参数设置到DbHelper实例，并由此类完成与指定数据库相关的增删改查操作。<br>DbConnection类：建立数据库连接有以下一般步骤:</p>
 <ol>
 <li>加载驱动程序，已知驱动程序类名，不知其结构，利用Java反射加载驱动，Class.forName(“驱动程序报名.类名”)</li>
 <li>准备连接url，针对不同的数据库有不同的url，但无一例外，都需要提供指定的数据库实例名</li>
