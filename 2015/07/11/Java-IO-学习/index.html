@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="zbvae's blog">
 <meta property="og:description" content="摘要：IO无疑是学习每一门语言都要求掌握的编程知识点，一些大型项目都离不开IO的支持，因此掌握IO相关操作，对以后的学习和工作都是很有必要的。IO知识说难不难，但是每到用的时候，我们都需要查阅，本文从Java语言面向对象的特点出发，讲述Java IO的一些知识，仅供参考。
 1.IO 基本知识　　IO是以流的方式来组织和传播，与流水非常相似。从源头输出不断流淌输入到目的地，中间为了方便，可能还会加上">
-<meta property="og:updated_time" content="2015-07-11T01:54:21.777Z">
+<meta property="og:updated_time" content="2015-07-11T01:55:52.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java IO 学习">
 <meta name="twitter:description" content="摘要：IO无疑是学习每一门语言都要求掌握的编程知识点，一些大型项目都离不开IO的支持，因此掌握IO相关操作，对以后的学习和工作都是很有必要的。IO知识说难不难，但是每到用的时候，我们都需要查阅，本文从Java语言面向对象的特点出发，讲述Java IO的一些知识，仅供参考。
@@ -212,7 +212,7 @@
       
         <hr>
 <p><strong>摘要</strong>：IO无疑是学习每一门语言都要求掌握的编程知识点，一些大型项目都离不开IO的支持，因此掌握IO相关操作，对以后的学习和工作都是很有必要的。IO知识说难不难，但是每到用的时候，我们都需要查阅，本文从Java语言面向对象的特点出发，讲述Java IO的一些知识，仅供参考。</p>
-<h2 id="1-IO_基本知识">1.IO 基本知识</h2><p>　　IO是以流的方式来组织和传播，与流水非常相似。从源头输出不断流淌输入到目的地，中间为了方便，可能还会加上水管来辅助输出，水量小的时候，一滴滴或者涓涓细流，这时候我们可以建筑水坝库存到一定量才释放，有的水流汇入江海，而有的则直接流入千家百户。<br>　　在Java IO体系中，根据流的成分不同，可以分为<strong>字符流</strong>和<strong>字节流</strong>两种；根据流向不同，可以分为<strong>输入流</strong>和<strong>输出流</strong>；根据源头不同，可以分为<strong>文件流和内存流</strong>；为了便于输出和通信，Java也提供了<strong>管道流</strong>和<strong>缓存流</strong>；根据输出目的地不同，可以通过<strong>打印流</strong>来控制是输出到文件还是其他地方；为了支持序列化，Java还提供了<strong>对象流</strong>；为了支持数据的访问和保存，Java提供了<strong>数据流</strong>；为了支持文件的压缩与解压缩，Java提供了<strong>文件压缩与解压缩流</strong>。以下关于各个流的几个注意点：</p>
+<h2 id="1-IO_基本知识">1.IO 基本知识</h2><p>　　IO是以流的方式来组织和传播，与流水非常相似。从源头输出不断流淌输入到目的地，中间为了方便，可能还会加上水管来辅助输出，水量小的时候，一滴滴或者涓涓细流，这时候我们可以建筑水坝库存到一定量才释放，有的水流汇入江海，而有的则直接流入千家百户。<a id="more"></a><br>　　在Java IO体系中，根据流的成分不同，可以分为<strong>字符流</strong>和<strong>字节流</strong>两种；根据流向不同，可以分为<strong>输入流</strong>和<strong>输出流</strong>；根据源头不同，可以分为<strong>文件流和内存流</strong>；为了便于输出和通信，Java也提供了<strong>管道流</strong>和<strong>缓存流</strong>；根据输出目的地不同，可以通过<strong>打印流</strong>来控制是输出到文件还是其他地方；为了支持序列化，Java还提供了<strong>对象流</strong>；为了支持数据的访问和保存，Java提供了<strong>数据流</strong>；为了支持文件的压缩与解压缩，Java提供了<strong>文件压缩与解压缩流</strong>。以下关于各个流的几个注意点：</p>
 <ul>
 <li>以内存为参照：流入内存为输入流，流出内存，汇入外地，为输出流。</li>
 <li>字符流是以字符为单位，主要处理文本文件；字节流以字节为传输单位，可以处理文本，语音和图像等任何信息，字节流的应用范围更广。Java提供了InputStreamReader和OutputStreamWriter来实现字符流与字节流的转换。</li>
