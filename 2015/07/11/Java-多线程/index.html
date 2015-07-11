@@ -13,8 +13,8 @@
 <meta property="og:url" content="http://blog.zbvae.com/2015/07/11/Java-多线程/index.html">
 <meta property="og:site_name" content="zbvae's blog">
 <meta property="og:description" content="摘要：Java是一门支持多线程的语言，其对多线程操作提供了很大的方便，而多线程在现在很多的程序甚至企业级项目中都会使用到，因此，学好Java多线程知识对提高自己的编程和应用水平都有很大的帮助。">
-<meta property="og:image" content="http://blog.zbvae.com/./images/threadnbsp;status.jpg">
-<meta property="og:updated_time" content="2015-07-11T03:53:37.087Z">
+<meta property="og:image" content="http://blog.zbvae.com/'./images/thread status.jpg'">
+<meta property="og:updated_time" content="2015-07-11T03:55:35.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 多线程">
 <meta name="twitter:description" content="摘要：Java是一门支持多线程的语言，其对多线程操作提供了很大的方便，而多线程在现在很多的程序甚至企业级项目中都会使用到，因此，学好Java多线程知识对提高自己的编程和应用水平都有很大的帮助。">
@@ -216,7 +216,7 @@
 <h2 id="1-进程与线程的区别">1.进程与线程的区别</h2><p>　　在介绍Java多线程编程之前，首先我们需要掌握线程的概念，即线程是什么。要了解线程是什么，还需要掌握进程的概念。</p>
 <p>　　进程指的就是一个执行程序单位。在计算机发展初期，操作系统是单进程的，如DOS系统，这样一旦有病毒侵入，电脑立即死机，因为单进程环境下，只会有一个进程参与运行，这也显示单进程操作系统的不足。后期，出现Windows操作系统，它是支持多进程的，一个时间段可以有多个进程同时运行，因此即使有病毒侵入，也不会影响其它程序的运行。但是这里需要注意的是，多进程可以在同一时间段同时运行，同一时间点只能运行一个进程。而多进程同时运行，正是由于CPU的轮询机制非常快，我们感觉不到，所以就认为是同时运行，比如，现在我们可以在编辑word的同时，听听音乐，那么这里的word程序和音乐播放器程序是同时运行的两个进程，正是由于CPU轮询的非常快。这样可以看出，多进程提高了CPU的使用效率，明显优于单进程。</p>
 <p>　　线程之于进程，就相当于原子之于分子，一个化学分子由多个原子组成，同样线程也是对执行程序单位的进一步划分，一个进程可以由多个线程参与运行，它们的主要区别在于，进程有自己的内存空间，而进程的多个线程共享该进程的内存空间。我们也可以发现很多多线程运行的例子，例如我们打开Eclipse编辑器，在编写Java代码时，如果出现明显的错误，则编辑器会自动出现红色提示，这种红色提示说明在Eclipse程序中包含有多个线程同时运行，其中有一个线程就是对我们代码错误进行检查。多线程提高了执行程序的运行效率，因为一旦CPU轮询到该执行程序，我们使用多线程参与运行明显没有浪费这次CPU。</p>
-<h2 id="2-线程状态">2.线程状态</h2><p>　　相信现在大家对多线程的概念有一定的了解了。那么线程的五种状态有必要介绍一下：新建，就绪，运行，阻塞，死亡状态，下面的线程状态图很好地展示了各个状态及其产生原因，该图借鉴于<a href="http://wangqiang6028.iteye.com/blog/1887342" target="_blank" rel="external">http://wangqiang6028.iteye.com/blog/1887342</a>。<br><img src="./images/threadnbsp;status.jpg" alt="线程状态图"><br>现在看不懂没关系，等到下面先创建出一个进程，之后大家就知道它是怎么回事了，以及怎样使线程处于就绪，运行阻塞和死亡状态。</p>
+<h2 id="2-线程状态">2.线程状态</h2><p>　　相信现在大家对多线程的概念有一定的了解了。那么线程的五种状态有必要介绍一下：新建，就绪，运行，阻塞，死亡状态，下面的线程状态图很好地展示了各个状态及其产生原因，该图借鉴于<a href="http://wangqiang6028.iteye.com/blog/1887342" target="_blank" rel="external">http://wangqiang6028.iteye.com/blog/1887342</a>。<br><img src="&#39;./images/thread status.jpg&#39;" alt="线程状态图"><br>现在看不懂没关系，等到下面先创建出一个进程，之后大家就知道它是怎么回事了，以及怎样使线程处于就绪，运行阻塞和死亡状态。</p>
 <h2 id="3-线程的创建">3.线程的创建</h2><p>　　Java给我们提供了两种线程创建方式：</p>
 <ul>
 <li>继承Thread类；</li>
