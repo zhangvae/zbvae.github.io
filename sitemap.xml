@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zbvae.com/2015/07/11/Java-JDBC-%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2015-07-11T05:33:53.889Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zbvae.com/2015/07/11/Java-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2015-07-11T04:06:43.992Z</lastmod>
   </url>
