@@ -5,7 +5,7 @@
   <subtitle><![CDATA[这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zbvae.com//"/>
-  <updated>2015-07-13T02:59:58.977Z</updated>
+  <updated>2015-07-13T03:03:19.219Z</updated>
   <id>http://blog.zbvae.com//</id>
   
   <author>
@@ -20,8 +20,8 @@
     <link href="http://blog.zbvae.com/2015/07/12/Java-NIO-%E5%AD%A6%E4%B9%A0/"/>
     <id>http://blog.zbvae.com/2015/07/12/Java-NIO-学习/</id>
     <published>2015-07-12T11:28:58.000Z</published>
-    <updated>2015-07-13T02:59:58.977Z</updated>
-    <content type="html"><![CDATA[<p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。</p>
+    <updated>2015-07-13T03:03:19.219Z</updated>
+    <content type="html"><![CDATA[<p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。<a id="more"></a></p>
 <h2 id="1-NIO概述">1.NIO概述</h2><p>Java NIO产生自JDK1.4，主要由以下几个部分组成：</p>
 <ul>
 <li>Channel    双向交流的通道</li>
@@ -131,7 +131,8 @@
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法]]>
+    <![CDATA[<p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。]]>
+    
     </summary>
     
       <category term="Java学习" scheme="http://blog.zbvae.com/tags/Java%E5%AD%A6%E4%B9%A0/"/>
