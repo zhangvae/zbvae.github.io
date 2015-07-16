@@ -7,16 +7,16 @@
   
   <title>Java NIO 学习 | zbvae&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。">
+  <meta name="description" content="摘要：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，是一种同步非阻塞IO模式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java NIO 学习">
 <meta property="og:url" content="http://blog.zbvae.com/2015/07/12/Java-NIO-学习/index.html">
 <meta property="og:site_name" content="zbvae's blog">
-<meta property="og:description" content="摘要：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。">
-<meta property="og:updated_time" content="2015-07-13T03:03:19.219Z">
+<meta property="og:description" content="摘要：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，是一种同步非阻塞IO模式。">
+<meta property="og:updated_time" content="2015-07-13T08:52:00.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java NIO 学习">
-<meta name="twitter:description" content="摘要：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。">
+<meta name="twitter:description" content="摘要：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，是一种同步非阻塞IO模式。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -211,7 +211,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。<a id="more"></a></p>
+        <p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，是一种同步非阻塞IO模式。<a id="more"></a></p>
 <h2 id="1-NIO概述">1.NIO概述</h2><p>Java NIO产生自JDK1.4，主要由以下几个部分组成：</p>
 <ul>
 <li>Channel    双向交流的通道</li>
@@ -228,9 +228,9 @@
 </ul>
 <p>Buffer的实现主要包括：</p>
 <ul>
-<li>ByteBuffer</li>
-<li>CharBuffer</li>
-<li>DoubleBuffer</li>
+<li>ByteBuffer     </li>
+<li>CharBuffer     </li>
+<li>DoubleBuffer    </li>
 <li>FloatBuffer</li>
 <li>IntBuffer</li>
 <li>LongBuffer</li>
@@ -247,7 +247,7 @@
 </ul>
 <p>以下展示一个基本的文件拷贝的例子来展示Channel和Buffer的使用。</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> copyFile(<span class="keyword">File</span> srcFile, <span class="keyword">File</span> desFile)&#123;</span><br><span class="line">	FileChannel inChannel = <span class="keyword">null</span>;</span><br><span class="line">	FileChannel outChannel = <span class="keyword">null</span>;</span><br><span class="line">	ByteBuffer buf = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		inChannel = <span class="keyword">new</span> FileInputStream(srcFile).getChannel();</span><br><span class="line">		outChannel = <span class="keyword">new</span> FileOutputStream(desFile).getChannel();</span><br><span class="line">		buf = ByteBuffer.allocate(<span class="number">1024</span>);</span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>((len = inChannel.<span class="keyword">read</span>(buf)) != -<span class="number">1</span>)&#123;</span><br><span class="line">			buf.flip();</span><br><span class="line">			outChannel.<span class="keyword">write</span>(buf);</span><br><span class="line">			outChannel.force(<span class="keyword">true</span>);</span><br><span class="line">			buf.clear();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			outChannel.close();</span><br><span class="line">			inChannel.close();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>buf.flip()用来反转buf,先从通道中读取数据到buf，然后反转，从buf中写入数据到通道，进而输出到外设，FileChannel 的force方法强制将缓冲区的内容全部写进文件，类似于传统IO中的flush方法。</p>
+<p>buf.flip()用来反转buf,将buf从写模式切换到读模式，先从通道中读取数据到buf，然后反转，从buf中写入数据到通道，进而输出到外设，FileChannel 的force方法强制将缓冲区的内容全部写进文件，类似于传统IO中的flush方法。</p>
 <h2 id="3-Buffer_详解">3.Buffer 详解</h2><h3 id="3-1Buffer的基本使用步骤">3.1Buffer的基本使用步骤</h3><p>Buffer的使用一般遵循以下步骤：</p>
 <ol>
 <li>从Channel中读取数据到Buffer;</li>

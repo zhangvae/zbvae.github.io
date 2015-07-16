@@ -5,7 +5,7 @@
   <subtitle><![CDATA[这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zbvae.com//"/>
-  <updated>2015-07-13T03:03:19.219Z</updated>
+  <updated>2015-07-13T08:52:00.179Z</updated>
   <id>http://blog.zbvae.com//</id>
   
   <author>
@@ -20,8 +20,8 @@
     <link href="http://blog.zbvae.com/2015/07/12/Java-NIO-%E5%AD%A6%E4%B9%A0/"/>
     <id>http://blog.zbvae.com/2015/07/12/Java-NIO-学习/</id>
     <published>2015-07-12T11:28:58.000Z</published>
-    <updated>2015-07-13T03:03:19.219Z</updated>
-    <content type="html"><![CDATA[<p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。<a id="more"></a></p>
+    <updated>2015-07-13T08:52:00.179Z</updated>
+    <content type="html"><![CDATA[<p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，是一种同步非阻塞IO模式。<a id="more"></a></p>
 <h2 id="1-NIO概述">1.NIO概述</h2><p>Java NIO产生自JDK1.4，主要由以下几个部分组成：</p>
 <ul>
 <li>Channel    双向交流的通道</li>
@@ -38,9 +38,9 @@
 </ul>
 <p>Buffer的实现主要包括：</p>
 <ul>
-<li>ByteBuffer</li>
-<li>CharBuffer</li>
-<li>DoubleBuffer</li>
+<li>ByteBuffer     </li>
+<li>CharBuffer     </li>
+<li>DoubleBuffer    </li>
 <li>FloatBuffer</li>
 <li>IntBuffer</li>
 <li>LongBuffer</li>
@@ -57,7 +57,7 @@
 </ul>
 <p>以下展示一个基本的文件拷贝的例子来展示Channel和Buffer的使用。</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> copyFile(<span class="keyword">File</span> srcFile, <span class="keyword">File</span> desFile)&#123;</span><br><span class="line">	FileChannel inChannel = <span class="keyword">null</span>;</span><br><span class="line">	FileChannel outChannel = <span class="keyword">null</span>;</span><br><span class="line">	ByteBuffer buf = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		inChannel = <span class="keyword">new</span> FileInputStream(srcFile).getChannel();</span><br><span class="line">		outChannel = <span class="keyword">new</span> FileOutputStream(desFile).getChannel();</span><br><span class="line">		buf = ByteBuffer.allocate(<span class="number">1024</span>);</span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>((len = inChannel.<span class="keyword">read</span>(buf)) != -<span class="number">1</span>)&#123;</span><br><span class="line">			buf.flip();</span><br><span class="line">			outChannel.<span class="keyword">write</span>(buf);</span><br><span class="line">			outChannel.force(<span class="keyword">true</span>);</span><br><span class="line">			buf.clear();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			outChannel.close();</span><br><span class="line">			inChannel.close();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>buf.flip()用来反转buf,先从通道中读取数据到buf，然后反转，从buf中写入数据到通道，进而输出到外设，FileChannel 的force方法强制将缓冲区的内容全部写进文件，类似于传统IO中的flush方法。</p>
+<p>buf.flip()用来反转buf,将buf从写模式切换到读模式，先从通道中读取数据到buf，然后反转，从buf中写入数据到通道，进而输出到外设，FileChannel 的force方法强制将缓冲区的内容全部写进文件，类似于传统IO中的flush方法。</p>
 <h2 id="3-Buffer_详解">3.Buffer 详解</h2><h3 id="3-1Buffer的基本使用步骤">3.1Buffer的基本使用步骤</h3><p>Buffer的使用一般遵循以下步骤：</p>
 <ol>
 <li>从Channel中读取数据到Buffer;</li>
@@ -131,7 +131,7 @@
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，尤其是大数据时代的IO数据传输，显得更为重要。]]>
+    <![CDATA[<p><strong>摘要</strong>：传统IO是通过流的形式建立内存与外设之间的传输。而NIO则以通道和缓存的方式实现新的数据传输方式以解决传统IO的一些不足，NIO产生自JDK1.4，使用NIO代替传统IO会大大提高数据传输效率，掌握Java NIO的基本知识和使用方法也是对传统IO的一种补充，是一种同步非阻塞IO模式。]]>
     
     </summary>
     
@@ -433,7 +433,7 @@
     <link href="http://blog.zbvae.com/2015/07/11/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     <id>http://blog.zbvae.com/2015/07/11/正则表达式/</id>
     <published>2015-07-11T06:13:55.000Z</published>
-    <updated>2015-07-11T06:57:02.971Z</updated>
+    <updated>2015-07-16T05:26:38.219Z</updated>
     <content type="html"><![CDATA[<p><strong>摘要</strong>：正则表达式主要用途是文本规则的匹配和验证，在处理字符串的程序或网页时，经常需要对用户输入进行正则验证，从而简化复杂的程序编写逻辑，因此，正则表达式实际上就是一种文本规则的验证工具。<a id="more"></a></p>
 <h2 id="1-引例">1.引例</h2><p>　　在正则表达式诞生之前，通常我们对某一字符串文本进行验证的时候，需要编配大量的匹配规则，尤其出现在需要用户输入的地方，比如对用户输入的用户名，密码和邮箱进行输入验证，如果存在非法字符，则可能认为是恶意输入。下面通过Java语言介绍一个没有使用正则表达式的邮箱输入验证案例。</p>
 <p>　　给定一个邮箱：<code>aB-c_d.ef@g1_2-3h.i4_J-k</code>, 对于该邮箱（任意邮箱），我们将其划分为3个部分，首先，邮箱一定至少包含一个”.”号且只包含一个”@”符号，以这两个符号将邮箱分成3部分，第一部分为@之前的内容，可以是任意字母，数字，中划线，下划线，点号；第二部分为@与最后一个点号之间的内容，可以是任意字母，数字，中划线，下划线，但不可以是点号；第三部分为最后一个点号一直到结尾处的内容，实际上应该是域名，为了简化，我们认为此处内容也可以是任意字母，数字，下划线，中划线，但不可以是点号。<br>明白以上规则之后，见代码:</p>
@@ -618,7 +618,20 @@
 <p>从以上代码可以看出，使用Java的正则表达式可以快速完成与大量逻辑判断相同的工作，且结构清晰，只要定义的正则表达式正确，<strong>其实在Java中一般不直接使用Pattern类和Matcher类完成正则模式匹配，而使用String自带的正则支持</strong>。因为正则匹配的对象都是文本字符串，目的就是为了验证文本规则，而String在Java中又是一个及其特殊的类，因此自从JDK1.4，引进正则表达式，String类就作了相应的修改，提供了split,matches,replaceAll,replaceFirst等方法。如上述代码注释的内容即为直接使用String对象的matches方法，其效果是完全一样的。</p>
 <p>　　另外我想延伸的一点是，上述程序代码即正则表达式规则，虽然能够判别邮箱，但是邮箱通过的域名都是有限的（如163.com,qq.com），因此，本文提供精确的邮箱认证方式，即登录到邮箱服务器，验证邮箱是否存在，并返回验证结果。该功能需要Appache 的common-net.jar和dnsjava.jar包的支持。</p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">public <span class="keyword">static</span> boolean verifyDNS(<span class="type">String</span> emailStr) &#123;</span><br><span class="line">    <span class="type">String</span> host = <span class="string">""</span>;</span><br><span class="line">    <span class="type">String</span> hostName = emailStr.split(<span class="string">"@"</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="type">Record</span>[] <span class="literal">result</span> = null;</span><br><span class="line">    <span class="type">SMTPClient</span> client = new <span class="type">SMTPClient</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        // 查找<span class="type">MX</span>记录</span><br><span class="line">        <span class="type">Lookup</span> lookup = new <span class="type">Lookup</span>(hostName, <span class="type">Type</span>.<span class="type">MX</span>);</span><br><span class="line">        lookup.run();</span><br><span class="line">        <span class="keyword">if</span> (lookup.getResult() != <span class="type">Lookup</span>.<span class="type">SUCCESSFUL</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="literal">result</span> = lookup.getAnswers();</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        // 连接到邮箱服务器</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="literal">result</span>.length; i++) &#123;</span><br><span class="line">            host = <span class="literal">result</span>[i].getAdditionalName().toString();</span><br><span class="line">            client.connect(host);</span><br><span class="line">            <span class="keyword">if</span> (!<span class="type">SMTPReply</span>.isPositiveCompletion(client.getReplyCode())) &#123;</span><br><span class="line">                client.disconnect();</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        client.login(<span class="string">"xxxxxxxxxxxxxxxz.com"</span>);</span><br><span class="line">        client.setSender(<span class="string">"xxxxxxxxxxxx@xxxxxxxxxxxxxxx.com"</span>);</span><br><span class="line">    </span><br><span class="line">        client.addRecipient(emailStr);</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">250</span> == client.getReplyCode()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (<span class="type">Exception</span> e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            client.disconnect();</span><br><span class="line">        &#125; catch (<span class="type">Exception</span> e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这部分代码拷贝至<a href="http://www.eziep.net/details/80.html" target="_blank" rel="external">http://www.eziep.net/details/80.html</a>。</p>
+<p>这部分代码拷贝至<a href="http://www.eziep.net/details/80.html" target="_blank" rel="external">http://www.eziep.net/details/80.html</a>。以下是常见的正则匹配规则，参考自网上相关博客：</p>
+<ul>
+<li>匹配中文字符：[u4e00-u9fa5]</li>
+<li>匹配空白行: ns*r </li>
+<li>匹配html标签: ：&lt;(S<em>?)[^&gt;]</em>&gt;.<em>?|&lt;.</em>? /&gt; 或 &lt;/?[^&gt;]+&gt;</li>
+<li>标准的匹配Email：w+([-+.]w+)<em>@w+([-.]w+)</em>.w+([-.]w+)* </li>
+<li>匹配Url：：[a-zA-z]+://S* </li>
+<li>匹配帐号是否合法: ^[a-zA-Z][a-zA-Z0-9_]{4,15}$ </li>
+<li>匹配国内电话号码: d{3}-d{8}|d{4}-d{7} </li>
+<li>匹配腾讯QQ号: [1-9][0-9]{4,} </li>
+<li>匹配中国邮政编码: [1-9]d{5}(?!d) </li>
+<li>匹配身份证：d{15}|d{18} </li>
+<li>匹配ip地址：d+.d+.d+.d+</li>
+</ul>
 ]]></content>
     <summary type="html">
     <![CDATA[<p><strong>摘要</strong>：正则表达式主要用途是文本规则的匹配和验证，在处理字符串的程序或网页时，经常需要对用户输入进行正则验证，从而简化复杂的程序编写逻辑，因此，正则表达式实际上就是一种文本规则的验证工具。]]>
