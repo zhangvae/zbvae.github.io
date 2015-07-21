@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="UNHn0suvw2" />
+  <meta name="google-site-verification" content="2AQ75-m5QPW0KN4FrtIw60tT9cSP-sf_6V5Md4QyzaU" />
+  
+  <title>数据结构-多维数组和广义表 | zbvae&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 多维数组和广义表属于数据结构中非线性结构的基础内容。虽然较线性结构相对复杂，但是，从其递归意义上来说，组成它们的基础也是线性数据结构。本文主要以稀疏矩阵为代表探讨多维数组和广义表数据结构的存储和计算。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构-多维数组和广义表">
+<meta property="og:url" content="http://blog.zbvae.com/2015/07/21/数据结构-多维数组和广义表/index.html">
+<meta property="og:site_name" content="zbvae's blog">
+<meta property="og:description" content="摘要 多维数组和广义表属于数据结构中非线性结构的基础内容。虽然较线性结构相对复杂，但是，从其递归意义上来说，组成它们的基础也是线性数据结构。本文主要以稀疏矩阵为代表探讨多维数组和广义表数据结构的存储和计算。">
+<meta property="og:image" content="http://blog.zbvae.com/images/matrix.png">
+<meta property="og:updated_time" content="2015-07-21T07:43:57.764Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构-多维数组和广义表">
+<meta name="twitter:description" content="摘要 多维数组和广义表属于数据结构中非线性结构的基础内容。虽然较线性结构相对复杂，但是，从其递归意义上来说，组成它们的基础也是线性数据结构。本文主要以稀疏矩阵为代表探讨多维数组和广义表数据结构的存储和计算。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/zbvae.JPG" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Bin Zhang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主頁</a></li>
+				        
+							<li><a href="/archives">歸檔</a></li>
+				        
+							<li><a href="/MyAlbum">相冊</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 15px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">中南大学09级学生，现为2013级研究生，写论文中，求职中，待毕业中！</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Bin Zhang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/zbvae.JPG" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Bin Zhang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主頁</a></li>
+		        
+					<li><a href="/archives">歸檔</a></li>
+		        
+					<li><a href="/MyAlbum">相冊</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-数据结构-多维数组和广义表" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/21/数据结构-多维数组和广义表/" class="article-date">
+  	<time datetime="2015-07-21T05:22:54.000Z" itemprop="datePublished">2015-07-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构-多维数组和广义表
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>摘要</strong> 多维数组和广义表属于数据结构中非线性结构的基础内容。虽然较线性结构相对复杂，但是，从其递归意义上来说，组成它们的基础也是线性数据结构。本文主要以稀疏矩阵为代表探讨多维数组和广义表数据结构的存储和计算。<a id="more"></a></p>
+<h2 id="1-多维数组和广义表">1.多维数组和广义表</h2><p>多维数组可以理解为一维数组里的数据元素是一维或者多维数组，通过降维处理可以简化分析。广义表包含表头和表尾，表头可以原子也可以是列表，表尾是由表中除表头以外的所有元素构成的字表，因此表尾一定是列表。广义表从递归意义上也可以理解为线性表中的数据元素是普通元素或者是嵌套的线性表。</p>
+<p>多维数组从存储习惯上主要分为按行存储和按列存储，其中C和C++以及JAVA等主流语言都是按行存储，FORTRAN语言采用按列存储的原则，按行存储，只需要先变最右边的下标即可；反之，按列存储只需要先改变最左边的下标即可。对于已知三维数组长宽高分别为m,n,l，数组基址a[0][0][0]为loc(a[0][0][0])，如何求a[i][j][k]的地址。</p>
+<p>loc(a[i][j][k]) = loc(a[0][0][0]) + (k<em>m</em>n+j<em>m+i)</em>d</p>
+<h2 id="2-稀疏矩阵的存储">2.稀疏矩阵的存储</h2><p>多维数组实际上就是矩阵，只是在科学计算领域，矩阵有着特殊含义。在一个矩阵中，如果非零元素的个数远小于零元素的个数，我们称之为稀疏矩阵。对于稀疏矩阵的存储，我们不用像普通多维数组那样，为所有的元素分配内存空间，而把注意力放在非零元的存储问题上。下面介绍两种稀疏矩阵的存储方法，一种顺序存储方式表现为三元组表，另一种属于链式存储方式，即十字链表。</p>
+<h3 id="2-1三元组表">2.1三元组表</h3><p>三元组表为稀疏矩阵的顺序存储方式，稀疏矩阵中的每一个非零元都表现为一个三元组，包含该非零元所在行号，所在列号，以及非零元的值。整个稀疏矩阵只存储所有的非零元，是一个三元组顺序表，其属性包含三元组数组，稀疏矩阵行数，列数以及非零元个数。下面分别是三元组类型定义个稀疏矩阵三元组表的类型定义。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SeqMatrix</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_ELE_NUM = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TriNode</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> j;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> e;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> TriNode data[] = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> rowNum;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> colNum;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> <span class="keyword">count</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> SeqMatrix()&#123;</span><br><span class="line">		data = <span class="keyword">new</span> TriNode[MAX_ELE_NUM];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> SeqMatrix(<span class="keyword">int</span> rowNum, <span class="keyword">int</span> colNum, <span class="keyword">int</span> <span class="keyword">count</span>)&#123;</span><br><span class="line">		data = <span class="keyword">new</span> TriNode[MAX_ELE_NUM];</span><br><span class="line">		<span class="keyword">this</span>.rowNum = rowNum;</span><br><span class="line">		<span class="keyword">this</span>.colNum = colNum;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">count</span> &gt; MAX_ELE_NUM)&#123;</span><br><span class="line">			System.out.println(<span class="string">"the element is too much!"</span>);</span><br><span class="line">			System.exit(-<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">this</span>.<span class="keyword">count</span> = <span class="keyword">count</span>;</span><br><span class="line">		System.out.println(<span class="string">"the row num is "</span>+rowNum+<span class="string">", the col num is "</span>+colNum+<span class="string">", the element num is "</span>+<span class="keyword">count</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三元组表的定义类似于顺序表，底层也是数组实现，下面采用接收用户输入的方式创建三元组表：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> create()&#123;</span><br><span class="line">	System.out.<span class="built_in">println</span>(<span class="string">"please input trinode:\ni j e"</span>);</span><br><span class="line">	<span class="keyword">BufferedReader</span> br = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		br = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> t=<span class="number">0</span>; t&lt;count; t++)&#123;</span><br><span class="line">			<span class="keyword">String</span> inputStr = br.readLine();</span><br><span class="line">			<span class="keyword">if</span>(inputStr != <span class="keyword">null</span> &amp;&amp; inputStr.<span class="built_in">split</span>(<span class="string">" "</span>).length == <span class="number">3</span>)&#123;</span><br><span class="line">				<span class="keyword">String</span> strs[] = inputStr.<span class="built_in">split</span>(<span class="string">" "</span>);</span><br><span class="line"></span><br><span class="line">				<span class="built_in">int</span> i = Integer.parseInt(strs[<span class="number">0</span>]);</span><br><span class="line">				<span class="built_in">int</span> j = Integer.parseInt(strs[<span class="number">1</span>]);</span><br><span class="line">				<span class="built_in">int</span> e = Integer.parseInt(strs[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(i&lt;<span class="number">1</span> || i&gt;rowNum || j&lt;<span class="number">1</span> || j&gt;colNum)&#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"Your input is wrong!"</span>);</span><br><span class="line">					System.<span class="built_in">exit</span>(-<span class="number">1</span>);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				data[t] = <span class="keyword">new</span> TriNode();</span><br><span class="line">				data[t].i = i-<span class="number">1</span>;</span><br><span class="line">				data[t].j = j-<span class="number">1</span>;</span><br><span class="line">				data[t].e = e;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		getRowOrderMatrix();</span><br><span class="line">	&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意以上代码中，待用户输入完所有三元组后，调用了一个getRowOrderMatrix函数目的是为了将其转换为按行有序，而三元组按行有序排列是为了便于后续的转置等运算。下面是转换成按行有序的程序代码，先以行号排列，如果行号相等，再以列号排列，注意下面采用的是冒泡排序算法。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> void getRowOrderMatrix()&#123;</span><br><span class="line">	for(<span class="built_in">int</span> t=<span class="number">0</span>; t&lt;<span class="built_in">count</span>-<span class="number">1</span>; t++)&#123;</span><br><span class="line">		for(<span class="built_in">int</span> x=<span class="built_in">count</span>-t-<span class="number">1</span>; x&gt;= <span class="number">1</span>; x--)&#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="type">data</span>[x].i &lt; <span class="type">data</span>[x-<span class="number">1</span>].i)&#123;</span><br><span class="line">				TriNode temp = <span class="type">data</span>[x];</span><br><span class="line">				<span class="type">data</span>[x] = <span class="type">data</span>[x-<span class="number">1</span>];</span><br><span class="line">				<span class="type">data</span>[x-<span class="number">1</span>] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for(<span class="built_in">int</span> t=<span class="number">0</span>; t&lt;<span class="built_in">count</span>-<span class="number">1</span>; t++)&#123;</span><br><span class="line">		for(<span class="built_in">int</span> x=<span class="built_in">count</span>-t-<span class="number">1</span>; x&gt;= <span class="number">1</span>; x--)&#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="type">data</span>[x].i == <span class="type">data</span>[x-<span class="number">1</span>].i &amp;&amp; <span class="type">data</span>[x].j &lt; <span class="type">data</span>[x-<span class="number">1</span>].j)&#123;</span><br><span class="line">				TriNode temp = <span class="type">data</span>[x];</span><br><span class="line">				<span class="type">data</span>[x] = <span class="type">data</span>[x-<span class="number">1</span>];</span><br><span class="line">				<span class="type">data</span>[x-<span class="number">1</span>] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如本程序定义一个三元组表，用户按以下顺序输入三元组2 2 1,2 1 2,1 2 3。经过按行排序之后，三元组表为1 2 3,2 1 2,2 2 1。三元组表按行排序之后，我们就可以对其方便的进行转置操作了。一个矩阵经转置之后，原始矩阵中的第i行变成转置矩阵的第i列。即矩阵中行列数互换，每一个元素行列号互换。稀疏矩阵转置之后仍然是稀疏矩阵，为了保证转置之后的稀疏矩阵仍然是按行有序的。这里我们选择对原始矩阵按列进行转置，原始矩阵的每一列就是转置矩阵的每一行，因此对原始矩阵按列运算，得到的转置矩阵就是按行有序的。</p>
+<p>对原始矩阵的每一列，在三元组表中查找列号等于该列的元素，如果有的话，直接将其行列号互换，就得到了转置矩阵中的某一行非零元。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> SeqMatrix transpose()&#123;</span><br><span class="line">	SeqMatrix tMatrix = <span class="keyword">new</span> SeqMatrix(colNum, rowNum, <span class="keyword">count</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(tMatrix.<span class="keyword">count</span> &lt; <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> col=<span class="number">0</span>; col&lt;<span class="keyword">this</span>.colNum; col++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> t=<span class="number">0</span>; t&lt;<span class="keyword">count</span>; t++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="keyword">this</span>.data[t].j == col)&#123;</span><br><span class="line">				tMatrix.data[q] = <span class="keyword">new</span> TriNode();</span><br><span class="line">				tMatrix.data[q].i = <span class="keyword">this</span>.data[t].j;</span><br><span class="line">				tMatrix.data[q].j = <span class="keyword">this</span>.data[t].i;</span><br><span class="line">				tMatrix.data[q].e = <span class="keyword">this</span>.data[t].e;</span><br><span class="line">				q++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> tMatrix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>稀疏矩阵的三元组表存储方式比较易于理解，但不利于插入或改变某个非零元，如果要频繁地进行插入或删除非零元的工作，则需要采用链式存储方式，即下面要介绍的十字链表存储。</p>
+<h2 id="2-2十字链表">2.2十字链表</h2><p>在原有三元组的基础之上，再增加两个指针域right和down，构成五元组，right指向该行下一个五元组，down指向该列下一个五元组，这便是十字链表中的结点。同样十字链表除了具有稀疏矩阵行数，列数以及非零元个数之外，还需要维护一份行链表数组和列链表数组，因为稀疏矩阵的每一行和每一列都是一个链表，链表表头为该行或该列第一个非零元，因此行链表数组的大小是稀疏矩阵的行数，列链表数组的大小是稀疏矩阵的列数。下面是五元组和十字链表的定义。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkMatrix</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkNode</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> j;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> e;</span><br><span class="line">		<span class="keyword">private</span> LinkNode right;</span><br><span class="line">		<span class="keyword">private</span> LinkNode down;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">public</span> LinkNode()&#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">public</span> LinkNode(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> e, LinkNode right, LinkNode down)&#123;</span><br><span class="line">			<span class="keyword">this</span>.i = i;</span><br><span class="line">			<span class="keyword">this</span>.j = j;</span><br><span class="line">			<span class="keyword">this</span>.e = e;</span><br><span class="line">			<span class="keyword">this</span>.right = right;</span><br><span class="line">			<span class="keyword">this</span>.down = down;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> LinkNode rHead[];</span><br><span class="line">	<span class="keyword">private</span> LinkNode dHead[];</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> rowNum;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> colNum;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> <span class="keyword">count</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> LinkMatrix()&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> LinkMatrix(<span class="keyword">int</span> rowNum, <span class="keyword">int</span> colNum, <span class="keyword">int</span> <span class="keyword">count</span>)&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">this</span>.rowNum = rowNum;</span><br><span class="line">		<span class="keyword">this</span>.colNum = colNum;</span><br><span class="line">		<span class="keyword">this</span>.<span class="keyword">count</span> = <span class="keyword">count</span>;</span><br><span class="line">		<span class="keyword">this</span>.rHead = <span class="keyword">new</span> LinkNode[rowNum];</span><br><span class="line">		<span class="keyword">this</span>.dHead = <span class="keyword">new</span> LinkNode[colNum];</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面以接收用户输入方式创建十字链表，十字链表的创建过程有点负责，考察的是单链表的知识，因此，如果这里有什么不清楚的，再回过头去查看线性表中单链表的相关知识。下面是十字链表创建代码。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> create()&#123;</span><br><span class="line">	System.out.<span class="built_in">println</span>(<span class="string">"please input trinode:\ni j e"</span>);</span><br><span class="line">	<span class="keyword">BufferedReader</span> br = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		br = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> t=<span class="number">0</span>; t&lt;count; t++)&#123;</span><br><span class="line">			<span class="keyword">String</span> inputStr = br.readLine();</span><br><span class="line">			<span class="keyword">if</span>(inputStr != <span class="keyword">null</span> &amp;&amp; inputStr.<span class="built_in">split</span>(<span class="string">" "</span>).length == <span class="number">3</span>)&#123;</span><br><span class="line">				<span class="keyword">String</span> strs[] = inputStr.<span class="built_in">split</span>(<span class="string">" "</span>);</span><br><span class="line"></span><br><span class="line">				<span class="built_in">int</span> i = Integer.parseInt(strs[<span class="number">0</span>])-<span class="number">1</span>;</span><br><span class="line">				<span class="built_in">int</span> j = Integer.parseInt(strs[<span class="number">1</span>])-<span class="number">1</span>;</span><br><span class="line">				<span class="built_in">int</span> e = Integer.parseInt(strs[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(i&lt;<span class="number">0</span> || i&gt;rowNum-<span class="number">1</span> || j&lt;<span class="number">0</span> || j&gt;colNum-<span class="number">1</span>)&#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"Your input is wrong!"</span>);</span><br><span class="line">					System.<span class="built_in">exit</span>(-<span class="number">1</span>);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				LinkNode s = <span class="keyword">new</span> LinkNode(i,j,e,<span class="keyword">null</span>,<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(<span class="keyword">this</span>.rHead[i] == <span class="keyword">null</span> || <span class="keyword">this</span>.rHead[i].j &gt; s.j)&#123;</span><br><span class="line">					s.right = <span class="keyword">this</span>.rHead[i];</span><br><span class="line">					<span class="keyword">this</span>.rHead[i] = s;	</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					LinkNode p = <span class="keyword">this</span>.rHead[i];<span class="comment">//first row node</span></span><br><span class="line">					<span class="keyword">while</span>(p.j &lt; s.j)&#123;</span><br><span class="line">						p = p.right;</span><br><span class="line">					&#125;</span><br><span class="line">					s.right = p.right;</span><br><span class="line">					p.right = s;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(<span class="keyword">this</span>.dHead[j] == <span class="keyword">null</span> || <span class="keyword">this</span>.rHead[j].i &gt; s.i)&#123;</span><br><span class="line">					s.down = <span class="keyword">this</span>.dHead[j];</span><br><span class="line">					<span class="keyword">this</span>.dHead[j] = s;	</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					LinkNode p = <span class="keyword">this</span>.dHead[j];<span class="comment">//first row node</span></span><br><span class="line">					<span class="keyword">while</span>(p.i &lt; s.i)&#123;</span><br><span class="line">						p = p.down;</span><br><span class="line">					&#125;</span><br><span class="line">					s.down = p.down;</span><br><span class="line">					p.down = s;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接收用户收入将其转换成三元组，并实例化LinkNode是比较容易理解了，初始化时，right和down都为空，设新结点为s。</p>
+<p>先构造行链表数组：</p>
+<ul>
+<li>如果s中行号所在的行链表即rHead[i]为空，说明这一行还没有非零元加入或者rHead[i].j &gt; s.j说明这一行表头结点的列号大于用户新输入的三元组列号，这两种情况，都只需要将新结点直接加入表头即可，对应单链表的头插法。</li>
+<li>如果这两个条件都不满足，说明这一行已经有非零元，为了保证行链表中结点按列号有序，需要为新结点找到合适的插入位置，我们先获取表头结点赋值给工作结点p,只要p.j &lt; s.j，继续让p = p.right，直到找到p的下一个结点列号大于用户输入的三元组列号，按照单链表中的插入结点方法，s.right = p.right;p.right = s。</li>
+</ul>
+<p>再构造列链表数组：</p>
+<ul>
+<li>如果s中列号所在的行链表即dHead[j]为空，说明这一列还没有非零元加入或者dHead[j].i &gt; s.i说明这一列表头结点的行号大于用户新输入的三元组行号，这两种情况，都只需要将新结点直接加入表头即可，对应单链表的头插法。</li>
+<li>如果这两个条件都不满足，说明这一列已经有非零元，为了保证列链表中结点按行号有序，需要为新结点找到合适的插入位置，我们先获取表头结点赋值给工作结点p,只要p.i &lt; s.i，继续让p = p.down，直到找到p的下一个结点行号大于用户输入的三元组行号，按照单链表中的插入结点方法，s.down = p.down;p.down = s。</li>
+</ul>
+<p>完成了行链表数组和链表数组的构建工作，也就完成十字链表的创建工作。</p>
+<p>采用十字链表表示的稀疏矩阵的转置运算，主要也是在于行链表和列链表数组的调整，将之前的行链表数组调整为列链表数组，将之前的列链表数组调整为行链表数组即可。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function">LinkMatrix <span class="title">transpose</span><span class="params">()</span></span>&#123;</span><br><span class="line">	LinkMatrix linkMatrix = <span class="keyword">new</span> LinkMatrix(colNum, rowNum, count);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;rowNum; i++)&#123;</span><br><span class="line">		LinkNode p = <span class="keyword">this</span>.rHead[i];</span><br><span class="line">		LinkNode r = <span class="keyword">new</span> LinkNode(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="keyword">null</span>,<span class="keyword">null</span>);<span class="comment">//rear node</span></span><br><span class="line">		<span class="keyword">while</span>(p != <span class="keyword">null</span>)&#123;</span><br><span class="line">			LinkNode q = <span class="keyword">new</span> LinkNode(p.j,p.i,p.e,p.down,p.right);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(linkMatrix.dHead[i] == <span class="keyword">null</span>)&#123;</span><br><span class="line">				linkMatrix.dHead[i] = q;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				r.down = q;</span><br><span class="line">				r = q;</span><br><span class="line">			&#125;</span><br><span class="line">			p = p.right;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;colNum; i++)&#123;</span><br><span class="line">		LinkNode p = <span class="keyword">this</span>.dHead[i];</span><br><span class="line">		LinkNode r = <span class="keyword">new</span> LinkNode(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="keyword">null</span>,<span class="keyword">null</span>);<span class="comment">//rear node</span></span><br><span class="line">		<span class="keyword">while</span>(p != <span class="keyword">null</span>)&#123;</span><br><span class="line">			LinkNode q = <span class="keyword">new</span> LinkNode(p.j,p.i,p.e,p.down,p.right);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(linkMatrix.rHead[i] == <span class="keyword">null</span>)&#123;</span><br><span class="line">				linkMatrix.rHead[i] = q;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				r.right = q;</span><br><span class="line">				r = q;</span><br><span class="line">			&#125;</span><br><span class="line">			p = p.down;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> linkMatrix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对原始稀疏矩阵行链表数组，将其转换为对应的转置矩阵的列链表数组。这里采用单链表尾插法构造。下面是本程序的测试类：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> TestSMatrix&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"text sequence matrix"</span>);</span><br><span class="line">		SeqMatrix seqMatrix = <span class="keyword">new</span> SeqMatrix(<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">		seqMatrix.create();</span><br><span class="line">		seqMatrix.<span class="keyword">print</span>();</span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"after transpose:"</span>);</span><br><span class="line">		SeqMatrix tSeqMatrix = seqMatrix.transpose();</span><br><span class="line">		tSeqMatrix.<span class="keyword">print</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"text link matrix"</span>);</span><br><span class="line">		LinkMatrix linkMatrix = <span class="keyword">new</span> LinkMatrix(<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">		linkMatrix.create();</span><br><span class="line">		linkMatrix.<span class="keyword">print</span>();</span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"after transpose:"</span>);</span><br><span class="line">		LinkMatrix tLinkMatrix = linkMatrix.transpose();</span><br><span class="line">		tLinkMatrix.<span class="keyword">print</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序输入和输出如下所示：</p>
+<center><img src="/images/matrix.png" alt="smatrix"></center>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/20/数据结构-串/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构-串</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="数据结构-多维数组和广义表" data-title="数据结构-多维数组和广义表" data-url="http://blog.zbvae.com/2015/07/21/数据结构-多维数组和广义表/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zbbk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Bin Zhang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+  <a href="https://github.com/zbvae"><img style="z-index:9999; position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+</body>
+</html>
