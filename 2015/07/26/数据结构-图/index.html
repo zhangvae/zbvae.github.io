@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="UNHn0suvw2" />
+  <meta name="google-site-verification" content="2AQ75-m5QPW0KN4FrtIw60tT9cSP-sf_6V5Md4QyzaU" />
+  
+  <title>数据结构-图 | zbvae&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 图与树一样都属于非线性结构，又有点类似于广义表。图中各结点之间都可能具有逻辑关系，结点之间的关系是任意的，因此它是一种比线性表和树更为复杂的数据结构。图在科研和生活中有着非常广泛的应用，如生活中的最短路径问题，以及搜索引擎中深度和广度搜索问题。本文主要介绍图的存储结构定义，以及使用邻接矩阵表示的图的最短路径问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构-图">
+<meta property="og:url" content="http://blog.zbvae.com/2015/07/26/数据结构-图/index.html">
+<meta property="og:site_name" content="zbvae's blog">
+<meta property="og:description" content="摘要 图与树一样都属于非线性结构，又有点类似于广义表。图中各结点之间都可能具有逻辑关系，结点之间的关系是任意的，因此它是一种比线性表和树更为复杂的数据结构。图在科研和生活中有着非常广泛的应用，如生活中的最短路径问题，以及搜索引擎中深度和广度搜索问题。本文主要介绍图的存储结构定义，以及使用邻接矩阵表示的图的最短路径问题。">
+<meta property="og:image" content="http://blog.zbvae.com/images/graph.png">
+<meta property="og:image" content="http://blog.zbvae.com/images/linkgraph.png">
+<meta property="og:image" content="http://blog.zbvae.com/images/crossgraph.png">
+<meta property="og:updated_time" content="2015-07-26T12:01:17.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构-图">
+<meta name="twitter:description" content="摘要 图与树一样都属于非线性结构，又有点类似于广义表。图中各结点之间都可能具有逻辑关系，结点之间的关系是任意的，因此它是一种比线性表和树更为复杂的数据结构。图在科研和生活中有着非常广泛的应用，如生活中的最短路径问题，以及搜索引擎中深度和广度搜索问题。本文主要介绍图的存储结构定义，以及使用邻接矩阵表示的图的最短路径问题。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div style="z-index:9999; position: absolute; top: 10px; left: 125px;">
+			<object width="160" height="70" align="middle" id="honehoneclock" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"><PARAM NAME="_cx" VALUE="4233"><PARAM NAME="_cy" VALUE="1852"><PARAM NAME="FlashVars" VALUE=""><PARAM NAME="Movie" VALUE="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><PARAM NAME="Src" VALUE="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><PARAM NAME="WMode" VALUE="Transparent"><PARAM NAME="Play" VALUE="0"><PARAM NAME="Loop" VALUE="-1"><PARAM NAME="Quality" VALUE="High"><PARAM NAME="SAlign" VALUE=""><PARAM NAME="Menu" VALUE="-1"><PARAM NAME="Base" VALUE=""><PARAM NAME="AllowScriptAccess" VALUE="always"><PARAM NAME="Scale" VALUE="ShowAll"><PARAM NAME="DeviceFont" VALUE="0"><PARAM NAME="EmbedMovie" VALUE="0"><PARAM NAME="BGColor" VALUE="FFFFFF"><PARAM NAME="SWRemote" VALUE=""><PARAM NAME="MovieData" VALUE=""><PARAM NAME="SeamlessTabbing" VALUE="1"><PARAM NAME="Profile" VALUE="0"><PARAM NAME="ProfileAddress" VALUE=""><PARAM NAME="ProfilePort" VALUE="0"><PARAM NAME="AllowNetworking" VALUE="all"><PARAM NAME="AllowFullScreen" VALUE="false"><PARAM NAME="AllowFullScreenInteractive" VALUE="false"><PARAM NAME="IsDependent" VALUE="0">
+				<param name="allowScriptAccess" value="always">
+				<param name="movie" value="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf">
+				<param name="quality" value="high">
+				<param name="bgcolor" value="#ffffff">
+				<param name="wmode" value="transparent">
+				<embed name="honehoneclock" width="160" height="70" align="middle" pluginspage="http://www.macromedia.com/go/getflashplayer" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" type="application/x-shockwave-flash" wmode="transparent" quality="high" bgcolor="#ffffff" allowscriptaccess="always">
+			</object>
+		</div>
+		<a href="https://github.com/zbvae">
+			<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png">
+		</a>
+  
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/zbvae.JPG" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Bin Zhang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主頁</a></li>
+				        
+							<li><a href="/archives">歸檔</a></li>
+				        
+							<li><a href="/MyAlbum">相冊</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 10px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">中南大学09级学生，现为2013级研究生，写论文中，求职中，待毕业中！</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Bin Zhang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/zbvae.JPG" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Bin Zhang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主頁</a></li>
+		        
+					<li><a href="/archives">歸檔</a></li>
+		        
+					<li><a href="/MyAlbum">相冊</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-数据结构-图" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/26/数据结构-图/" class="article-date">
+  	<time datetime="2015-07-26T07:22:29.000Z" itemprop="datePublished">2015-07-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构-图
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>摘要</strong> 图与树一样都属于非线性结构，又有点类似于广义表。图中各结点之间都可能具有逻辑关系，结点之间的关系是任意的，因此它是一种比线性表和树更为复杂的数据结构。图在科研和生活中有着非常广泛的应用，如生活中的最短路径问题，以及搜索引擎中深度和广度搜索问题。本文主要介绍图的存储结构定义，以及使用邻接矩阵表示的图的最短路径问题。<a id="more"></a></p>
+<h2 id="1-图的相关术语">1.图的相关术语</h2><ul>
+<li>图：由有穷、非空点集合和边的集合组成，简称G(V,E)</li>
+<li>有向图与无向图：图中的边用弧表示，用弧连接的两个顶点有弧头和弧尾之分，这种图为有向图，连接顶点的边没有方向之分，该图称为无向图。</li>
+<li>有向完全图与无向完全图：有向图每两个顶点之间都有两条反向的弧相连表示两顶点互通，弧的数目为n(n-1)，改图为有向完全图；无向图中每两个顶点之间都有一条边相连，表示两顶点连通，边的数目为n(n-1)/2，该图为无向完全图。</li>
+<li>稠密图与稀疏图：图中边的数目很多的图为稠密图；图中边的数目相对顶点较少的图为稀疏图。</li>
+<li>出度与入度：对于有向图，出度表示，以该顶点为弧尾的并与该顶点相连的弧的数目；入度表示，以该顶点为弧头的并与该顶点相连的弧的数目。<br>环与简单路径：图中有一条路径，其中第一个顶点与最后一个顶点相同，该路径为环；路径序列中不存在重复顶点的称为简单路径。<br>连通图与强连通图：无向图中任意两个顶点都有路径相通，则称该图是连通的;有向图中任意两个顶点之间都有路径相通，则称该有向图为强连通图。<br>连通分量与强连通分量：分别针对无向图与有向图而言，无向图中的极大连通子图为连通分量；有向图中的极大强连通子图为强连通分量。<br>生成树：一个连通图的生成树是一个极小连通子图，它包含图中全部顶点，但只有n-1条边。<br>网：带权的图。</li>
+</ul>
+<h2 id="2-图的存储结构">2.图的存储结构</h2><p>下面这幅图是本文介绍图的存储及最短路径所使用的图，实际上它是有向网。</p>
+<center><img src="/images/graph.png" alt="graph"></center>
+
+<h3 id="2-1邻接矩阵">2.1邻接矩阵</h3><p>邻接矩阵是一个二维数组，对于无向图是对称矩阵，矩阵中用0表示i,j两点之间没有边，1表示i,j两点之间有边。以上面的有向网为例，则邻接矩阵中，存储的不再是0或1而是两点边的权值，如果没有边则赋值为无穷大。</p>
+<p>除了二维数组保存边的权值外，图中还需要维护一个整型变量保存顶点个数，以及Vertex类型的数组，Vertex类型保存顶点信息，主要是顶点编号以及顶点名称。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SeqGraph</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> INFINITY = Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Vertex</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> vIndex;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">char</span> data;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Vertex</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Vertex</span><span class="params">(<span class="keyword">int</span> vIndex, <span class="keyword">char</span> data)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.vIndex = vIndex;</span><br><span class="line">			<span class="keyword">this</span>.data = data;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> vexNum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">private</span> Vertex vex[] = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> adj[][] = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SeqGraph</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SeqGraph</span><span class="params">(<span class="keyword">int</span> vexNum)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.vexNum = vexNum;</span><br><span class="line">		<span class="keyword">this</span>.vex = <span class="keyword">new</span> Vertex[vexNum];</span><br><span class="line">		<span class="keyword">this</span>.adj = <span class="keyword">new</span> <span class="keyword">int</span>[vexNum][vexNum];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>构造邻接矩阵，分为初始化邻接矩阵和静态构造两步，这里也可以手动输入边相连的顶点编号以及权值，来建立邻接矩阵。静态构造的示例如下：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="atom">public</span> <span class="atom">void</span> <span class="atom">initAdj</span>()&#123;</span><br><span class="line">	<span class="atom">for</span>(<span class="atom">int</span> <span class="atom">i</span>=<span class="number">0</span>; <span class="atom">i</span>&lt;<span class="atom">vexNum</span>; <span class="atom">i</span>++)&#123;</span><br><span class="line">		<span class="atom">for</span>(<span class="atom">int</span> <span class="atom">j</span>=<span class="number">0</span>; <span class="atom">j</span>&lt;<span class="atom">vexNum</span>; <span class="atom">j</span>++)&#123;</span><br><span class="line">			<span class="atom">adj</span>[<span class="atom">i</span>][<span class="atom">j</span>] = <span class="name">INFINITY</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="atom">public</span> <span class="atom">void</span> <span class="atom">staticCreate</span>()&#123;</span><br><span class="line">	<span class="atom">for</span>(<span class="atom">int</span> <span class="atom">i</span>=<span class="number">0</span>; <span class="atom">i</span>&lt;<span class="atom">vexNum</span>; <span class="atom">i</span>++)&#123;</span><br><span class="line">		<span class="atom">vex</span>[<span class="atom">i</span>] = <span class="atom">new</span> <span class="name">Vertex</span>(<span class="atom">i</span>, (<span class="atom">char</span>)(<span class="string">'A'</span>+<span class="atom">i</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">5</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">0</span>][<span class="number">3</span>] = <span class="number">7</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">4</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">2</span>][<span class="number">0</span>] = <span class="number">8</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">2</span>][<span class="number">5</span>] = <span class="number">9</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">3</span>][<span class="number">2</span>] = <span class="number">5</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">3</span>][<span class="number">5</span>] = <span class="number">6</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">4</span>][<span class="number">3</span>] = <span class="number">5</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">5</span>][<span class="number">0</span>] = <span class="number">3</span>;</span><br><span class="line">	<span class="atom">adj</span>[<span class="number">5</span>][<span class="number">4</span>] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后再构造函数里面依次调用上述两个函数，这里静态构造的邻接矩阵是根据上面的有向网的形态构造的，试着输出看一下,其中，对于无穷大的数据，我们输出0来表示。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printGraph</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vexNum; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;vexNum; j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(adj[i][j] == INFINITY)&#123;</span><br><span class="line">				System.<span class="keyword">out</span>.print(<span class="number">0</span>+<span class="string">" "</span>);</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				System.<span class="keyword">out</span>.print(adj[i][j]+<span class="string">" "</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.<span class="keyword">out</span>.println();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>0 5 0 7 0 0<br>0 0 4 0 0 0<br>8 0 0 0 0 9<br>0 0 5 0 0 6<br>0 0 0 5 0 0<br>3 0 0 0 1 0 </p>
+</blockquote>
+<h3 id="2-2邻接表">2.2邻接表</h3><p>邻接表，相当于链表，我们为每一个顶点维护一个单链表，保存以该顶点为出度的弧相连所有其它顶点。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">LinkGraph</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">class</span> <span class="title">Vertex</span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> vIndex;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">char</span> data;</span><br><span class="line">		<span class="keyword">private</span> Vertex next;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Vertex</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Vertex</span>(<span class="params"><span class="keyword">int</span> vIndex, <span class="keyword">char</span> data, Vertex next</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.vIndex = vIndex;</span><br><span class="line">			<span class="keyword">this</span>.data = data;</span><br><span class="line">			<span class="keyword">this</span>.next = next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> vexNum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">private</span> Vertex vex[] = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LinkGraph</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LinkGraph</span>(<span class="params"><span class="keyword">int</span> vexNum</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.vexNum = vexNum;</span><br><span class="line">		<span class="keyword">this</span>.vex = <span class="keyword">new</span> Vertex[vexNum];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中的顶点类型与以上邻接矩阵稍有区别的是，每一个顶点都包含下一个出度顶点的信息。以手动输入来动态创建邻接表，如下所示：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> create()&#123;</span><br><span class="line">	Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="string">"please input the every arc of graph with \"tIndex hIndex\""</span>);</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="string">"input 0 0 for end!"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (((i = sc.nextInt()) != <span class="number">0</span>) &amp;&amp; ((j = sc.nextInt()) != <span class="number">0</span>))&#123;</span><br><span class="line">		<span class="keyword">int</span> tIndex = i-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> hIndex = j-<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		Vertex hVertex = <span class="keyword">new</span> Vertex(hIndex, (<span class="keyword">char</span>)(<span class="string">'A'</span>+hIndex), <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(vex[tIndex] == <span class="keyword">null</span>)&#123;</span><br><span class="line">			vex[tIndex] = <span class="keyword">new</span> Vertex(tIndex, (<span class="keyword">char</span>)(<span class="string">'A'</span>+tIndex), hVertex);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			Vertex pVertex = vex[tIndex];</span><br><span class="line">			<span class="keyword">while</span>((pVertex.<span class="keyword">next</span> != <span class="keyword">null</span>) &amp;&amp; (pVertex.<span class="keyword">next</span>.vIndex &lt; hVertex.vIndex))&#123;</span><br><span class="line">				pVertex = pVertex.<span class="keyword">next</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			hVertex.<span class="keyword">next</span> = pVertex.<span class="keyword">next</span>;</span><br><span class="line">			pVertex.<span class="keyword">next</span> = hVertex;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>依次输入如下信息：</p>
+<p>1 2<br>1 4<br>2 3<br>3 1<br>3 6<br>4 3<br>5 4<br>6 5<br>6 1<br>0 0</p>
+<p>用如下函数输出邻接表表示的图的信息：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> printGraph()&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;vexNum; i++)&#123;</span><br><span class="line">		Vertex <span class="built_in">vertex</span> = vex[i];</span><br><span class="line">		<span class="keyword">while</span>(<span class="built_in">vertex</span> != <span class="keyword">null</span>)&#123;</span><br><span class="line">			System.out.<span class="built_in">print</span>(<span class="built_in">vertex</span>.data + <span class="string">"---&gt;"</span>);</span><br><span class="line">			<span class="built_in">vertex</span> = <span class="built_in">vertex</span>.next;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.<span class="built_in">println</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出信息如下图所示:</p>
+<center><img src="/images/linkgraph.png" alt="linkgraph"></center>
+
+<h3 id="2-3十字链表">2.3十字链表</h3><p>邻接表只包含了出度信息，为了寻找入度信息，必须遍历整个表，耗费的时间是相当可观的。为了解决寻找入度信息困难的问题，我们可以额外建立一个逆连接表。而十字链表则可以看成是邻接表和逆邻接表的结合体。顶点信息中除了保存下一个出度信息外，还要保存下一个入度信息。十字链表的结构定义如下：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">CrossGraph</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">class</span> <span class="title">Vertex</span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> vIndex;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">char</span> data;</span><br><span class="line">		<span class="keyword">private</span> Vertex nextOut;</span><br><span class="line">		<span class="keyword">private</span> Vertex nextIn;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Vertex</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Vertex</span>(<span class="params"><span class="keyword">int</span> vIndex, <span class="keyword">char</span> data, Vertex nextOut, Vertex nextIn</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.vIndex = vIndex;</span><br><span class="line">			<span class="keyword">this</span>.data = data;</span><br><span class="line">			<span class="keyword">this</span>.nextOut = nextOut;</span><br><span class="line">			<span class="keyword">this</span>.nextIn = nextIn;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> vexNum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">private</span> Vertex inVex[] = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">private</span> Vertex outVex[] = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CrossGraph</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CrossGraph</span>(<span class="params"><span class="keyword">int</span> vexNum</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.vexNum = vexNum;</span><br><span class="line">		<span class="keyword">this</span>.inVex = <span class="keyword">new</span> Vertex[vexNum];</span><br><span class="line">		<span class="keyword">this</span>.outVex = <span class="keyword">new</span> Vertex[vexNum];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与邻接表类似，通过手动输入方式建立十字链表的函数如下：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">create</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	Scanner sc = <span class="keyword">new</span> Scanner(System.<span class="keyword">in</span>);</span><br><span class="line">	System.<span class="keyword">out</span>.println(<span class="string">"please input the every arc of graph with \"tIndex hIndex\""</span>);</span><br><span class="line">	System.<span class="keyword">out</span>.println(<span class="string">"input 0 0 for end!"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (((i = sc.nextInt()) != <span class="number">0</span>) &amp;&amp; ((j = sc.nextInt()) != <span class="number">0</span>))&#123;</span><br><span class="line">		<span class="keyword">int</span> tIndex = i-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> hIndex = j-<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		Vertex hVertex = <span class="keyword">new</span> Vertex(hIndex, (<span class="keyword">char</span>)(hIndex+<span class="string">'A'</span>), <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">		Vertex tVertex = <span class="keyword">new</span> Vertex(tIndex, (<span class="keyword">char</span>)(tIndex+<span class="string">'A'</span>), <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">		hVertex.nextIn = tVertex;</span><br><span class="line">		tVertex.nextOut = hVertex;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.outVex[tIndex] == <span class="keyword">null</span>)&#123;</span><br><span class="line">			outVex[tIndex] = tVertex;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			Vertex pVertex = outVex[tIndex];</span><br><span class="line">			<span class="keyword">while</span>((pVertex.nextOut != <span class="keyword">null</span>) &amp;&amp; (pVertex.nextOut.vIndex &lt; hVertex.vIndex))&#123;</span><br><span class="line">				pVertex = pVertex.nextOut;</span><br><span class="line">			&#125;</span><br><span class="line">			hVertex.nextOut = pVertex.nextOut;</span><br><span class="line">			pVertex.nextOut = hVertex;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.inVex[hIndex] == <span class="keyword">null</span>)&#123;</span><br><span class="line">			inVex[hIndex] = hVertex;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			Vertex pVertex = inVex[hIndex];</span><br><span class="line">			<span class="keyword">while</span>((pVertex.nextIn != <span class="keyword">null</span>) &amp;&amp; (pVertex.nextIn.vIndex &lt; tVertex.vIndex))&#123;</span><br><span class="line">				pVertex = pVertex.nextIn;</span><br><span class="line">			&#125;</span><br><span class="line">			tVertex.nextIn = pVertex.nextIn;</span><br><span class="line">			pVertex.nextIn = tVertex;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入与建立邻接表时一样的数据，输出十字链表的数据如下图所示：</p>
+<center><img src="/images/crossgraph.png" alt="crossgraph"></center>
+
+<h2 id="3-图的遍历">3.图的遍历</h2><p>图的遍历分为深度优先遍历和广度优先遍历。深度优先遍历类似于树的先序遍历，而广度优先遍历则类似于树的层序遍历。</p>
+<p>深度优先遍历：选择图中某个顶点，依次遍历该顶点的第一个邻接点，然后再依次遍历该邻接点的第一个邻接点，直到图中所有顶点都遍历完为止。</p>
+<p>广度优先遍历：选择图中某个顶点，依次遍历该顶点的所有邻接顶点，并保证<strong>先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问</strong>，直到图中所有顶点遍历完毕。</p>
+<p>为了在遍历过程中区分顶点是否已被访问，需要设置一个访问标志数组visited[]，大小为顶点数目，初始化为所有顶点都未被访问，下面以邻接矩阵表示的有向网的结构，分别以深度优先遍历和广度优先遍历方式访问该图。</p>
+<p>显然深度遍历图是一个递归的过程，我们先用递归实现，后用栈来模拟实现递归深度遍历。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFS</span>(<span class="params"><span class="keyword">int</span> i</span>)</span>&#123;</span><br><span class="line">	visited[i] = <span class="keyword">true</span>;</span><br><span class="line">	System.<span class="keyword">out</span>.print(vex[i].data+<span class="string">"---&gt;"</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;vexNum; j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!visited[j] &amp;&amp; adj[i][j] != INFINITY)&#123;</span><br><span class="line">			DFS(j);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSTraverse</span>(<span class="params"><span class="keyword">int</span> i</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.initVisit();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vexNum; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!visited[i])&#123;</span><br><span class="line">			DFS(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面用栈来模拟递归实现。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nonRecDFSTraverse</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.initVisit();</span><br><span class="line">	Stack&lt;Integer&gt; <span class="built_in">stack</span> = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>, j;</span><br><span class="line">	<span class="keyword">while</span>(!visited[i] || <span class="built_in">stack</span>.size() &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">while</span>(!visited[i])&#123;</span><br><span class="line">			visited[i] = <span class="keyword">true</span>;</span><br><span class="line">			System.out.print(vex[i].data+<span class="string">"---&gt;"</span>);</span><br><span class="line">			<span class="built_in">stack</span>.push(i);</span><br><span class="line">			j = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span>(j &lt; vexNum)&#123;</span><br><span class="line">				<span class="keyword">if</span>(adj[i][j] != INFINITY &amp;&amp; !visited[j])&#123;</span><br><span class="line">					i = j;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">stack</span>.size() &gt;<span class="number">0</span>)&#123;</span><br><span class="line">			i = <span class="built_in">stack</span>.pop();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>广度优先遍历，由于要保证先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问，因此队列是很好的结构。</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public void BFSTraverse<span class="params">()</span>&#123;</span><br><span class="line">	this.initVisit<span class="params">()</span>;</span><br><span class="line">	LinkedList&lt;Integer&gt; queue = new LinkedList&lt;Integer&gt;<span class="params">()</span>;</span><br><span class="line">	<span class="keyword">for</span> <span class="params">(int i=<span class="number">0</span>; i&lt;vexNum; i++)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span><span class="params">(!visited[i])</span>&#123;</span><br><span class="line">			visited[i] = <span class="literal">true</span>;</span><br><span class="line">			System.out.print<span class="params">(vex[i].data+<span class="string">"---&gt;"</span>)</span>;</span><br><span class="line">			queue.add<span class="params">(i)</span>;</span><br><span class="line">			while<span class="params">(queue.size<span class="params">()</span> &gt; <span class="number">0</span>)</span>&#123;</span><br><span class="line">				i = queue.poll<span class="params">()</span>;</span><br><span class="line">				<span class="keyword">for</span><span class="params">(int j=<span class="number">0</span>; j&lt;vexNum; j++)</span> &#123;</span><br><span class="line">					<span class="keyword">if</span><span class="params">(adj[i][j] != INFINITY &amp;&amp; !visited[j])</span>&#123;</span><br><span class="line">						visited[j] = <span class="literal">true</span>;</span><br><span class="line">						System.out.print<span class="params">(vex[j].data+<span class="string">"---&gt;"</span>)</span>;</span><br><span class="line">						queue.add<span class="params">(j)</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-最短路径问题">4.最短路径问题</h2><p>以有向网为例，来讨论最短路径问题，其中分为单源最短路径和所有顶点对之间的最短路径问题，其中Dijkstra算法和Floyd算法是最为典型的代表。</p>
+<p>Dijkstra算法目的是为解决单源最短路径，即求图中某一顶点到图中其它顶点间的最短路径，Dijkstra算法利用贪心策略，求解最短路径，其中每次求解，都是求当前路径最短的顶点，然后利用该顶点去更新其它顶点最短路径，因此属于最短路径长度递增的顺序，求得所有顶点最短路径。</p>
+<p>参数说明：Dijkstra算法需要维护一个已求得最短路径的顶点集合以及到每个顶点的最短路径的长度数组。每求得一个顶点的最短路径，就将该顶点加入已求得最短路径的顶点集合。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">int</span>[] dijkstraShortestPath(<span class="built_in">int</span> v0)&#123;</span><br><span class="line">	<span class="built_in">boolean</span> s[] = <span class="keyword">new</span> <span class="built_in">boolean</span>[vexNum];</span><br><span class="line">	<span class="built_in">int</span> <span class="built_in">dist</span>[] = <span class="keyword">new</span> <span class="built_in">int</span>[vexNum];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;vexNum; i++)&#123;</span><br><span class="line">		s[i] = <span class="keyword">false</span>;</span><br><span class="line">		<span class="built_in">dist</span>[i] = adj[v0][i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	s[v0] = <span class="keyword">true</span>;</span><br><span class="line">	<span class="built_in">dist</span>[v0] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">1</span>; j&lt;vexNum; j++)&#123;</span><br><span class="line">		<span class="built_in">int</span> u = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">int</span> minDist = INFINITY;</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> k=<span class="number">0</span>; k&lt;vexNum; k++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(s[k] == <span class="keyword">false</span> &amp;&amp; (<span class="built_in">dist</span>[k] &lt; minDist))&#123;</span><br><span class="line">				u = k;</span><br><span class="line">				minDist = <span class="built_in">dist</span>[k];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		s[u] = <span class="keyword">true</span>;</span><br><span class="line">		<span class="built_in">dist</span>[u] = minDist;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> w=<span class="number">0</span>; w&lt;vexNum; w++)&#123;</span><br><span class="line">			<span class="built_in">int</span> midDist = (adj[u][w] == INFINITY ? INFINITY : <span class="built_in">dist</span>[u]+adj[u][w]);</span><br><span class="line">			<span class="keyword">if</span>(s[w] == <span class="keyword">false</span> &amp;&amp; <span class="built_in">dist</span>[w] &gt; midDist)&#123;</span><br><span class="line">				<span class="built_in">dist</span>[w] = midDist;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">dist</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Floyd算法解决图中所有顶点对之间的最短路径，其求解策略属于动态规划的范畴，即当前状态下，D(i,j,k)为结点vi到vj的以结点vk为中间结点的最短路径长度。那么</p>
+<ul>
+<li>若最短路径经过结点vk,则D(i,j,k)=D(i,j,k-1)+D(k,j,k-1);</li>
+<li>若最短路径不经过结点vk,则D(i,j,k) = D(i,j,k-1).</li>
+</ul>
+<p>所以求vi到vj的最短路径可以表示为</p>
+<p>$$D(i,j,k)=min(D(i,k,k-1)+D(k,j,k-1),D(i,j,k-1))$$</p>
+<p>Floyd算法为求得所有顶点之间的最短路径，需要经过N次更新，N为顶点数目。Floyd算法实现需要设置二维数组，保存每对顶点之间的最短路径长度，初始化即为邻接矩阵，下面是Floyd算法的实现代码。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">int</span>[][] floydShortestPath()&#123;</span><br><span class="line">	<span class="built_in">int</span> <span class="built_in">dist</span>[][] = <span class="keyword">new</span> <span class="built_in">int</span>[vexNum][vexNum];</span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;vexNum; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;vexNum; j++)&#123;</span><br><span class="line">			<span class="built_in">dist</span>[i][j] = adj[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">int</span> k=<span class="number">0</span>; k&lt;vexNum; k++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;vexNum; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;vexNum; j++)&#123;</span><br><span class="line">				<span class="built_in">int</span> midDist = ((<span class="built_in">dist</span>[i][k] == INFINITY || <span class="built_in">dist</span>[k][j] == INFINITY) ? INFINITY : (<span class="built_in">dist</span>[i][k] + <span class="built_in">dist</span>[k][j]));</span><br><span class="line">				<span class="keyword">if</span>(<span class="built_in">dist</span>[i][j] &gt; midDist)&#123;</span><br><span class="line">					<span class="built_in">dist</span>[i][j] = midDist;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">dist</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Floyd算法的时间复杂度为O(n^3)，Dijkstra算法主要是求单源最短路径，也可以对Dijkstra循环调用N次已求得所有顶点对之间的最短路径，因此，二者求出所有顶点的最短路径的时间复杂度都为O(n^3)。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/28/数据结构-内排序算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          数据结构-内排序算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/23/数据结构-二叉树/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构-二叉树</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="数据结构-图" data-title="数据结构-图" data-url="http://blog.zbvae.com/2015/07/26/数据结构-图/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zbbk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Bin Zhang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+  
+</body>
+</html>
