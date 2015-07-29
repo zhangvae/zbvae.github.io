@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://blog.zbvae.com/images/graph.png">
 <meta property="og:image" content="http://blog.zbvae.com/images/linkgraph.png">
 <meta property="og:image" content="http://blog.zbvae.com/images/crossgraph.png">
-<meta property="og:updated_time" content="2015-07-26T12:01:17.795Z">
+<meta property="og:updated_time" content="2015-07-27T01:16:26.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-图">
 <meta name="twitter:description" content="摘要 图与树一样都属于非线性结构，又有点类似于广义表。图中各结点之间都可能具有逻辑关系，结点之间的关系是任意的，因此它是一种比线性表和树更为复杂的数据结构。图在科研和生活中有着非常广泛的应用，如生活中的最短路径问题，以及搜索引擎中深度和广度搜索问题。本文主要介绍图的存储结构定义，以及使用邻接矩阵表示的图的最短路径问题。">
@@ -266,6 +266,7 @@
 <p>输入与建立邻接表时一样的数据，输出十字链表的数据如下图所示：</p>
 <center><img src="/images/crossgraph.png" alt="crossgraph"></center>
 
+<p>显然邻接表和十字链表都是有利于有向图的存储结构，与十字链表对应的无向图的存储结构为邻接多重表，这里就不再介绍了。</p>
 <h2 id="3-图的遍历">3.图的遍历</h2><p>图的遍历分为深度优先遍历和广度优先遍历。深度优先遍历类似于树的先序遍历，而广度优先遍历则类似于树的层序遍历。</p>
 <p>深度优先遍历：选择图中某个顶点，依次遍历该顶点的第一个邻接点，然后再依次遍历该邻接点的第一个邻接点，直到图中所有顶点都遍历完为止。</p>
 <p>广度优先遍历：选择图中某个顶点，依次遍历该顶点的所有邻接顶点，并保证<strong>先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问</strong>，直到图中所有顶点遍历完毕。</p>
