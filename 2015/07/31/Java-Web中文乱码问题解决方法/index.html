@@ -5,17 +5,18 @@
   <meta name="baidu-site-verification" content="UNHn0suvw2" />
   <meta name="google-site-verification" content="2AQ75-m5QPW0KN4FrtIw60tT9cSP-sf_6V5Md4QyzaU" />
   
-  <title>zbvae&#39;s blog</title>
+  <title>Java Web中文乱码问题解决方法 | zbvae&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zbvae's blog">
-<meta property="og:url" content="http://blog.zbvae.com/page/3/index.html">
+  <meta name="description" content="摘要 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容易以ISO-8859-1方式包装编码，并以该编码形式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web中文乱码问题解决方法">
+<meta property="og:url" content="http://blog.zbvae.com/2015/07/31/Java-Web中文乱码问题解决方法/index.html">
 <meta property="og:site_name" content="zbvae's blog">
-<meta property="og:description">
+<meta property="og:description" content="摘要 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容易以ISO-8859-1方式包装编码，并以该编码形式">
+<meta property="og:updated_time" content="2015-07-31T08:57:51.857Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zbvae's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Java Web中文乱码问题解决方法">
+<meta name="twitter:description" content="摘要 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容易以ISO-8859-1方式包装编码，并以该编码形式">
   
   
     <link rel="icon" href="/favicon.png">
@@ -187,13 +188,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-Java-类集" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Java-Web中文乱码问题解决方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/Java-类集/" class="article-date">
-  	<time datetime="2015-07-11T07:11:39.000Z" itemprop="datePublished">2015-07-11</time>
+      <a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="article-date">
+  	<time datetime="2015-07-31T08:31:52.000Z" itemprop="datePublished">2015-07-31</time>
 </a>
     </div>
   
@@ -205,290 +204,108 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Java-类集/">Java 类集</a>
+    <h1 class="article-title" itemprop="name">
+      Java Web中文乱码问题解决方法
     </h1>
   
 
       </header>
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>摘要</strong>：Java中的类集实际上是动态对象数组，没有长度限制，可以任意扩充和丰富。从JDK1.5后，类集中添加了泛型声明，保证了类集使用的安全，所有的类集都位于java.util包下，类集有其继承结构，掌握好类集的使用对我们的程序开发有极大地帮助。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java学习/">Java学习</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/Java-类集/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java-比较器" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/Java-比较器/" class="article-date">
-  	<time datetime="2015-07-11T06:57:40.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="article-info article-info-post">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Java-比较器/">Java 比较器</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>摘要</strong>：Java中Arrays以及支持可排序功能的集合类等都提供了对象比较功能，那么它是如何实现的呢，能直接使用Arrays来比较两个自定义的对象数组吗，答案是否定的。下面本文从Arrays类出发，介绍对象数组的比较功能，以及两种比较器的实现方式。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java学习/">Java学习</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/Java-比较器/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/正则表达式/" class="article-date">
-  	<time datetime="2015-07-11T06:13:55.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/正则表达式/">正则表达式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>摘要</strong>：正则表达式主要用途是文本规则的匹配和验证，在处理字符串的程序或网页时，经常需要对用户输入进行正则验证，从而简化复杂的程序编写逻辑，因此，正则表达式实际上就是一种文本规则的验证工具。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术交流/">技术交流</a></li></ul>
 	</div>
 
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/正则表达式/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-XML-学习" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/XML-学习/" class="article-date">
-  	<time datetime="2015-07-11T05:44:06.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/XML-学习/">XML 学习</a>
-    </h1>
-  
 
-      </header>
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>摘要</strong>：xml 作为一种可扩展的标记语言出现，其相对于html，主要是用于数据的保存，和数据结构信息的描述，标记格式并不固定，可以自行定制，但是必须要嵌套出现。下面介绍XML的基本格式和语法以及4种解析方式。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术交流/">技术交流</a></li></ul>
-	</div>
+        <p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容易以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。<a id="more"></a></p>
+<h2 id="1-以POST方式提交的表单数据中含有中文">1.以POST方式提交的表单数据中含有中文</h2><p>由于Web容器默认的编码方式是ISO-8859-1，在Servlet/JSP程序中，通过请求对象的<strong>getParameter</strong>方法得到的字符串是以ISO-8859-1转换而来，这是导致乱码产生的原因之一。为了避免容器以ISO-8859-1编码方式返回字符串，对于以POST提交的表单数据，可以在获取请求参数之前，调用<code>request.setCharacterEncoding(&quot;GBK&quot;)</code>，明确指定正文使用的编码方式是GBK。在向浏览器回送中文数据html页面时，调用<code>response.setContentType(&quot;text/html;charset=GBK&quot;)</code>，指定输出内容的编码方式是GBK。</p>
+<p>对于JSP页面，在获取请求参数值之前，加上以下代码：</p>
+<blockquote>
+<p>&lt;%request.setCharacterEncoding(“GBK”);%&gt;</p>
+</blockquote>
+<p>为了指定输出内容的编码格式，设置页面属性：</p>
+<blockquote>
+<p>&lt;%page contentType=”text/html; charset=GBK” %&gt;</p>
+</blockquote>
+<p>在Web容器转换JSP页面后的Servlet类中，会自动添加以下代码：</p>
+<blockquote>
+<p>response.setContentType(“text/html; charset=GBK”);</p>
+</blockquote>
+<h2 id="2-以GET方式提交的表单数据中含有中文">2.以GET方式提交的表单数据中含有中文</h2><p>当提交表单采用GET方法时，提交的数据作为查询字符串被附加到URL的末端，发送到服务器，此时在服务器调用setCharacterEncoding方法也就没有作用了，我们需要在得到请求参数值后，自己做正确的编码转换。</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> name = <span class="built_in">request</span>.getParameter(<span class="string">"name"</span>);</span><br><span class="line">name = <span class="keyword">new</span> <span class="built_in">String</span>(name.getBytes(<span class="string">"ISO-8859-1"</span>), <span class="string">"GBK"</span>);</span><br></pre></td></tr></table></figure>
+<p>上述代码在第一行，调用getParameter方法得到的字符串name的Unicode值是以ISO-8859-1的编码转换而来，调用names.getBytes(“ISO-8859-1”)，将得到原始的GBK编码值，接着对new String()方法的调用将以GBK字符集重新构造字符串的Unicoe编码。</p>
+<p>为了方便从ISO-8859-1编码转换到GBK编码，我们编写一个工具方法，如下：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> toGBK(<span class="keyword">String</span> <span class="built_in">str</span>) <span class="keyword">throws</span> java.io.UnsupportedEncodingException&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">String</span>(<span class="built_in">str</span>.getBytes(<span class="string">"ISO-8859-1"</span>), <span class="string">"GBK"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-总结">3.总结</h2><p>在实际的Web应用中，乱码问题产生的原因多种多样，然而只要我们理解了字符编码转换过程，仔细地分析乱码产生的原因，找到问题的关键，就能对症下药，解决问题。</p>
 
       
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/XML-学习/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java-JDBC-学习" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/Java-JDBC-学习/" class="article-date">
-  	<time datetime="2015-07-11T04:57:59.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Java-JDBC-学习/">Java JDBC 学习</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>摘要</strong>：一些大型程序免不了要连接数据库，很多网络程序更是如此，因此掌握数据库的连接手段非常必要，本文以Oracle和mysql数据库为例，介绍Java程序通过jdbc连接并操作数据库的示例。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java学习/">Java学习</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/Java-JDBC-学习/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/28/数据结构-内排序算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构-内排序算法</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Java-Web中文乱码问题解决方法" data-title="Java Web中文乱码问题解决方法" data-url="http://blog.zbvae.com/2015/07/31/Java-Web中文乱码问题解决方法/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zbbk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
 
 
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
-    </nav>
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -512,8 +329,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
