@@ -5,7 +5,7 @@
   <subtitle><![CDATA[这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zbvae.com//"/>
-  <updated>2015-07-31T08:57:51.857Z</updated>
+  <updated>2015-07-31T09:04:17.062Z</updated>
   <id>http://blog.zbvae.com//</id>
   
   <author>
@@ -20,8 +20,8 @@
     <link href="http://blog.zbvae.com/2015/07/31/Java-Web%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
     <id>http://blog.zbvae.com/2015/07/31/Java-Web中文乱码问题解决方法/</id>
     <published>2015-07-31T08:31:52.000Z</published>
-    <updated>2015-07-31T08:57:51.857Z</updated>
-    <content type="html"><![CDATA[<p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容易以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。<a id="more"></a></p>
+    <updated>2015-07-31T09:04:17.062Z</updated>
+    <content type="html"><![CDATA[<p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容器以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。<a id="more"></a></p>
 <h2 id="1-以POST方式提交的表单数据中含有中文">1.以POST方式提交的表单数据中含有中文</h2><p>由于Web容器默认的编码方式是ISO-8859-1，在Servlet/JSP程序中，通过请求对象的<strong>getParameter</strong>方法得到的字符串是以ISO-8859-1转换而来，这是导致乱码产生的原因之一。为了避免容器以ISO-8859-1编码方式返回字符串，对于以POST提交的表单数据，可以在获取请求参数之前，调用<code>request.setCharacterEncoding(&quot;GBK&quot;)</code>，明确指定正文使用的编码方式是GBK。在向浏览器回送中文数据html页面时，调用<code>response.setContentType(&quot;text/html;charset=GBK&quot;)</code>，指定输出内容的编码方式是GBK。</p>
 <p>对于JSP页面，在获取请求参数值之前，加上以下代码：</p>
 <blockquote>
@@ -43,7 +43,7 @@
 <h2 id="3-总结">3.总结</h2><p>在实际的Web应用中，乱码问题产生的原因多种多样，然而只要我们理解了字符编码转换过程，仔细地分析乱码产生的原因，找到问题的关键，就能对症下药，解决问题。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容易以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。]]>
+    <![CDATA[<p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容器以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。]]>
     
     </summary>
     
