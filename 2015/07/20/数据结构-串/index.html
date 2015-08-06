@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://blog.zbvae.com/images/next1.jpg">
 <meta property="og:image" content="http://blog.zbvae.com/images/next2.jpg">
 <meta property="og:image" content="http://blog.zbvae.com/images/kmp.jpg">
-<meta property="og:updated_time" content="2015-07-20T13:20:26.382Z">
+<meta property="og:updated_time" content="2015-08-06T11:45:18.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-串">
 <meta name="twitter:description" content="摘要 串是一种数据元素类型只能为字符的线性数据结构，可以理解为字符序列。按存储结构也可以分为顺序串和链式串，一般以顺序串为代表，定义在串上的操作，如求串长，判断空串，判断串是否为满，指定位置插入字符，指定位置删除字符，这些操作与线性表中一模一样，所以，有兴趣的读者可以参照本系列博客数据结构-线性表进行阅读。对于串，主要算法有模式匹配，而本文所讲的重点也是串的KMP模式匹配算法。">
@@ -276,7 +276,7 @@
 <p>利用优化过后的next 数组求法，可知模式串“abab”的新next数组为：-1 0 -1 0。下面这幅图揭示了KMP算法的实际执行过程。</p>
 <center><img src="/images/kmp.jpg" alt="KMP算法图示"></center>
 
-<p>上述部分图示和文字来源于<http: 7041827="" blog.csdn.net="" v_july_v="" article="" details=""></http:></p>
+<p>上述部分图示和文字来源于 <a href="http://blog.csdn.net/v_july_v/article/details/7041827" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/7041827</a></p>
 <h2 id="4-KMP算法的时间复杂度">4.KMP算法的时间复杂度</h2><p>如果文本串的长度为n，模式串的长度为m，那么匹配过程的时间复杂度为O(n)，算上计算next的O(m)时间，KMP的整体时间复杂度为O(m + n)。</p>
 
       
