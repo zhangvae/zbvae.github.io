@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://blog.zbvae.com/2015/07/11/Java-类集/index.html">
 <meta property="og:site_name" content="zbvae's blog">
 <meta property="og:description" content="摘要：Java中的类集实际上是动态对象数组，没有长度限制，可以任意扩充和丰富。从JDK1.5后，类集中添加了泛型声明，保证了类集使用的安全，所有的类集都位于java.util包下，类集有其继承结构，掌握好类集的使用对我们的程序开发有极大地帮助。">
-<meta property="og:updated_time" content="2015-07-18T12:11:50.289Z">
+<meta property="og:updated_time" content="2015-08-10T09:05:36.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 类集">
 <meta name="twitter:description" content="摘要：Java中的类集实际上是动态对象数组，没有长度限制，可以任意扩充和丰富。从JDK1.5后，类集中添加了泛型声明，保证了类集使用的安全，所有的类集都位于java.util包下，类集有其继承结构，掌握好类集的使用对我们的程序开发有极大地帮助。">
@@ -379,60 +379,56 @@
 <h2 id="3-集合输出">3.集合输出</h2><p>集合的输出有四种方式：Iterator；ListIterator;foreach;Enumeration。其中Iterator是推荐使用方式：只要碰到集合输出问题，就一定首先考虑使用Iterator接口进行输出。ListIterator只要List接口的子类对象才可以使用，可以进行双向输出。也可以使用一般的for循环输出List集合内容。foreach是JDK1.5版本新增的for循环增强的内容，不仅可以输出数组，也可以输出集合内容。Enumeration接口是一种古老的操作接口，只有Vector类elements方法可以返回Enumeration接口实例，并进一步进行输出操作。下面介绍这几种输出方法：</p>
 <figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">System.out.println<span class="params">(<span class="string">"1.use iterator to print collection"</span>)</span>;</span><br><span class="line">Iterator&lt;Person&gt; iter = pr.iterator<span class="params">()</span>;</span><br><span class="line">while<span class="params">(iter.hasNext<span class="params">()</span>)</span>&#123;</span><br><span class="line">	Person per = iter.next<span class="params">()</span>;</span><br><span class="line">	System.out.println<span class="params">(per)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println<span class="params">(<span class="string">"2.use listiterator to print List"</span>)</span>;</span><br><span class="line">ListIterator&lt;String&gt; listIter = ls.listIterator<span class="params">()</span>;</span><br><span class="line">System.out.println<span class="params">(<span class="string">"2.1.forward print"</span>)</span>;</span><br><span class="line">while<span class="params">(listIter.hasNext<span class="params">()</span>)</span>&#123;</span><br><span class="line">	String <span class="built_in">str</span> = listIter.next<span class="params">()</span>;</span><br><span class="line">	System.out.println<span class="params">(str)</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println<span class="params">(<span class="string">"2.2.backward print"</span>)</span>;</span><br><span class="line">while<span class="params">(listIter.hasPrevious<span class="params">()</span>)</span>&#123;</span><br><span class="line">	String <span class="built_in">str</span> = listIter.previous<span class="params">()</span>;</span><br><span class="line">	System.out.println<span class="params">(str)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println<span class="params">(<span class="string">"3.use general for to print List"</span>)</span>;</span><br><span class="line"><span class="keyword">for</span><span class="params">(int i=<span class="number">0</span>;i&lt;ls.size<span class="params">()</span>;i++)</span>&#123;</span><br><span class="line">	String <span class="built_in">str</span> = ls.get<span class="params">(i)</span>;</span><br><span class="line">	System.out.println<span class="params">(str)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println<span class="params">(<span class="string">"4.use foreach to print collection"</span>)</span>;</span><br><span class="line"><span class="keyword">for</span><span class="params">(Person per : pr)</span>&#123;</span><br><span class="line">	System.out.println<span class="params">(per)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println<span class="params">(<span class="string">"5.use enumeration to print Vector"</span>)</span>;</span><br><span class="line">Enumeration&lt;String&gt; e = vec.elements<span class="params">()</span>;</span><br><span class="line">while<span class="params">(e.hasMoreElements<span class="params">()</span>)</span>&#123;</span><br><span class="line">	String <span class="built_in">str</span> = e.nextElement<span class="params">()</span>;</span><br><span class="line">	System.out.println<span class="params">(str)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意，ListIterator对List集合进行双向输出时，必须先进行next输出之后，才能进行previous输出。至此已经介绍完了单一值接口和输出接口，还剩下一对值接口即Map接口。</p>
-<h2 id="4-Map_接口">4.Map 接口</h2><p>　　Map作为一对值的最大接口，其值的存储是以键值对的形式存放的，同样我们也不直接操作Map接口，而是使用其子类进行实例化，Map接口三个常用的子类是：HashMap,Hashtable以及TreeMap.先来看一下Map接口定义的常用方法。Map接口定义：<code>Set&lt; Map.Entry&lt; K, V&gt;&gt; entrySet()</code></p>
+<h2 id="4-Map_接口">4.Map 接口</h2><p>　　Map作为一对值的最大接口，其值的存储是以键值对的形式存放的，同样我们也不直接操作Map接口，而是使用其子类进行实例化，Map接口三个常用的子类是：HashMap,Hashtable以及TreeMap.先来看一下Map接口定义的常用方法。Map接口定义：<code>public interface Map&lt;K,V&gt;</code></p>
 <p>　　常用方法：</p>
 <table>
 <thead>
 <tr>
 <th>方法</th>
-<th style="text-align:center">描述</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>V put(K key, V value)</td>
-<td style="text-align:center">添加键值对</td>
+<td style="text-align:left">添加键值对</td>
 </tr>
 <tr>
 <td>V get(Object key)</td>
-<td style="text-align:center">根据指定键取值</td>
+<td style="text-align:left">根据指定键取值</td>
 </tr>
 <tr>
 <td>boolean containsKey(Object key)</td>
-<td style="text-align:center">判断是否包含指定键</td>
+<td style="text-align:left">判断是否包含指定键</td>
 </tr>
 <tr>
 <td>boolean containsValue(Object value)</td>
-<td style="text-align:center">判断是否包含指定值</td>
+<td style="text-align:left">判断是否包含指定值</td>
 </tr>
 <tr>
 <td>Set<k> keySet()</k></td>
-<td style="text-align:center">将所有的key转为Set集合</td>
+<td style="text-align:left">将所有的key转为Set集合</td>
 </tr>
 <tr>
 <td>Collection<v> values()</v></td>
-<td style="text-align:center">将所有的value转化为Collection集合</td>
+<td style="text-align:left">将所有的value转化为Collection集合</td>
 </tr>
 <tr>
 <td>Set<map.entry<k,v>&gt; entrySet()</map.entry<k,v></td>
-<td style="text-align:center">将Map转化为Set集合，此为Map输出方式</td>
-</tr>
-<tr>
-<td>将Map转化为Set集合</td>
-<td style="text-align:center">清空Map集合</td>
+<td style="text-align:left">将Map转化为Set集合，此为Map输出方式</td>
 </tr>
 <tr>
 <td>void clear()</td>
-<td style="text-align:center">清空Map集合</td>
+<td style="text-align:left">清空Map集合</td>
 </tr>
 <tr>
 <td>void size()</td>
-<td style="text-align:center">返回集合大小</td>
+<td style="text-align:left">返回集合大小</td>
 </tr>
 </tbody>
 </table>
 <p>以下代码使用HashMap为Map接口进行实例化，并调用相关方法</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Map</span><span class="subst">&lt;</span><span class="built_in">Integer</span>,<span class="built_in">String</span><span class="subst">&gt;</span> <span class="built_in">map</span> <span class="subst">=</span> <span class="literal">new</span> Hashtable<span class="subst">&lt;</span><span class="built_in">Integer</span>,<span class="built_in">String</span><span class="subst">&gt;</span>();</span><br><span class="line"><span class="built_in">map</span><span class="built_in">.</span>put(<span class="number">1</span>,<span class="string">"hello"</span>);</span><br><span class="line"><span class="built_in">map</span><span class="built_in">.</span>put(<span class="number">2</span>,<span class="string">"world"</span>);</span><br><span class="line"><span class="built_in">map</span><span class="built_in">.</span>put(<span class="number">3</span>,<span class="string">"yes"</span>);</span><br><span class="line">System<span class="built_in">.</span>out<span class="built_in">.</span>println(<span class="built_in">map</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Set</span><span class="subst">&lt;</span><span class="built_in">Integer</span><span class="subst">&gt;</span> keys <span class="subst">=</span> <span class="built_in">map</span><span class="built_in">.</span>keySet();</span><br><span class="line">Iterator<span class="subst">&lt;</span><span class="built_in">Integer</span><span class="subst">&gt;</span> keyIter <span class="subst">=</span> keys<span class="built_in">.</span>iterator();</span><br><span class="line"><span class="keyword">while</span>(keyIter<span class="built_in">.</span>hasNext())&#123;</span><br><span class="line">	<span class="built_in">Integer</span> key <span class="subst">=</span> keyIter<span class="built_in">.</span>next();</span><br><span class="line">	<span class="built_in">String</span> value <span class="subst">=</span> <span class="built_in">map</span><span class="built_in">.</span>get(key);</span><br><span class="line">	System<span class="built_in">.</span>out<span class="built_in">.</span>println(key<span class="subst">+</span><span class="string">"----&gt;"</span><span class="subst">+</span>value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Collection<span class="subst">&lt;</span><span class="built_in">String</span><span class="subst">&gt;</span> vals <span class="subst">=</span> <span class="built_in">map</span><span class="built_in">.</span>values();</span><br><span class="line">Iterator<span class="subst">&lt;</span><span class="built_in">String</span><span class="subst">&gt;</span> valIter <span class="subst">=</span> vals<span class="built_in">.</span>iterator();</span><br><span class="line"><span class="keyword">while</span>(valIter<span class="built_in">.</span>hasNext())&#123;</span><br><span class="line">	<span class="built_in">String</span> val <span class="subst">=</span> valIter<span class="built_in">.</span>next();</span><br><span class="line">	System<span class="built_in">.</span>out<span class="built_in">.</span>println(val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer,<span class="keyword">String</span>&gt; <span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;Integer,<span class="keyword">String</span>&gt;();</span><br><span class="line"><span class="built_in">map</span>.put(<span class="number">1</span>,<span class="string">"hello"</span>);</span><br><span class="line"><span class="built_in">map</span>.put(<span class="number">2</span>,<span class="string">"world"</span>);</span><br><span class="line"><span class="built_in">map</span>.put(<span class="number">3</span>,<span class="string">"yes"</span>);</span><br><span class="line">System.out.<span class="built_in">println</span>(<span class="built_in">map</span>);</span><br><span class="line"></span><br><span class="line">Set&lt;Integer&gt; keys = <span class="built_in">map</span>.keySet();</span><br><span class="line">Iterator&lt;Integer&gt; keyIter = keys.iterator();</span><br><span class="line"><span class="keyword">while</span>(keyIter.hasNext())&#123;</span><br><span class="line">	Integer <span class="variable">key</span> = keyIter.next();</span><br><span class="line">	<span class="keyword">String</span> value = <span class="built_in">map</span>.<span class="built_in">get</span>(<span class="variable">key</span>);</span><br><span class="line">	System.out.<span class="built_in">println</span>(<span class="variable">key</span>+<span class="string">"----&gt;"</span>+value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Collection&lt;<span class="keyword">String</span>&gt; vals = <span class="built_in">map</span>.values();</span><br><span class="line">Iterator&lt;<span class="keyword">String</span>&gt; valIter = vals.iterator();</span><br><span class="line"><span class="keyword">while</span>(valIter.hasNext())&#123;</span><br><span class="line">	<span class="keyword">String</span> val = valIter.next();</span><br><span class="line">	System.out.<span class="built_in">println</span>(val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果：</p>
 <blockquote>
 <p>{1=hello, 2=world, 3=yes}<br>1——&gt;hello<br>2——&gt;world<br>3——&gt;yes<br>hello<br>world<br>yes</p>
