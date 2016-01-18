@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Java 对象克隆 | zbvae&#39;s blog</title>
+  <meta name="description" content="这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="zbvae's blog">
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">zbvae's blog</h1>
+            <h2 class="blog-description">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2015-07-11T02:17:54.000Z" itemprop="datePublished">
+          2015-07-11
+      </time>
+    
+    
+    | 
+    <a href='/tags/Java学习/'>Java学习</a>
+    
+    
+</span>
+    <h1 class="post-title">Java 对象克隆</h1>
+    <section class="post-content">
+      <p><strong>摘要</strong>：Java最大的简洁性在于去除了指针，以引用来代替，在函数传参过程中，一般分为<strong>值传递</strong>和<strong>引用传递</strong>，值传递是直接拷贝一份值单元传递过去，原有值不会随被传递值改变而改变；引用传递则传递的是该引用数据类型变量的内存地址，因此原有对象属性值会随着传递引用变量对其的改变而达到间接改变的目的。Java中对所有复杂数据类型包括数组的传递都是引用传递方式，即传其地址，那么如何使Java具有像C和C++那样传递复杂数据类型，而不改变原有值的属性，这就需要利用到Java对象克隆知识了。 <a id="more"></a></p>
+<h2 id="1-String_传递">1.String 传递</h2><p>　　首先声明一点，虽然String也属于引用数据类型，但是它属于Java语言当中设计的特殊类型，具有值不可更改的特点，因此在进行参数传递时，不具备引用传递的特点，而是当成值传递方式来代替。</p>
+<h2 id="2-浅克隆">2.浅克隆</h2><p>　　所有的对象都具有拷贝（克隆）的功能，因为Object类中就定义了clone方法。一个类需要被克隆，则该类必须明确继承Cloneable接口，该接口只是其标识作用，另外还必须在该类中重写Object类提供的clone方法，使之支持对象克隆。<br>　　Java对象一般性的克隆，属于<strong>浅克隆</strong>。浅克隆是指只克隆当前对象的副本，而不管该对象内部成员对象是否需要拷贝副本，因此成员对象还是使用原来的引用指向，所以一旦改变克隆对象的成员对象的值，原有值的成员对象属性变量的值也会发生变化。</p>
+<h2 id="3-深克隆">3.深克隆</h2><p>　　如果需要彻底解决这种弊端，则需要一次性克隆到底，使用<strong>深克隆</strong>的方式。不但对该对象拷贝副本，对该对象成员对象也进行拷贝，甚至逐级拷贝下去，需要注意的是，这种方式下，成员对象所在类必须支持克隆属性，重写clone方法。</p>
+<h2 id="4-示例程序">4.示例程序</h2><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">public class TestObjClone&#123;</span><br><span class="line">  	public static void main(String<span class="comment">[]</span> args) &#123;</span><br><span class="line">  		<span class="keyword">Person</span> per = new <span class="keyword">Person</span>(<span class="string">"zhangsan"</span>, 20);</span><br><span class="line">  		<span class="keyword">Animal</span> a = new <span class="keyword">Animal</span>(<span class="string">"xiaohei"</span>, 8, per);</span><br><span class="line">  		<span class="keyword">Animal</span> b = null;</span><br><span class="line"></span><br><span class="line">  		System.out.println(<span class="string">"before clone: "</span>);</span><br><span class="line">  		System.out.println(<span class="string">"\tAnimal b is null and Animal a is: \n"</span> + a);</span><br><span class="line"></span><br><span class="line">  		b = (<span class="keyword">Animal</span>)a.clone();</span><br><span class="line">  		b.getMaster().setName(<span class="string">"wangwu"</span>);</span><br><span class="line">  		b.getMaster().setAge(50);</span><br><span class="line"></span><br><span class="line">  		System.out.println(<span class="string">"after clone: "</span>);</span><br><span class="line">  		System.out.println(<span class="string">"\tAnimal b master has been changed and Animal a is: \n"</span> + a);</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class <span class="keyword">Animal</span> implements Cloneable&#123;</span><br><span class="line"> 	private String name;</span><br><span class="line"> 	private int age;</span><br><span class="line"> 	private <span class="keyword">Person</span> master;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Animal</span>()&#123;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Animal</span>(String name, int age, <span class="keyword">Person</span> master)&#123;</span><br><span class="line">  		this.name = name;</span><br><span class="line">  		this.age = age;</span><br><span class="line">  		this.master = master;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String getName() &#123;</span><br><span class="line">     	return this.name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"> 	public int getAge() &#123;</span><br><span class="line">     	return this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span> getMaster()&#123;</span><br><span class="line">  		return this.master;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setName(String name) &#123;</span><br><span class="line">     	this.name = name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setAge(int age) &#123;</span><br><span class="line">     	this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setMaster(<span class="keyword">Person</span> master)&#123;</span><br><span class="line">  		this.master = master;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"Animal(name = "</span> + this.getName() + <span class="string">", age = "</span> + this.getAge() </span><br><span class="line">  		+ <span class="string">", master = \n"</span>+ this.getMaster() +<span class="string">")"</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public Object clone()&#123;</span><br><span class="line">  		<span class="keyword">Animal</span> obj = null;</span><br><span class="line">  		try&#123;</span><br><span class="line">  	 		obj = (<span class="keyword">Animal</span>)super.clone();</span><br><span class="line">   			obj.master = (<span class="keyword">Person</span>)master.clone();</span><br><span class="line">  		&#125;catch(CloneNotSupportedException e)&#123;</span><br><span class="line">  		&#125;</span><br><span class="line">  		return obj;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class <span class="keyword">Person</span> implements Cloneable&#123;</span><br><span class="line"> 	private String name;</span><br><span class="line"> 	private int age;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>()&#123;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>(String name, int age)&#123;</span><br><span class="line">  		this.name = name;</span><br><span class="line">  		this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String getName() &#123;</span><br><span class="line">     	return this.name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public int getAge() &#123;</span><br><span class="line">     	return this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setName(String name) &#123;</span><br><span class="line">     	this.name = name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setAge(int age) &#123;</span><br><span class="line">     	this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"Per(name = "</span> + this.getName() + <span class="string">", age = "</span> + this.getAge() + <span class="string">")"</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public Object clone()&#123;</span><br><span class="line">  		<span class="keyword">Person</span> obj = null;</span><br><span class="line">  		try&#123;</span><br><span class="line">   			obj = (<span class="keyword">Person</span>)super.clone();</span><br><span class="line">  		&#125;catch(CloneNotSupportedException e)&#123;</span><br><span class="line">  	&#125;</span><br><span class="line"> 	return obj;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序输出如下内容：</p>
+<blockquote>
+<p>before clone:<br>    Animal b is null and Animal a is:<br>Animal(name = xiaohei, age = 8, master =<br>Per(name = zhangsan, age = 20))<br>after clone:<br>    Animal b master has been changed and Animal a is:<br>Animal(name = xiaohei, age = 8, master =<br>Per(name = zhangsan, age = 20))</p>
+</blockquote>
+<p>　　以上输出说明进行深克隆后，原有对象中成员对象属性值不会再发生改变。要想测试浅克隆只需将Person类的克隆属性去掉，即取消Cloneable接口和clone方法，另外还需注释掉Animal类clone方法里的master成员对象的克隆，即为浅克隆方式，此种方式下，原有对象的成员对象属性值也会发生改变。</p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Bin Zhang</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://blog.zbvae.com/2015/07/11/Java-对象克隆/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zbvae.com/2015/07/11/Java-对象克隆/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.zbvae.com/2015/07/11/Java-对象克隆/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2015/07/11/使用Echarts制作散点图-Excel-导入数据方式/">
+        ← 使用Echarts制作散点图(Excel 导入数据方式)
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2015/07/11/Java-对象序列化与反序列化/">
+        Java 对象序列化与反序列化 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <a class="subscribe icon-feed" href="atom.xml"><span class="tooltip">Subscribe!</span></a>
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">zbvae's blog</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>

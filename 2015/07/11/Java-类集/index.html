@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Java 类集 | zbvae&#39;s blog</title>
+  <meta name="description" content="这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="zbvae's blog">
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">zbvae's blog</h1>
+            <h2 class="blog-description">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2015-07-11T07:11:39.000Z" itemprop="datePublished">
+          2015-07-11
+      </time>
+    
+    
+    | 
+    <a href='/tags/Java学习/'>Java学习</a>
+    
+    
+</span>
+    <h1 class="post-title">Java 类集</h1>
+    <section class="post-content">
+      <p><strong>摘要</strong>：Java中的类集实际上是动态对象数组，没有长度限制，可以任意扩充和丰富。从JDK1.5后，类集中添加了泛型声明，保证了类集使用的安全，所有的类集都位于java.util包下，类集有其继承结构，掌握好类集的使用对我们的程序开发有极大地帮助。<a id="more"></a></p>
+<h2 id="1-类集概述">1.类集概述</h2><p>　　Java中的类集，可分为单值操作集合，一对值的操作集合，输出集合。其中Collection是最大的单值集合操作接口，Map是最大的一对值集合操作接口，Iterator是最大的输出接口。 </p>
+<h2 id="2-Collection接口">2.Collection接口</h2><p>　　观察以下Collection类型的定义：<code>public interface Collection &lt;E&gt; extends Iterable &lt;E&gt;</code>，说明其支持泛型操作。Colletion接口包含以下操作方法。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean add(E e)</td>
+<td style="text-align:center">添加元素</td>
+</tr>
+<tr>
+<td>boolean addAll(Collection&lt;? extends E&gt; c)</td>
+<td style="text-align:center">添加一组元素，子集合</td>
+</tr>
+<tr>
+<td>void clear()</td>
+<td style="text-align:center">清空集合内容</td>
+</tr>
+<tr>
+<td>boolean contains(Object o)</td>
+<td style="text-align:center">判断集合中是否包含对象o</td>
+</tr>
+<tr>
+<td>boolean containsAll(Collection&lt;?&gt; c)</td>
+<td style="text-align:center">判断集合中是否包含子集合</td>
+</tr>
+<tr>
+<td>boolean isEmpty()</td>
+<td style="text-align:center">判断集合是否为空</td>
+</tr>
+<tr>
+<td>Iterator<e> iterator()</e></td>
+<td style="text-align:center">为Iterator接口实例化对象，以访问该集合</td>
+</tr>
+<tr>
+<td>boolean remove(Object o)</td>
+<td style="text-align:center">删除指定对象</td>
+</tr>
+<tr>
+<td>boolean removeAll(Collection&lt;?&gt; c)</td>
+<td style="text-align:center">删除一组元素，子集合</td>
+</tr>
+<tr>
+<td>int size()</td>
+<td style="text-align:center">返回集合大小，集合当前元素个数</td>
+</tr>
+<tr>
+<td>Object[] toArray()</td>
+<td style="text-align:center">返回该集合的静态对象数组形式</td>
+</tr>
+</tbody>
+</table>
+<p>在使用集合工具的时候，一般不直接使用Colletion接口，而多使用其子接口List和Set，虽然Collection接口还有两个子接口Queue和SortedSet但不常用。其中List和Set最大区别就是List中允许重复元素，Set中不允许元素重复。</p>
+<h3 id="2-1List接口">2.1List接口</h3><p>　　List接口对Collection接口有了一定的扩充，添加的方法如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void add(int index,E element)</td>
+<td style="text-align:center">在集合指定位置插入元素</td>
+</tr>
+<tr>
+<td>boolean addAll(int index, Collection&lt;? extends E&gt; c)</td>
+<td style="text-align:center">在集合指定位置插入子集合</td>
+</tr>
+<tr>
+<td>E get(int index)</td>
+<td style="text-align:center">取得索引位置集合内容</td>
+</tr>
+<tr>
+<td>int indexOf(Object o)</td>
+<td style="text-align:center">返回指定对象在集合中的索引，-1为不存在</td>
+</tr>
+<tr>
+<td>int lastIndexOf(Object o)</td>
+<td style="text-align:center">返回指定对象最后一次出现在集合中的位置</td>
+</tr>
+<tr>
+<td>ListIterator<e> listIterator()</e></td>
+<td style="text-align:center">判实例化ListIterator对象，便于List集合输出</td>
+</tr>
+<tr>
+<td>E remove(int index)</td>
+<td style="text-align:center">删除指定索引位置的元素</td>
+</tr>
+<tr>
+<td>E set(int index,  E element)</td>
+<td style="text-align:center">修改指定索引位置的元素</td>
+</tr>
+<tr>
+<td>List<e> subList(int fromIndex, int toIndex)</e></td>
+<td style="text-align:center">截取子集合，从指定起始位置到结束位置</td>
+</tr>
+</tbody>
+</table>
+<p>在使用List接口的时候，我们通常使用其子类ArrayList对其进行实例化，下面是ArrayList的使用示例：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> class TestCollection&#123;</span><br><span class="line"> 	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">  		List&lt;<span class="keyword">String</span>&gt; ls = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;();</span><br><span class="line">  		ls.<span class="built_in">add</span>(<span class="string">"hello"</span>);</span><br><span class="line">  		ls.<span class="built_in">add</span>(<span class="string">"world"</span>);</span><br><span class="line">  		ls.<span class="built_in">add</span>(<span class="string">"hello"</span>);</span><br><span class="line">  		ls.<span class="built_in">add</span>(<span class="number">0</span>,<span class="string">"yes"</span>);</span><br><span class="line">  		ls.remove(<span class="string">"hello"</span>);</span><br><span class="line">  		System.out.<span class="built_in">println</span>(ls.contains(<span class="string">"world"</span>));</span><br><span class="line">  		System.out.<span class="built_in">println</span>(ls);</span><br><span class="line"> 	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序输出：</p>
+<blockquote>
+<p>true<br>[yes, world, hello]</p>
+</blockquote>
+<p>说明集合类已经覆写了toString方法。ArrayList类是JDK1.2引进的，List接口还有一个较老的子类Vector也可以对其进行实例化，主要操作方法addElement,另外可以返回枚举对其进行输出。ArrayList和Vector主要区别在于：</p>
+<ul>
+<li>时间上，ArrayList产生于JDK1.2，而Vector产生于JDK1.0；</li>
+<li>ArrayList是异步操作，因此性能较高，Vector属于同步操作，性能较低；</li>
+<li>ArrayList是非线程安全的操作类，Vector是线程安全的操作类；</li>
+<li>ArrayList当集合内容加之初始容量时，容量会自动扩充0.5倍，而Vector容量会自动扩充1倍。<br>LinkedList是扩展自List接口的链表操作类，使用方法与ArrayList类似，存储上有所差异，这里就不过多介绍了。</li>
+</ul>
+<h3 id="2-2Set接口">2.2Set接口</h3><p>Set接口也属于Collection的子接口，但它和List接口的最大区别在于，Set集合中不能包含重复元素，Set接口有两大子类,TreeSet和HashSet，其中TreeSet支持有序存放，HashSet属于散列存放。Set接口并没有对Collection接口进行扩充。<br>首先使用HashSet对其进行实例化：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; <span class="keyword">st</span> = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line"><span class="keyword">st</span>.<span class="built_in">add</span>(<span class="string">"A"</span>);</span><br><span class="line"><span class="keyword">st</span>.<span class="built_in">add</span>(<span class="string">"D"</span>);</span><br><span class="line"><span class="keyword">st</span>.<span class="built_in">add</span>(<span class="string">"C"</span>);//<span class="built_in">repeat</span> element</span><br><span class="line"><span class="keyword">st</span>.<span class="built_in">add</span>(<span class="string">"C"</span>);</span><br><span class="line"><span class="keyword">st</span>.<span class="built_in">add</span>(<span class="string">"B"</span>);</span><br><span class="line"><span class="keyword">st</span>.<span class="built_in">add</span>(<span class="string">"B"</span>);//<span class="built_in">repeat</span> element</span><br><span class="line"><span class="keyword">st</span>.<span class="built_in">add</span>(<span class="string">"E"</span>);</span><br><span class="line">System.out.println(<span class="keyword">st</span>);</span><br></pre></td></tr></table></figure></p>
+<p>输出：<code>[D, E, A, B, C]</code>，从输出内容，可以发现Set不允许有重复元素，会自动屏蔽，HashSet对元素散列存放，没有任何顺序，将HashSet更改为TreeSet进行实例化得到输出结果如下：[A, B, C, D, E]，说明，使用TreeSet对存放的元素进行顺序排放。那么它是如何排序的呢，现在不存放String对象，改存放我们自定义的Person对象，其结果又如何呢？定义Person类如下：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class <span class="keyword">Person</span>&#123;</span><br><span class="line"> 	private String name = null;</span><br><span class="line"> 	private int age = 0;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>()&#123;</span><br><span class="line"> </span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>(String name, int age)&#123;</span><br><span class="line">  		this.name = name;</span><br><span class="line">  		this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"name="</span> + this.name + <span class="string">" age="</span> + this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在主函数定义Set集合，用于存放Person对象，</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;<span class="keyword">Person</span>&gt; pr = new TreeSet&lt;<span class="keyword">Person</span>&gt;();</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"zhangsan"</span>,20));</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"lisi"</span>,21));</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"wangwu"</span>,15));</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"zhaoliu"</span>,20)); </span><br><span class="line">System.out.println(pr);</span><br></pre></td></tr></table></figure>
+<p>主函数输出集合：</p>
+<blockquote>
+<p>Exception in thread “main” java.lang.ClassCastException: Person cannot be cast to java.lang.Comparable<br> at java.util.TreeMap.compare(Unknown Source)<br> at java.util.TreeMap.put(Unknown Source)<br> at java.util.TreeSet.add(Unknown Source)<br> at TestCollection.main(TestCollection.java:27)</p>
+</blockquote>
+<p> 程序产生上述异常，可以发现，这时候Person类由于没有实现Comparable接口，因此不支持排序功能，而String默认是实现了Comparable接口的，现在修改Person类实现Comparable接口，覆盖compareTo方法，使其按年龄排序。</p>
+ <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class <span class="keyword">Person</span> implements Comparable&lt;<span class="keyword">Person</span>&gt; &#123;</span><br><span class="line">  	private String name = null;</span><br><span class="line"> 	private int age = 0;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>()&#123;</span><br><span class="line"> </span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line">	public <span class="keyword">Person</span>(String name, int age)&#123;</span><br><span class="line">  		this.name = name;</span><br><span class="line">  		this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public int compareTo(<span class="keyword">Person</span> per)&#123;</span><br><span class="line">  		if(this.age &lt; per.age)&#123;</span><br><span class="line">   			return -1;</span><br><span class="line">  		&#125;else if(this.age &gt; per.age)&#123;</span><br><span class="line">   			return 1;</span><br><span class="line">  		&#125;else&#123;</span><br><span class="line">   			return 0;</span><br><span class="line">  		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"name="</span> + this.name + <span class="string">" age="</span> + this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 修改之后，正常输出并按年龄排序如下：</p>
+<blockquote>
+<p>[name=wangwu age=15, name=zhangsan age=20, name=lisi age=21]</p>
+</blockquote>
+<p> 但是发现zhaoliu不见了，那是因为对年龄排序，由于zhangsan和zhaoliu的年龄一样，被当做重复元素处理掉了，现在修改compareTo方法</p>
+ <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">int</span> <span class="keyword">compareTo</span>(Person per)&#123;</span><br><span class="line">  	<span class="keyword">if</span>(<span class="keyword">this</span>.age &lt; per.age)&#123;</span><br><span class="line">  	 	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">  	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.age &gt; per.age)&#123;</span><br><span class="line">   		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   		<span class="keyword">return</span> <span class="keyword">this</span>.name.<span class="keyword">compareTo</span>(per.name);</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 输出如下：</p>
+<blockquote>
+<p>[name=wangwu age=15, name=zhangsan age=20, name=zhaoliu age=20, name=lisi age=21]</p>
+</blockquote>
+<p> 发现一切正常了，即使加上一个20岁的zhangsan，重复元素也会被剔除掉。</p>
+<p> 但这时将主函数中的TreeSet类改成HashSet类，输出：</p>
+<blockquote>
+<p>[name=zhaoliu age=20, name=zhangsan age=20, name=zhangsan age=20, name=lisi age=21, name=wangwu age=15]</p>
+</blockquote>
+<p>发现加上的重复元素zhangsan没有被剔除，是因为我们刚刚是对Person类借助于compareTo方法实现了比较剔除，而并没有从类本身考虑重复的情况，一旦比较不需要了，重复元素便不能判断出来。<br>那么Set集合又是如何排除重复元素的呢？答案是通过Obejct的equals和hashCode方法，来判断重复元素的，现在修改Person类如下：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">class <span class="keyword">Person</span> implements Comparable&lt;<span class="keyword">Person</span>&gt; &#123;</span><br><span class="line">  	private String name = null;</span><br><span class="line"> 	private int age = 0;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>()&#123;</span><br><span class="line"> </span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>(String name, int age)&#123;</span><br><span class="line">  		this.name = name;</span><br><span class="line">  		this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public int compareTo(<span class="keyword">Person</span> per)&#123;</span><br><span class="line">  		if(this.age &lt; per.age)&#123;</span><br><span class="line">   			return -1;</span><br><span class="line">  		&#125;else if(this.age &gt; per.age)&#123;</span><br><span class="line">   			return 1;</span><br><span class="line">  		&#125;else&#123;</span><br><span class="line">   			return this.name.compareTo(per.name);</span><br><span class="line">  		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public int hashCode()&#123;</span><br><span class="line">  		return this.name.hashCode()*this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public boolean equals(Object o)&#123;</span><br><span class="line">  		if(this == o)</span><br><span class="line">   			return true;</span><br><span class="line">  		if(!(o instanceof <span class="keyword">Person</span>))</span><br><span class="line">   			return false;</span><br><span class="line">  		<span class="keyword">Person</span> per = (<span class="keyword">Person</span>)o;</span><br><span class="line">  		if(this.name.equals(per.name) &amp;&amp; this.age == per.age) </span><br><span class="line">   			return true;</span><br><span class="line">  		else</span><br><span class="line">   			return false;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"name="</span> + this.name + <span class="string">" age="</span> + this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主函数再次进行调用：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;<span class="keyword">Person</span>&gt; pr = new TreeSet&lt;<span class="keyword">Person</span>&gt;();</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"zhangsan"</span>,20));</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"lisi"</span>,21));</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"wangwu"</span>,15));</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"zhaoliu"</span>,20));</span><br><span class="line">pr.add(new <span class="keyword">Person</span>(<span class="string">"zhangsan"</span>,20));</span><br><span class="line">System.out.println(pr);</span><br></pre></td></tr></table></figure>
+<p>此时输出内容不会再出现重复元素了：</p>
+<blockquote>
+<p>[name=wangwu age=15, name=zhangsan age=20, name=zhaoliu age=20, name=lisi age=21]</p>
+</blockquote>
+<h2 id="3-集合输出">3.集合输出</h2><p>集合的输出有四种方式：Iterator；ListIterator;foreach;Enumeration。其中Iterator是推荐使用方式：只要碰到集合输出问题，就一定首先考虑使用Iterator接口进行输出。ListIterator只要List接口的子类对象才可以使用，可以进行双向输出。也可以使用一般的for循环输出List集合内容。foreach是JDK1.5版本新增的for循环增强的内容，不仅可以输出数组，也可以输出集合内容。Enumeration接口是一种古老的操作接口，只有Vector类elements方法可以返回Enumeration接口实例，并进一步进行输出操作。下面介绍这几种输出方法：</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">System.out.println<span class="params">(<span class="string">"1.use iterator to print collection"</span>)</span>;</span><br><span class="line">Iterator&lt;Person&gt; iter = pr.iterator<span class="params">()</span>;</span><br><span class="line">while<span class="params">(iter.hasNext<span class="params">()</span>)</span>&#123;</span><br><span class="line">	Person per = iter.next<span class="params">()</span>;</span><br><span class="line">	System.out.println<span class="params">(per)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println<span class="params">(<span class="string">"2.use listiterator to print List"</span>)</span>;</span><br><span class="line">ListIterator&lt;String&gt; listIter = ls.listIterator<span class="params">()</span>;</span><br><span class="line">System.out.println<span class="params">(<span class="string">"2.1.forward print"</span>)</span>;</span><br><span class="line">while<span class="params">(listIter.hasNext<span class="params">()</span>)</span>&#123;</span><br><span class="line">	String <span class="built_in">str</span> = listIter.next<span class="params">()</span>;</span><br><span class="line">	System.out.println<span class="params">(str)</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println<span class="params">(<span class="string">"2.2.backward print"</span>)</span>;</span><br><span class="line">while<span class="params">(listIter.hasPrevious<span class="params">()</span>)</span>&#123;</span><br><span class="line">	String <span class="built_in">str</span> = listIter.previous<span class="params">()</span>;</span><br><span class="line">	System.out.println<span class="params">(str)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println<span class="params">(<span class="string">"3.use general for to print List"</span>)</span>;</span><br><span class="line"><span class="keyword">for</span><span class="params">(int i=<span class="number">0</span>;i&lt;ls.size<span class="params">()</span>;i++)</span>&#123;</span><br><span class="line">	String <span class="built_in">str</span> = ls.get<span class="params">(i)</span>;</span><br><span class="line">	System.out.println<span class="params">(str)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println<span class="params">(<span class="string">"4.use foreach to print collection"</span>)</span>;</span><br><span class="line"><span class="keyword">for</span><span class="params">(Person per : pr)</span>&#123;</span><br><span class="line">	System.out.println<span class="params">(per)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println<span class="params">(<span class="string">"5.use enumeration to print Vector"</span>)</span>;</span><br><span class="line">Enumeration&lt;String&gt; e = vec.elements<span class="params">()</span>;</span><br><span class="line">while<span class="params">(e.hasMoreElements<span class="params">()</span>)</span>&#123;</span><br><span class="line">	String <span class="built_in">str</span> = e.nextElement<span class="params">()</span>;</span><br><span class="line">	System.out.println<span class="params">(str)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，ListIterator对List集合进行双向输出时，必须先进行next输出之后，才能进行previous输出。至此已经介绍完了单一值接口和输出接口，还剩下一对值接口即Map接口。</p>
+<h2 id="4-Map_接口">4.Map 接口</h2><p>　　Map作为一对值的最大接口，其值的存储是以键值对的形式存放的，同样我们也不直接操作Map接口，而是使用其子类进行实例化，Map接口三个常用的子类是：HashMap,Hashtable以及TreeMap.先来看一下Map接口定义的常用方法。Map接口定义：<code>public interface Map&lt;K,V&gt;</code></p>
+<p>　　常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V put(K key, V value)</td>
+<td style="text-align:left">添加键值对</td>
+</tr>
+<tr>
+<td>V get(Object key)</td>
+<td style="text-align:left">根据指定键取值</td>
+</tr>
+<tr>
+<td>boolean containsKey(Object key)</td>
+<td style="text-align:left">判断是否包含指定键</td>
+</tr>
+<tr>
+<td>boolean containsValue(Object value)</td>
+<td style="text-align:left">判断是否包含指定值</td>
+</tr>
+<tr>
+<td>Set<k> keySet()</k></td>
+<td style="text-align:left">将所有的key转为Set集合</td>
+</tr>
+<tr>
+<td>Collection<v> values()</v></td>
+<td style="text-align:left">将所有的value转化为Collection集合</td>
+</tr>
+<tr>
+<td>Set<map.entry<k,v>&gt; entrySet()</map.entry<k,v></td>
+<td style="text-align:left">将Map转化为Set集合，此为Map输出方式</td>
+</tr>
+<tr>
+<td>void clear()</td>
+<td style="text-align:left">清空Map集合</td>
+</tr>
+<tr>
+<td>void size()</td>
+<td style="text-align:left">返回集合大小</td>
+</tr>
+</tbody>
+</table>
+<p>以下代码使用HashMap为Map接口进行实例化，并调用相关方法</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer,<span class="keyword">String</span>&gt; <span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;Integer,<span class="keyword">String</span>&gt;();</span><br><span class="line"><span class="built_in">map</span>.put(<span class="number">1</span>,<span class="string">"hello"</span>);</span><br><span class="line"><span class="built_in">map</span>.put(<span class="number">2</span>,<span class="string">"world"</span>);</span><br><span class="line"><span class="built_in">map</span>.put(<span class="number">3</span>,<span class="string">"yes"</span>);</span><br><span class="line">System.out.<span class="built_in">println</span>(<span class="built_in">map</span>);</span><br><span class="line"></span><br><span class="line">Set&lt;Integer&gt; keys = <span class="built_in">map</span>.keySet();</span><br><span class="line">Iterator&lt;Integer&gt; keyIter = keys.iterator();</span><br><span class="line"><span class="keyword">while</span>(keyIter.hasNext())&#123;</span><br><span class="line">	Integer <span class="variable">key</span> = keyIter.next();</span><br><span class="line">	<span class="keyword">String</span> value = <span class="built_in">map</span>.<span class="built_in">get</span>(<span class="variable">key</span>);</span><br><span class="line">	System.out.<span class="built_in">println</span>(<span class="variable">key</span>+<span class="string">"----&gt;"</span>+value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Collection&lt;<span class="keyword">String</span>&gt; vals = <span class="built_in">map</span>.values();</span><br><span class="line">Iterator&lt;<span class="keyword">String</span>&gt; valIter = vals.iterator();</span><br><span class="line"><span class="keyword">while</span>(valIter.hasNext())&#123;</span><br><span class="line">	<span class="keyword">String</span> val = valIter.next();</span><br><span class="line">	System.out.<span class="built_in">println</span>(val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<blockquote>
+<p>{1=hello, 2=world, 3=yes}<br>1——&gt;hello<br>2——&gt;world<br>3——&gt;yes<br>hello<br>world<br>yes</p>
+</blockquote>
+<p>HashMap本身也属于一种无序的操作。而Hashtable实际上与Vector产生的时代一样，属于最早集合操作类，之后只是扩展了其应用，实现了Map接口而已,，把上面HashMap声明部分，换成Hashtable，结果一模一样。那么HashMap与Hashtale的区别与ArrayList和Vector区别一样：HashMap集合比较晚，异步处理，性能较高；Hashtable较早，同步处理，性能较差。从实际开发来看，最常用的子类是HashMap.注意Map接口由于以键值对的形式出现，无法直接使用Ierator接口进行输出。下面介绍一种Map接口常用输出方法。</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span><span class="subst">&lt;</span><span class="built_in">Map</span><span class="built_in">.</span>Entry<span class="subst">&lt;</span><span class="built_in">Integer</span>,<span class="built_in">String</span><span class="subst">&gt;&gt;</span> entrys <span class="subst">=</span> <span class="built_in">map</span><span class="built_in">.</span>entrySet();</span><br><span class="line">Iterator<span class="subst">&lt;</span><span class="built_in">Map</span><span class="built_in">.</span>Entry<span class="subst">&lt;</span><span class="built_in">Integer</span>,<span class="built_in">String</span><span class="subst">&gt;&gt;</span> entryIter <span class="subst">=</span> entrys<span class="built_in">.</span>iterator();</span><br><span class="line"><span class="keyword">while</span>(entryIter<span class="built_in">.</span>hasNext())&#123;</span><br><span class="line">	<span class="built_in">Map</span><span class="built_in">.</span>Entry<span class="subst">&lt;</span><span class="built_in">Integer</span>,<span class="built_in">String</span><span class="subst">&gt;</span> me <span class="subst">=</span> entryIter<span class="built_in">.</span>next();</span><br><span class="line">	System<span class="built_in">.</span>out<span class="built_in">.</span>println(me<span class="built_in">.</span>getKey()<span class="subst">+</span><span class="string">"----&gt;"</span><span class="subst">+</span>me<span class="built_in">.</span>getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Bin Zhang</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://blog.zbvae.com/2015/07/11/Java-类集/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zbvae.com/2015/07/11/Java-类集/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.zbvae.com/2015/07/11/Java-类集/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/2015/07/12/Java-NIO-学习/">
+        ← Java NIO 学习
+    </a>
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2015/07/11/Java-比较器/">
+        Java 比较器 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <a class="subscribe icon-feed" href="atom.xml"><span class="tooltip">Subscribe!</span></a>
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">zbvae's blog</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>
