@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>数据结构-串 | zbvae&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="数据结构" />
+    
+    <meta name="description" content="摘要 串是一种数据元素类型只能为字符的线性数据结构，可以理解为字符序列。按存储结构也可以分为顺序串和链式串，一般以顺序串为代表，定义在串上的操作，如求串长，判断空串，判断串是否为满，指定位置插入字符，指定位置删除字符，这些操作与线性表中一模一样，所以，有兴趣的读者可以参照本系列博客数据结构-线性表进行阅读。对于串，主要算法有模式匹配，而本文所讲的重点也是串的KMP模式匹配算法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构-串">
+<meta property="og:url" content="http://blog.zbvae.com/2015/07/20/数据结构-串/index.html">
+<meta property="og:site_name" content="zbvae's blog">
+<meta property="og:description" content="摘要 串是一种数据元素类型只能为字符的线性数据结构，可以理解为字符序列。按存储结构也可以分为顺序串和链式串，一般以顺序串为代表，定义在串上的操作，如求串长，判断空串，判断串是否为满，指定位置插入字符，指定位置删除字符，这些操作与线性表中一模一样，所以，有兴趣的读者可以参照本系列博客数据结构-线性表进行阅读。对于串，主要算法有模式匹配，而本文所讲的重点也是串的KMP模式匹配算法。">
+<meta property="og:image" content="http://blog.zbvae.com/images/next.jpg">
+<meta property="og:updated_time" content="2015-08-06T11:45:18.652Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构-串">
+<meta name="twitter:description" content="摘要 串是一种数据元素类型只能为字符的线性数据结构，可以理解为字符序列。按存储结构也可以分为顺序串和链式串，一般以顺序串为代表，定义在串上的操作，如求串长，判断空串，判断串是否为满，指定位置插入字符，指定位置删除字符，这些操作与线性表中一模一样，所以，有兴趣的读者可以参照本系列博客数据结构-线性表进行阅读。对于串，主要算法有模式匹配，而本文所讲的重点也是串的KMP模式匹配算法。">
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://blog.zbvae.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-数据结构-串" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        数据结构-串
+        </h1>
+    
+
+            </header>
+        
+        <p class="article-byline">
+            <a href="/2015/07/20/数据结构-串/" class="article-date">
+    <time datetime="2015-07-20T07:00:00.000Z" itemprop="datePublished">2015-07-20</time>
+</a>
+        </p>
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>摘要</strong> 串是一种数据元素类型只能为字符的线性数据结构，可以理解为字符序列。按存储结构也可以分为顺序串和链式串，一般以顺序串为代表，定义在串上的操作，如求串长，判断空串，判断串是否为满，指定位置插入字符，指定位置删除字符，这些操作与线性表中一模一样，所以，有兴趣的读者可以参照本系列博客数据结构-线性表进行阅读。对于串，主要算法有模式匹配，而本文所讲的重点也是串的KMP模式匹配算法。<a id="more"></a></p>
+<h2 id="1-串的定义">1.串的定义</h2><p>串是一种类似线性表的线性数据结构，其数据类型只能为字符，下面是顺序串的定义，可以发现与顺序表的定义一模一样。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SeqString</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> STRING_SIZE = <span class="number">100</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">char</span> data[] = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SeqString</span><span class="params">()</span></span>&#123;</span><br><span class="line">		data = <span class="keyword">new</span> <span class="keyword">char</span>[STRING_SIZE];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SeqString</span><span class="params">(<span class="keyword">char</span>[] data)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.data = <span class="keyword">new</span> <span class="keyword">char</span>[STRING_SIZE];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;data.length;i++)&#123;</span><br><span class="line">			<span class="keyword">this</span>.insert(i+<span class="number">1</span>, data[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.length == <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.length == STRING_SIZE;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">char</span> val)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(pos &lt; <span class="number">1</span> || pos &gt; length+<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.isFull())</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=length-<span class="number">1</span>;i&gt;=pos-<span class="number">1</span>;i--)</span><br><span class="line">			data[i+<span class="number">1</span>] = data[i];</span><br><span class="line">		data[pos-<span class="number">1</span>] = val;</span><br><span class="line">		<span class="keyword">this</span>.length++;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(pos &lt; <span class="number">1</span> || pos &gt; length)</span><br><span class="line">			<span class="keyword">return</span> <span class="string">'#'</span>;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.isEmpty())</span><br><span class="line">			<span class="keyword">return</span> <span class="string">'#'</span>;</span><br><span class="line">		<span class="keyword">char</span> c = data[pos-<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=pos;i&lt;length;i++)</span><br><span class="line">			data[i-<span class="number">1</span>] = data[i];</span><br><span class="line">		<span class="keyword">this</span>.length--;</span><br><span class="line">		<span class="keyword">return</span> c;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> String(<span class="keyword">this</span>.data,<span class="number">0</span>,<span class="keyword">this</span>.length);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于串的结构类型定义，这里就不再赘述。下面介绍串的模式匹配算法。先以朴素匹配算法作为引例，然后在此基础之上，介绍KMP算法。</p>
+<h2 id="2-朴素匹配算法">2.朴素匹配算法</h2><p>串的朴素匹配算法，实现简单，容易理解，也可以认为是一种暴力匹配算法，将主串与模式串中的字符进行一个一个的比对，如果匹配成功，主串与模式串各自递进向前滑动一位，如果匹配失败，那么一切从头来过，模式串重新从0位置开始，主串从下一个位置开始，这里的下一个位置的计算(i-j+1，因为j走了多少，i也走了多少，然后下一个也就是加1)，循环结束条件为模式串匹配完毕，即在主串中找到了所有模式串的字符，或者主串都走完了，还没有找到与模式串匹配的子串，结束匹配，返回-1.</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * [indexOf description]</span><br><span class="line"> * @param  t [mask <span class="type">string</span>]</span><br><span class="line"> * @<span class="constant">return</span>   [<span class="keyword">first</span> pos <span class="keyword">of</span> mask <span class="keyword">in</span> main <span class="type">string</span>]</span><br><span class="line"> */</span><br><span class="line">public int indexOf(SeqString t)&#123;</span><br><span class="line">	SeqString s = this;</span><br><span class="line">	int i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i &lt; s.<span class="property">length</span> &amp;&amp; j &lt; t.<span class="property">length</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s.data[i] == t.data[j])&#123;</span><br><span class="line">			i++;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			j=<span class="number">0</span>;</span><br><span class="line">			i = i-j+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(j == t.<span class="property">length</span>)</span><br><span class="line"><span class="command">		return</span> i-j;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line"><span class="command">		return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-KMP模式匹配算法">3.KMP模式匹配算法</h2><p>上述朴素匹配算法，实现简单，易于理解，但是其时间复杂度时O(m*n)，其中m是主串长度，n是模式串长度。算法的关键在于，当主串中i位置字符与模式串中j位置字符失配时，模式串从0开始，主串也回溯到i-j+1的位置，其实如果充分利用模式串失配位置字符之前的字符序列信息，就可以发现，主串不需要回溯，只需要回溯模式串即可，而且模式串每次回溯的步长可以根据失配位置之前的字符隐含关系来确定，失配位置之前的所有字符如果拥有相同前缀和后缀字符，那么模式串就可以不用回溯到开始位置，而只需要回溯到最长公共前缀的下一个位置即可。这样主串不用回溯，模式串减少回溯的位置，该算法的时间复杂度变为O(m+n)。</p>
+<p>Knuth-Morris-Pratt 字符串查找算法，简称为 “KMP算法”，常用于在一个文本串S内查找一个模式串P 的出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人于1977年联合发表，故取这3人的姓氏命名此算法。</p>
+<h3 id="3-1next_数组的计算">3.1next 数组的计算</h3><p>定义next数组为模式串中每一个字符之前的最长公共前缀后缀的长度。同时定义next[0] = -1。对于给定的模式串：ABCDABD，它的最大长度表及next 数组分别如下：</p>
+<center><img src="/images/next.jpg" alt="next"></center>
+
+<p>上图中最大长度值为该字符位置的最长公共前缀与后缀长度，前最大长度值表向右移动一位，并将next[0]赋值为-1就得到了next数组。<strong>模式串next数组的求法是KMP算法中最难理解的部分</strong>。它需要对模式串进行递推搜索：</p>
+<blockquote>
+<ul>
+<li>如果对于值k，已有p0 p1, …, pk-1 = pj-k pj-k+1, …, pj-1，相当于next[j] = k。<blockquote>
+<ul>
+<li>next[j] = k 代表p[j] 之前的模式串子串中，有长度为k 的相同前缀和后缀</li>
+<li>有了这个next 数组，在KMP匹配中，当模式串中j 处的字符失配时，下一步用next[j]处的字符继续跟文本串匹配，相当于模式串向右移动j - next[j] 位。</li>
+</ul>
+</blockquote>
+</li>
+<li>递推问题：已知next [0, …, j]，如何求出next [j + 1]呢？<blockquote>
+<ul>
+<li>若p[k] == p[j]，则next[j + 1 ] = next [j] + 1 = k + 1</li>
+<li>若p[k ] ≠ p[j]，如果此时p[ next[k] ] == p[j ]，则next[ j + 1 ] =  next[k] + 1，否则继续递归前缀索引k = next[k]，而后重复此过程。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p>为何递归前缀索引k = next[k]，就能找到长度更小的相同前缀后缀呢?这又归根到next数组的含义。<strong>为了寻找长度相同的前缀后缀，我们拿前缀 p0 pk-1 pk 去跟后缀pj-k pj-1 pj匹配，如果pk 跟pj 失配，下一步就是用p[next[k]] 去跟pj 继续匹配，如果p[ next[k] ]跟pj还是不匹配，则下一步用p[ next[ next[k] ] ]去跟pj匹配。</strong>。相当于在不断的递归k = next[k]，直到要么找到长度更小的相同前缀后缀，要么没有长度更小的相同前缀后缀。</p>
+<p>下面这段代码展示了模式串next数组的求法，其中data[k]表示前缀，data[j]表示后缀。</p>
+ <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">int</span>[] <span class="keyword">next</span>()&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="keyword">next</span>[] = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line">	<span class="keyword">next</span>[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>, k = -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(j &lt; length-<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(k == -<span class="number">1</span> || data[k] == data[j])&#123;</span><br><span class="line">			k++;</span><br><span class="line">			j++;</span><br><span class="line">			<span class="keyword">next</span>[j] = k;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			k = <span class="keyword">next</span>[k];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">next</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2KMP算法实现">3.2KMP算法实现</h3><p>有了模式串next数组，再来实现KMP算法就变得简单很多了。KMP算法相对于朴素算法的改进在于，如果模式串在j位置失配，主串无需回溯，模式串每次回溯到next[j]位置。下面是KMP算法的实现代码。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public <span class="keyword">int</span> indexOf_KMP(SeqString t)&#123;</span><br><span class="line">	SeqString <span class="keyword">s</span> = this;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> <span class="keyword">next</span>[] = t.getNext();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(i &lt; <span class="keyword">s</span>.<span class="keyword">length</span> &amp;&amp; j &lt; t.<span class="keyword">length</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(j == -<span class="number">1</span> || <span class="keyword">s</span>.data[i] == t.data[j])&#123;</span><br><span class="line">			i++;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			j = <span class="keyword">next</span>[j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(j == t.<span class="keyword">length</span>)</span><br><span class="line">		<span class="keyword">return</span> i-j;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3next_数组的优化">3.3next 数组的优化</h3><p>如果用之前的next 数组方法求模式串“abab”的next 数组，可得其next 数组为-1 0 0 1（0 0 1 2整体右移一位，初值赋为-1），当它跟下图中的文本串去匹配的时候，发现b跟c失配，于是模式串右移j - next[j] = 3 - 1 =2位。</p>
+<center><img src="/images/next1.jpg" alt="next优化1"></center>
+
+<p>右移2位后，b又跟c失配。事实上，因为在上一步的匹配中，已经得知p.data[3] = b，与s.data[3] = c失配，在3位置失配，由于next[3]=1，而右移两位之后，让p.data[1] = b 再跟s.data[3]匹配时，必然失配。问题出在哪呢？</p>
+<center><img src="/images/next2.jpg" alt="next优化2"></center>
+
+<p>问题出在不该出现p.data[j] = p.data[ next[j] ]。为什么呢？理由是：当p.data[j] != s.data[i] 时，下次匹配必然是p.data[ next [j]] 跟s.data[i]匹配，如果p.data[j] = p.data[ next[j] ]，必然导致后一步匹配失败（因为p.data[j]已经跟s.data[i]失配，然后你还用跟p.data[j]等同的值p.data[next[j]]去跟s.data[i]匹配，很显然，必然失配），所以不能允许p.data[j] = p.data[ next[j ]]。如果出现了p.data[j] = p.data[ next[j] ]咋办呢？如果出现了，则需要再次递归，即令next[j] = next[ next[j] ]。</p>
+<p>优化后的next数组的求法如下所示：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public <span class="keyword">int</span>[] getNext()&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="keyword">next</span>[] = new <span class="keyword">int</span>[<span class="keyword">length</span>];</span><br><span class="line">	<span class="keyword">next</span>[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>, k = -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(j &lt; <span class="keyword">length</span>-<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="regexp">//already</span> knows <span class="keyword">next</span>[j] = k, how to compute <span class="keyword">next</span>[j+<span class="number">1</span>]</span><br><span class="line">		<span class="keyword">if</span>(k == -<span class="number">1</span> || data[j] == data[k])&#123;</span><br><span class="line">			k++;</span><br><span class="line">			j++;</span><br><span class="line">			<span class="keyword">if</span>(data[j] != data[k])</span><br><span class="line">				<span class="keyword">next</span>[j] = k;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">next</span>[j] = <span class="keyword">next</span>[k];</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			k = <span class="keyword">next</span>[k];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">next</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用优化过后的next 数组求法，可知模式串“abab”的新next数组为：-1 0 -1 0。下面这幅图揭示了KMP算法的实际执行过程。</p>
+<center><img src="/images/kmp.jpg" alt="KMP算法图示"></center>
+
+<p>上述部分图示和文字来源于 <a href="http://blog.csdn.net/v_july_v/article/details/7041827" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/7041827</a></p>
+<h2 id="4-KMP算法的时间复杂度">4.KMP算法的时间复杂度</h2><p>如果文本串的长度为n，模式串的长度为m，那么匹配过程的时间复杂度为O(n)，算上计算next的O(m)时间，KMP的整体时间复杂度为O(m + n)。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.zbvae.com/2015/07/20/数据结构-串/" data-id="cijkqq0zy000h8ohsyrwfakk6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+        </footer>
+    </div>
+</article>
+
+<section id="comments">
+
+    <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+<script>
+var disqus_shortname = 'hexo-theme-hueman';
+
+
+var disqus_url = 'http://blog.zbvae.com/2015/07/20/数据结构-串/';
+
+(function() {
+var dsq = document.createElement('script');
+dsq.type = 'text/javascript';
+dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+</section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/21/数据结构-多维数组和广义表/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            数据结构-多维数组和广义表
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/07/20/数据结构-栈与队列/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">数据结构-栈与队列</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="title">Java Web中文乱码问题解决方法</a></p>
+                            <p class="item-date"><time datetime="2015-07-31T08:31:52.000Z" itemprop="datePublished">2015-07-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/28/数据结构-内排序算法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/28/数据结构-内排序算法/" class="title">数据结构-内排序算法</a></p>
+                            <p class="item-date"><time datetime="2015-07-28T01:10:43.000Z" itemprop="datePublished">2015-07-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/26/数据结构-图/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/graph.png)" alt="数据结构-图" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/26/数据结构-图/" class="title">数据结构-图</a></p>
+                            <p class="item-date"><time datetime="2015-07-26T07:22:29.000Z" itemprop="datePublished">2015-07-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/23/数据结构-二叉树/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/bitree.png)" alt="数据结构-二叉树" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/23/数据结构-二叉树/" class="title">数据结构-二叉树</a></p>
+                            <p class="item-date"><time datetime="2015-07-23T03:15:09.000Z" itemprop="datePublished">2015-07-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/21/数据结构-多维数组和广义表/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/matrix.png)" alt="数据结构-多维数组和广义表" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/21/数据结构-多维数组和广义表/" class="title">数据结构-多维数组和广义表</a></p>
+                            <p class="item-date"><time datetime="2015-07-21T05:22:54.000Z" itemprop="datePublished">2015-07-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">22</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习/">Java学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术交流/">技术交流</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 10px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Bin Zhang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>数据结构-线性表 | zbvae&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="数据结构" />
+    
+    <meta name="description" content="摘要 从本篇开始，将为大家带来数据结构的系列博客，也许我所介绍的内容包含的不是很全，但相信一定是最容易理解的，有兴趣的读者可以对本人的博客进行跟踪学习。数据结构简而言之，数据结构是一门描述数据之间逻辑关系和解决数据在计算机中的存储问题，以及定义在这些存储结构上的操作的集合，这些操作集也可以称之为算法，狭义上的数据结构只是指的是数据之间的逻辑结构和物理存储结构，广义上的数据结构还包含算法的定义。 从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构-线性表">
+<meta property="og:url" content="http://blog.zbvae.com/2015/07/19/数据结构-线性表/index.html">
+<meta property="og:site_name" content="zbvae's blog">
+<meta property="og:description" content="摘要 从本篇开始，将为大家带来数据结构的系列博客，也许我所介绍的内容包含的不是很全，但相信一定是最容易理解的，有兴趣的读者可以对本人的博客进行跟踪学习。数据结构简而言之，数据结构是一门描述数据之间逻辑关系和解决数据在计算机中的存储问题，以及定义在这些存储结构上的操作的集合，这些操作集也可以称之为算法，狭义上的数据结构只是指的是数据之间的逻辑结构和物理存储结构，广义上的数据结构还包含算法的定义。 从">
+<meta property="og:updated_time" content="2015-08-06T11:19:26.463Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构-线性表">
+<meta name="twitter:description" content="摘要 从本篇开始，将为大家带来数据结构的系列博客，也许我所介绍的内容包含的不是很全，但相信一定是最容易理解的，有兴趣的读者可以对本人的博客进行跟踪学习。数据结构简而言之，数据结构是一门描述数据之间逻辑关系和解决数据在计算机中的存储问题，以及定义在这些存储结构上的操作的集合，这些操作集也可以称之为算法，狭义上的数据结构只是指的是数据之间的逻辑结构和物理存储结构，广义上的数据结构还包含算法的定义。 从">
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://blog.zbvae.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-数据结构-线性表" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        数据结构-线性表
+        </h1>
+    
+
+            </header>
+        
+        <p class="article-byline">
+            <a href="/2015/07/19/数据结构-线性表/" class="article-date">
+    <time datetime="2015-07-19T07:13:34.000Z" itemprop="datePublished">2015-07-19</time>
+</a>
+        </p>
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>摘要</strong> 从本篇开始，将为大家带来数据结构的系列博客，也许我所介绍的内容包含的不是很全，但相信一定是最容易理解的，有兴趣的读者可以对本人的博客进行跟踪学习。数据结构简而言之，<strong>数据结构是一门描述数据之间逻辑关系和解决数据在计算机中的存储问题，以及定义在这些存储结构上的操作的集合，这些操作集也可以称之为算法，狭义上的数据结构只是指的是数据之间的逻辑结构和物理存储结构，广义上的数据结构还包含算法的定义。</strong> 从逻辑关系上，数据结构又可以分为线性结构和非线性结构，而线性表则是线性结构中最基础的内容，下面本文将系统介绍数据结构的线性表的内容。<a id="more"></a></p>
+<h2 id="1-线性表概述">1.线性表概述</h2><p>线性表是线性结构最基本的内容，那么何为线性结构和非线性结构呢？这需要从数据的逻辑关系上来区分，首先，把数据之间的逻辑关系概括为：每一个数据元素至多包含一个直接前驱和一个直接后继，有且仅有一个数据元素只有一个直接后继，没有直接前驱称之为开始结点，有且仅有一个只有一个直接前驱没有直接后继的数据元素称之为终端结点。非线性结构就是数据元素有多个直接前驱和直接后继。</p>
+<h2 id="2-线性表分类">2.线性表分类</h2><p>前面介绍线性表的逻辑关系，那么从存储上，又可以将线性表分为顺序表和链接表，为求简单起见，本文只介绍顺序表和单链表。顺序表指的是逻辑上相邻的数据元素物理上也相邻，是一种随机存取结构，即节点的位置是其下标的线性函数，顺序表便于查找，但不利于插入和删除；单链表指的是逻辑上相邻的数据元素物理上不一定相邻，是一种顺序存取结构，即要得到某一节点的位置，必须从开始节点起顺序往后遍历，因此不利于查找，但是易于插入和删除(只需要修改指针或引用即可)。</p>
+<h2 id="3-顺序表解析">3.顺序表解析</h2><h3 id="3-1顺序表属性操作解析">3.1顺序表属性操作解析</h3><p>顺序表的底层就是数组，因此可以用数组来模拟顺序表。顺序表的属性包含：</p>
+<ul>
+<li>最多可以容纳的数据元素的个数；</li>
+<li>当前元素个数；</li>
+<li>存放这些数据元素的数组。</li>
+</ul>
+<p>其操作包含：</p>
+<ul>
+<li>求长度；</li>
+<li>判断是否为空；</li>
+<li>判断是否为满</li>
+<li>指定位置插入元素；</li>
+<li>指定位置删除元素。</li>
+</ul>
+<p>下面是顺序表的实现结构。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SeqList</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> LIST_SIZE = <span class="number">100</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> data[] = <span class="keyword">new</span> <span class="keyword">int</span>[LIST_SIZE];</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SeqList</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">this</span>.length == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">this</span>.length == LIST_SIZE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * [insert description]</span><br><span class="line">	 * <span class="doctag">@param</span>  pos [insert pos, start from 1 to length]</span><br><span class="line">	 * <span class="doctag">@param</span>  val [insert value]</span><br><span class="line">	 * <span class="doctag">@return</span>     [insert successfully or not]</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">		<span class="comment">//judge if the pos is correct</span></span><br><span class="line">		<span class="keyword">if</span>(pos &lt; <span class="number">1</span> || pos &gt; length+<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		<span class="comment">//judge if the list is full</span></span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.isFull())</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=length-<span class="number">1</span>;i&gt;=pos-<span class="number">1</span>;i--)&#123;</span><br><span class="line">			data[i+<span class="number">1</span>] = data[i];</span><br><span class="line">		&#125;</span><br><span class="line">		data[pos-<span class="number">1</span>] = val;</span><br><span class="line">		<span class="keyword">this</span>.length++;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * [delete description]</span><br><span class="line">	 * <span class="doctag">@param</span>  pos [delete pos, start from 1 to length]</span><br><span class="line">	 * <span class="doctag">@return</span>     [delete value]</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">		<span class="comment">//judge if the pos is correct</span></span><br><span class="line">		<span class="keyword">if</span>(pos &lt; <span class="number">1</span> || pos &gt; length)</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		<span class="comment">//judge if the list is empty</span></span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.isEmpty())</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> val = data[pos-<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=pos;i&lt;length;i++)&#123;</span><br><span class="line">			data[i-<span class="number">1</span>] = data[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">this</span>.length--;</span><br><span class="line">		<span class="keyword">return</span> val;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2顺序表主要函数解析">3.2顺序表主要函数解析</h3><p>类似于求长度和判断是空还是满的函数比较简单，这里就不做过多分析。对于指定位置插入和删除元素，分析如下：</p>
+<p>首先是插入元素</p>
+<blockquote>
+<ul>
+<li>首先肯定要判断插入位置pos,注意虽然数组下标是从0开始的，但是这里的pos却是从1开始的，一定要注意区分。</li>
+<li>pos &lt; 1 || pos &gt; length+1 这些位置都是不合格的，显然插入位置小于1肯定不合格，为什么大于length+1才不合格呢，等于length+1难道合格吗，这时候顺序表里只有length个元素，我们当然可以插入最后一个元素的后面一个。</li>
+<li>插入位置合格的情况下，还要判断表是否已经满了，因为顺序表有空间限制，如果表满，将不能再执行插入操作。</li>
+<li>以上两个条件都满足，就可以进行插入了，要插入的位置是pos,即对于顺序表下标为pos-1的元素，那么对于顺序表中的元素，我们要把下标为pos-1到length-1位置的所有元素统统向右移动一位。</li>
+<li>具体移动操作的时候，循环要从后面开始，目的是防止元素覆盖，丧失原始值的情况</li>
+<li>全部移动工程结束的时候，直接把要插入的val赋值到pos-1的位置即可，注意一定要将表长加1，这是很容易遗忘的</li>
+</ul>
+</blockquote>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">	<span class="comment">//judge if the pos is correct</span></span><br><span class="line">	<span class="keyword">if</span>(pos &lt; <span class="number">1</span> || pos &gt; length+<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="comment">//judge if the list is full</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>.isFull())</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=length-<span class="number">1</span>;i&gt;=pos-<span class="number">1</span>;i--)&#123;</span><br><span class="line">		data[i+<span class="number">1</span>] = data[i];</span><br><span class="line">	&#125;</span><br><span class="line">	data[pos-<span class="number">1</span>] = val;</span><br><span class="line">	<span class="keyword">this</span>.length++;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于顺序表删除元素，其分析也是一样的：</p>
+<blockquote>
+<ul>
+<li>首先判断删除位置是否合法，删除位置的元素一定要存在才行，pos还是从1开始的</li>
+<li>pos &lt; 1 || pos &gt; length 都是不合法的，注意这里pos不是大于length+1而是大于length因为，删除的元素一定要存在。</li>
+<li>删除之前还要判断表是否为空，如果表空，则没有元素可删</li>
+<li>要删除pos位置的元素，即对应表中下标为pos-1的元素，首先将该位置元素保存起来，为了返回。</li>
+<li>还要做的一件事就是将下标从pos到length-1位置的所有元素统统向前移动一位。循环从pos开始同样是为了避免元素覆盖丧失原始值的情况发生。</li>
+<li>删除元素之后，需要将表长减1.<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public <span class="keyword">int</span> <span class="keyword">delete</span>(<span class="keyword">int</span> <span class="keyword">pos</span>)&#123;</span><br><span class="line">	<span class="regexp">//judge</span> <span class="keyword">if</span> the <span class="keyword">pos</span> is correct</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">pos</span> &lt; <span class="number">1</span> || <span class="keyword">pos</span> &gt; <span class="keyword">length</span>)</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	<span class="regexp">//judge</span> <span class="keyword">if</span> the list is empty</span><br><span class="line">	<span class="keyword">if</span>(this.isEmpty())</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> val = data[<span class="keyword">pos</span>-<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="keyword">pos</span>;i&lt;<span class="keyword">length</span>;i++)&#123;</span><br><span class="line">		data[i-<span class="number">1</span>] = data[i];</span><br><span class="line">	&#125;</span><br><span class="line">	this.<span class="keyword">length</span>--;</span><br><span class="line">	<span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h2 id="4-单链表解析">4.单链表解析</h2><h3 id="4-1单链表属性操作解析">4.1单链表属性操作解析</h3><p>单链表属于链式存储结构，由于每个逻辑相邻的数据元素之间物理位置不一定相邻，因此结点除了存放数据之外，还要额外存放一个指向其后继结点的指针或引用，这里的指针或引用都是后继元素的内存地址。这里的数据结点我们用一个内部类表示。为了便于操作，通常声明一个实际上不存在的结点指向开始结点，即头结点。单链表的属性包含：</p>
+<ul>
+<li>头结点</li>
+<li>表中元素个数</li>
+</ul>
+<p>单链表操作包含：</p>
+<ul>
+<li>求表长；</li>
+<li>判断单链表是否为空；</li>
+<li>指定位置插入元素；</li>
+<li>指定位置删除元素。</li>
+</ul>
+<p>可能有人会问为什么没有判断表是否为满的操作，因为链式存储结构属于动态内存分配，因此不存在表满的情况，如果出现，说明内存已经用完了。下面是单链表的实现结构。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> LinkList&#123;</span><br><span class="line">	<span class="keyword">private</span> LinkNode head = <span class="keyword">new</span> LinkNode();</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">class</span> LinkNode&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> data = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">private</span> LinkNode <span class="keyword">next</span> = <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> LinkList()&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> length()&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">boolean</span> isEmpty()&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">this</span>.length == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * [insert description]</span><br><span class="line">	 * @param  pos [the pos you want to insert value]</span><br><span class="line">	 * @param  val [insert value]</span><br><span class="line">	 * @return     [if insert successfully or not]</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">boolean</span> insert(<span class="keyword">int</span> pos, <span class="keyword">int</span> val)&#123;</span><br><span class="line">		<span class="keyword">if</span>(pos &lt; <span class="number">1</span> || pos &gt; <span class="keyword">this</span>.length+<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">		LinkNode s = <span class="keyword">new</span> LinkNode();</span><br><span class="line">		s.data = val;</span><br><span class="line">		s.<span class="keyword">next</span> = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(head.<span class="keyword">next</span> == <span class="keyword">null</span>)&#123;</span><br><span class="line"></span><br><span class="line">			head.<span class="keyword">next</span> = s;</span><br><span class="line">			<span class="keyword">this</span>.length = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">		LinkNode p = head;</span><br><span class="line">		<span class="keyword">int</span> i;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;pos-<span class="number">1</span>;i++)</span><br><span class="line">			p = p.<span class="keyword">next</span>;</span><br><span class="line">		<span class="keyword">if</span>(i == pos-<span class="number">1</span>)&#123;</span><br><span class="line">			s.<span class="keyword">next</span> = p.<span class="keyword">next</span>;</span><br><span class="line">			p.<span class="keyword">next</span> = s;</span><br><span class="line">			<span class="keyword">this</span>.length++;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * [delete description]</span><br><span class="line">	 * @param  pos [delete pos]</span><br><span class="line">	 * @return     [delete value]</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> <span class="keyword">delete</span>(<span class="keyword">int</span> pos)&#123;</span><br><span class="line">		<span class="keyword">if</span>(pos &lt; <span class="number">1</span> || pos &gt; <span class="keyword">this</span>.length)</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.isEmpty())</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		LinkNode p = head;</span><br><span class="line">		<span class="keyword">int</span> i;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;pos-<span class="number">1</span>;i++)&#123;</span><br><span class="line">			p = p.<span class="keyword">next</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(i == pos-<span class="number">1</span>)&#123;</span><br><span class="line">			val = p.<span class="keyword">next</span>.data;</span><br><span class="line">			p.<span class="keyword">next</span> = p.<span class="keyword">next</span>.<span class="keyword">next</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">this</span>.length--;</span><br><span class="line">		<span class="keyword">return</span> val;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2单链表主要函数解析">4.2单链表主要函数解析</h3><p>同样对插入和删除操作进行解析如下：</p>
+<p>首先对于单链表插入元素：</p>
+<blockquote>
+<ul>
+<li>判断插入位置与顺序表是一致的</li>
+<li>生成新节点，需要动态分配内存</li>
+<li>此时如果开始结点为空，即头结点的下一个结点，将新生成的节点作为开始结点，并返回true</li>
+<li>开始结点不为空，顺序找到插入位置pos，循环之前工作结点赋值为头结点，借助循环从0开始步增到pos-2,开始结点对应下标0，那么随着循环的步进，p = p.next,循环进行到pos-2,工作结点p也到达了要插入位置的前一个结点。</li>
+<li>循环结束，此时i=pos-1,p到达要插入位置的前一个结点，修改指针链接关系，新节点的next指向p的next,注意此时p的next即为pos-1位置的节点，这样相当于将pos-1位置的节点向后推移了一位，接着修改p的next指向新节点</li>
+<li>表长加1，完成插入。</li>
+</ul>
+</blockquote>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> insert(<span class="keyword">int</span> pos, <span class="keyword">int</span> val)&#123;</span><br><span class="line">	<span class="keyword">if</span>(pos &lt; <span class="number">1</span> || pos &gt; <span class="keyword">this</span>.length+<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">	LinkNode s = <span class="keyword">new</span> LinkNode();</span><br><span class="line">	s.data = val;</span><br><span class="line">	s.<span class="keyword">next</span> = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(head.<span class="keyword">next</span> == <span class="keyword">null</span>)&#123;</span><br><span class="line"></span><br><span class="line">		head.<span class="keyword">next</span> = s;</span><br><span class="line">		<span class="keyword">this</span>.length = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	LinkNode p = head;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;pos-<span class="number">1</span>;i++)</span><br><span class="line">		p = p.<span class="keyword">next</span>;</span><br><span class="line">	<span class="keyword">if</span>(i == pos-<span class="number">1</span>)&#123;</span><br><span class="line">		s.<span class="keyword">next</span> = p.<span class="keyword">next</span>;</span><br><span class="line">		p.<span class="keyword">next</span> = s;</span><br><span class="line">		<span class="keyword">this</span>.length++;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于单链表删除操作：</p>
+<blockquote>
+<ul>
+<li>同样需要先判断删除位置是否合理，与顺序表一致</li>
+<li>接着判断表是否为空，如果为空，直接返回</li>
+<li>顺序找到要删除位置的前一个位置pos-2</li>
+<li>先保存要删除位置的数据val = p.next.data;</li>
+<li>直接将pos-1位置的结点摘链，具体实现通过p.next = p.next.next;注意此时p为pos-2位置的结点</li>
+<li>表长减1，返回被删元素数据，完成删除。</li>
+</ul>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.zbvae.com/2015/07/19/数据结构-线性表/" data-id="cijkqq0z000048ohs1us5syr2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+        </footer>
+    </div>
+</article>
+
+<section id="comments">
+
+    <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+<script>
+var disqus_shortname = 'hexo-theme-hueman';
+
+
+var disqus_url = 'http://blog.zbvae.com/2015/07/19/数据结构-线性表/';
+
+(function() {
+var dsq = document.createElement('script');
+dsq.type = 'text/javascript';
+dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+</section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/20/数据结构-栈与队列/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            数据结构-栈与队列
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/07/18/八皇后问题/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">八皇后问题</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="title">Java Web中文乱码问题解决方法</a></p>
+                            <p class="item-date"><time datetime="2015-07-31T08:31:52.000Z" itemprop="datePublished">2015-07-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/28/数据结构-内排序算法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/28/数据结构-内排序算法/" class="title">数据结构-内排序算法</a></p>
+                            <p class="item-date"><time datetime="2015-07-28T01:10:43.000Z" itemprop="datePublished">2015-07-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/26/数据结构-图/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/graph.png)" alt="数据结构-图" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/26/数据结构-图/" class="title">数据结构-图</a></p>
+                            <p class="item-date"><time datetime="2015-07-26T07:22:29.000Z" itemprop="datePublished">2015-07-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/23/数据结构-二叉树/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/bitree.png)" alt="数据结构-二叉树" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/23/数据结构-二叉树/" class="title">数据结构-二叉树</a></p>
+                            <p class="item-date"><time datetime="2015-07-23T03:15:09.000Z" itemprop="datePublished">2015-07-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/21/数据结构-多维数组和广义表/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/matrix.png)" alt="数据结构-多维数组和广义表" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/21/数据结构-多维数组和广义表/" class="title">数据结构-多维数组和广义表</a></p>
+                            <p class="item-date"><time datetime="2015-07-21T05:22:54.000Z" itemprop="datePublished">2015-07-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">22</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习/">Java学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术交流/">技术交流</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 10px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Bin Zhang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>

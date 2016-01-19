@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Java 反射 | zbvae&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java学习" />
+    
+    <meta name="description" content="摘要：Java反射知识是Java基础学习中非常重要的知识点之一，初期还体会不到反射机制的强大和神奇，到了后期Java Web和各种框架，包括Java对象反序列化等，这些都是以Java反射作为支撑，因此掌握Java反射是非常有必要的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 反射">
+<meta property="og:url" content="http://blog.zbvae.com/2015/07/11/Java-反射/index.html">
+<meta property="og:site_name" content="zbvae's blog">
+<meta property="og:description" content="摘要：Java反射知识是Java基础学习中非常重要的知识点之一，初期还体会不到反射机制的强大和神奇，到了后期Java Web和各种框架，包括Java对象反序列化等，这些都是以Java反射作为支撑，因此掌握Java反射是非常有必要的。">
+<meta property="og:updated_time" content="2015-07-11T06:53:07.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 反射">
+<meta name="twitter:description" content="摘要：Java反射知识是Java基础学习中非常重要的知识点之一，初期还体会不到反射机制的强大和神奇，到了后期Java Web和各种框架，包括Java对象反序列化等，这些都是以Java反射作为支撑，因此掌握Java反射是非常有必要的。">
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://blog.zbvae.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Java-反射" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java 反射
+        </h1>
+    
+
+            </header>
+        
+        <p class="article-byline">
+            <a href="/2015/07/11/Java-反射/" class="article-date">
+    <time datetime="2015-07-11T02:58:50.000Z" itemprop="datePublished">2015-07-11</time>
+</a>
+        </p>
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>摘要</strong>：Java反射知识是Java基础学习中非常重要的知识点之一，初期还体会不到反射机制的强大和神奇，到了后期Java Web和各种框架，包括Java对象反序列化等，这些都是以Java反射作为支撑，因此掌握Java反射是非常有必要的。<a id="more"></a></p>
+<h2 id="1-引例">1.引例</h2><p>　　在学习Java反射知识之前，先看一个基本例子，这个例子展示了，Java对象最普通的构造和使用方式，也是Java基础学习最初期需要掌握的部分。</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class TestReflection&#123;</span><br><span class="line"> 	public static void main(String<span class="comment">[]</span> args) &#123;</span><br><span class="line">  		<span class="keyword">Person</span> per = new <span class="keyword">Person</span>(<span class="string">"zhangsan"</span>, 20);</span><br><span class="line">  		System.out.println(per);</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class <span class="keyword">Person</span>&#123;</span><br><span class="line"> 	private String name;</span><br><span class="line"> 	private int age;</span><br><span class="line"> 	public <span class="keyword">Person</span>()&#123;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>(String name, int age)&#123;</span><br><span class="line">  		this.name = name;</span><br><span class="line">  		this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String getName() &#123;</span><br><span class="line">     	return this.name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public int getAge() &#123;</span><br><span class="line">     	return this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setName(String name) &#123;</span><br><span class="line">     	this.name = name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setAge(int age) &#123;</span><br><span class="line">     	this.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"Per(name = "</span> + this.getName() + <span class="string">", age = "</span> + this.getAge() + <span class="string">")"</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序输出如下内容：</p>
+<blockquote>
+<p>Per(name = zhangsan, age = 20)</p>
+</blockquote>
+<h2 id="2-Java_反射">2.Java 反射</h2><p>以上这种方式相信任何一个学习过Java的都很容易看懂，也容易理解的正常方式，即先有类，然后实例化出对象；如果由一个对象得到关于该类的所有信息，这就是反射所在。修改main函数如下：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class TestReflection&#123;</span><br><span class="line">  	public static void main(String<span class="comment">[]</span> args) &#123;</span><br><span class="line">   		<span class="keyword">Person</span> per = new <span class="keyword">Person</span>();</span><br><span class="line">   		System.out.println(per.getClass().getName());</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序将打印出<code>Person</code>，说明成功地由对象信息反射得到类信息。实际上per.getClass()得到的是<em>Class</em>实例，可以这么说，<strong>Java中的所有对象都是Class类的实例</strong>，得到某个对象的Class类实例对象，便可以反射出该对象所属类的所有信息，例如所有的构造方法，方法，属性，修饰符，接口，异常等信息，这些都有反射专属类的支持，Constructor类，Method类，Field类，Modifer类,，Interface类，这些类都为与java.lang.reflect包里，因此使用的时候，别忘了导入包。而通常获取一个对象Class实例的方式有三种：per.getClass()是第一种，Person.class是第二种；Class.forName(“Person”)//实际中需要指定包名，这三种方式以第三种使用最多。重新修改main方法：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> TestReflection&#123;</span><br><span class="line">  	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">   		<span class="keyword">Class</span> c;</span><br><span class="line">  	 	c = <span class="keyword">Class</span>.forName(<span class="string">"Person"</span>);</span><br><span class="line">   		System.out.<span class="keyword">println</span>(c.getName());</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序同样能打印出Person信息，现在尝试用c实例化Person对象：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class TestReflection&#123;</span><br><span class="line">  	public static void main(String<span class="comment">[]</span> args) throws Exception &#123;</span><br><span class="line">   		Class c = null;</span><br><span class="line">   		c = Class.forName(<span class="string">"Person"</span>);</span><br><span class="line">   		<span class="keyword">Person</span> per = (<span class="keyword">Person</span>)c.newInstance();</span><br><span class="line">   		System.out.println(per);</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序成功输出：</p>
+<blockquote>
+<p>Per(name = null, age = 0)</p>
+</blockquote>
+<p>如果将Person类的无参构造函数去掉的话，这时就会出现异常：</p>
+<blockquote>
+<p>Exception in thread “main” java.lang.InstantiationException: Person<br> at java.lang.Class.newInstance(Unknown Source)<br> at TestReflection.main(TestReflection.java:5)</p>
+</blockquote>
+<p>显然程序是通过反射调用无参构造函数来实现Person类对象的实例化，所以一般我们都需要手动为一个类加上无参构造函数。现在利用Class实例对象输出Person类的所有构造函数：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import java.lang.reflect.*;</span><br><span class="line">public class TestReflection&#123;</span><br><span class="line"> 	public static void main(String<span class="comment">[]</span> args) throws Exception &#123;</span><br><span class="line">  		Class c = null;</span><br><span class="line">  		c = Class.forName(<span class="string">"Person"</span>);</span><br><span class="line">  		//<span class="keyword">Person</span> per = (<span class="keyword">Person</span>)c.newInstance();</span><br><span class="line">  		Constructor cons<span class="comment">[]</span> = c.getConstructors();</span><br><span class="line">  		for(int i=0;i&lt;cons.length;i++)&#123;</span><br><span class="line">   			System.out.println(cons<span class="comment">[i]</span>);</span><br><span class="line">  		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<blockquote>
+<p>public Person()<br>public Person(java.lang.String,int)</p>
+</blockquote>
+<p>发现以上输出方法参数中没有修饰符，使用Modifier类调整输出如下：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestReflection</span>&#123;</span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws Exception </span>&#123;</span><br><span class="line">  		Class c = <span class="keyword">null</span>;</span><br><span class="line">  		c = Class.forName(<span class="string">"Person"</span>);</span><br><span class="line">  		<span class="comment">//Person per = (Person)c.newInstance();</span></span><br><span class="line">  		Constructor cons[] = c.getConstructors();</span><br><span class="line">  		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cons.length;i++)&#123;</span><br><span class="line">   			Class <span class="keyword">params</span>[] = cons[i].getParameterTypes();</span><br><span class="line">   			<span class="keyword">int</span> mod = cons[i].getModifiers();</span><br><span class="line">   			System.<span class="keyword">out</span>.print(Modifier.toString(mod) + <span class="string">" "</span> + cons[i].getName() + <span class="string">"("</span>);</span><br><span class="line"> </span><br><span class="line">   			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="keyword">params</span>.length;j++)&#123;</span><br><span class="line">    			System.<span class="keyword">out</span>.print(<span class="keyword">params</span>[j].getName() + <span class="string">" "</span> + <span class="string">"arg-"</span> + j);</span><br><span class="line">    			<span class="keyword">if</span>(j &lt; <span class="keyword">params</span>.length-<span class="number">1</span>)&#123;</span><br><span class="line">     				System.<span class="keyword">out</span>.print(<span class="string">", "</span>);</span><br><span class="line">    			&#125;</span><br><span class="line">   			&#125;</span><br><span class="line">   			System.<span class="keyword">out</span>.print(<span class="string">")"</span>);</span><br><span class="line">   			System.<span class="keyword">out</span>.println();</span><br><span class="line">  		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>经过调整之后，输出如下的合理信息：</p>
+<blockquote>
+<p>public Person()<br>public Person(java.lang.String arg-0, int arg-1)</p>
+</blockquote>
+<p>现在换一种实例化Person对象的方式，采用Class实例对象得到的构造函数来实例化Person对象，如下：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Person</span> per1 = (<span class="keyword">Person</span>)cons<span class="comment">[0]</span>.newInstance();</span><br><span class="line"><span class="keyword">Person</span> per2 = (<span class="keyword">Person</span>)cons<span class="comment">[1]</span>.newInstance(<span class="string">"zhangsan"</span>, 20);</span><br><span class="line">System.out.println(per1);</span><br><span class="line">System.out.println(per2);</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<blockquote>
+<p>Per(name = null, age = 0)<br>Per(name = zhangsan, age = 20)</p>
+</blockquote>
+<p>说明此种方式可以有效地针对构造函数的不同实例化对象，下面再介绍由Class实例对象反射得到Person类的其他方法以及调用的方式。获得Method实例，使用invoke方法实现调用。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method <span class="keyword">m</span> = c.getDeclaredMethod(<span class="string">"say"</span>,String.<span class="keyword">class</span>);</span><br><span class="line"><span class="keyword">m</span>.invoke(per2,<span class="string">"hello !!!"</span>);</span><br></pre></td></tr></table></figure>
+<p>成功输出如下：</p>
+<blockquote>
+<p>Per(name = zhangsan, age = 20) say hello !!!</p>
+</blockquote>
+<p>好了，其他的诸如接口，属性，这里就不再赘述了，总之，反射，就是利用Class类实例，获取其他类的结构信息。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.zbvae.com/2015/07/11/Java-反射/" data-id="cijkqq11u00128ohsfc6defl4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java学习/">Java学习</a></li></ul>
+
+        </footer>
+    </div>
+</article>
+
+<section id="comments">
+
+    <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+<script>
+var disqus_shortname = 'hexo-theme-hueman';
+
+
+var disqus_url = 'http://blog.zbvae.com/2015/07/11/Java-反射/';
+
+(function() {
+var dsq = document.createElement('script');
+dsq.type = 'text/javascript';
+dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+</section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/11/Java-多线程/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Java 多线程
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/07/11/使用Echarts制作散点图-Excel-导入数据方式/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">使用Echarts制作散点图(Excel 导入数据方式)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="title">Java Web中文乱码问题解决方法</a></p>
+                            <p class="item-date"><time datetime="2015-07-31T08:31:52.000Z" itemprop="datePublished">2015-07-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/28/数据结构-内排序算法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/28/数据结构-内排序算法/" class="title">数据结构-内排序算法</a></p>
+                            <p class="item-date"><time datetime="2015-07-28T01:10:43.000Z" itemprop="datePublished">2015-07-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/26/数据结构-图/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/graph.png)" alt="数据结构-图" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/26/数据结构-图/" class="title">数据结构-图</a></p>
+                            <p class="item-date"><time datetime="2015-07-26T07:22:29.000Z" itemprop="datePublished">2015-07-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/23/数据结构-二叉树/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/bitree.png)" alt="数据结构-二叉树" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/23/数据结构-二叉树/" class="title">数据结构-二叉树</a></p>
+                            <p class="item-date"><time datetime="2015-07-23T03:15:09.000Z" itemprop="datePublished">2015-07-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/21/数据结构-多维数组和广义表/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/matrix.png)" alt="数据结构-多维数组和广义表" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/21/数据结构-多维数组和广义表/" class="title">数据结构-多维数组和广义表</a></p>
+                            <p class="item-date"><time datetime="2015-07-21T05:22:54.000Z" itemprop="datePublished">2015-07-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">22</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习/">Java学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术交流/">技术交流</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 10px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Bin Zhang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>

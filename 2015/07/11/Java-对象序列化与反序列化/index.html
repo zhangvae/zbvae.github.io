@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Java 对象序列化与反序列化 | zbvae&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java学习" />
+    
+    <meta name="description" content="摘要：本文是关于Java对象序列化与反序列化知识的一个总结和概括，Java对象序列化与反序列提供了一种数据持久化的方式，掌握Java对象序列化与反序列对Java基础知识以及以后的框架学习都有很大的帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 对象序列化与反序列化">
+<meta property="og:url" content="http://blog.zbvae.com/2015/07/11/Java-对象序列化与反序列化/index.html">
+<meta property="og:site_name" content="zbvae's blog">
+<meta property="og:description" content="摘要：本文是关于Java对象序列化与反序列化知识的一个总结和概括，Java对象序列化与反序列提供了一种数据持久化的方式，掌握Java对象序列化与反序列对Java基础知识以及以后的框架学习都有很大的帮助。">
+<meta property="og:updated_time" content="2015-07-11T06:55:23.129Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 对象序列化与反序列化">
+<meta name="twitter:description" content="摘要：本文是关于Java对象序列化与反序列化知识的一个总结和概括，Java对象序列化与反序列提供了一种数据持久化的方式，掌握Java对象序列化与反序列对Java基础知识以及以后的框架学习都有很大的帮助。">
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://blog.zbvae.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Java-对象序列化与反序列化" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java 对象序列化与反序列化
+        </h1>
+    
+
+            </header>
+        
+        <p class="article-byline">
+            <a href="/2015/07/11/Java-对象序列化与反序列化/" class="article-date">
+    <time datetime="2015-07-11T02:02:13.000Z" itemprop="datePublished">2015-07-11</time>
+</a>
+        </p>
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>摘要</strong>：本文是关于Java对象序列化与反序列化知识的一个总结和概括，Java对象序列化与反序列提供了一种数据持久化的方式，掌握Java对象序列化与反序列对Java基础知识以及以后的框架学习都有很大的帮助。 <a id="more"></a></p>
+<h2 id="1-序列化与反序列化引言">1.序列化与反序列化引言</h2><p>　　我们在程序创建的Java对象都是存在于JVM内存中的，也就是Java对象的生命周期一定不会长于JVM，所以如何以一种持久化的方式保留用户创建的对象呢，这就需要用到对象序列化的知识，将序列化的对象重新还原称为Java对象，即为反序列化。关于Java对象序列化与反序列化，我们需要理解的一点是，序列化只是将Java对象以一种<em>二进制数据流</em>的方式保存到本地文件或其他介质中，它实际上保存的只是实例化对象的一种状态，<strong>对于静态成员，是无法序列化保存的</strong>。</p>
+<h2 id="2-序列化与反序列化方法">2.序列化与反序列化方法</h2><p>　　Java对象要支持序列化，该类必须要具有<strong>可序列化</strong>的特性，真正提供实现序列化与反序列化方式的ObjectInputStream和ObjectOutputStream类。Java对象序列化的方式可以分为普通方式和定制方式两种，普通方式，借助Serializable接口完成，不需要用户做过多的干涉和修改；定制方式，用户可以使用transient关键字修饰类中某个属性，使该属性屏蔽序列化特性，使用transient关键字屏蔽之后，被transient修饰的字段序列化后取默认值，而非序列化之前的实例化对象值。如果需要序列化该字段，我们可以将transient关键字去掉，也可以在该类中重写readObject和writeObject方法，并在重写方法中继续序列化屏蔽的字段，从而达到反屏蔽的效果。除了使用transient关键字，重写readObject和writeObject方法实现定制序列化的方式，还有一种与Serializable方式完全不同的支持定制序列化的方式，是指定该类继承自Externalizable接口，但是继承自该接口的类必须明确重写readExternal和writeExternal方法才能实现对象序列化与反序列化，在这两个方法里指定需要序列化和反序列化的属性字段，没有指明的属性将不会被序列化。</p>
+<h2 id="3-程序示例">3.程序示例</h2><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line">import java.io.*;</span><br><span class="line">public class TestObjSer&#123;</span><br><span class="line"> 	public static void main(String<span class="comment">[]</span> args) throws Exception&#123;</span><br><span class="line">  		String stuFilePath = <span class="string">"./student.out"</span>;</span><br><span class="line">  		String codFilePath = <span class="string">"./coder.out"</span>;</span><br><span class="line">  		File file = new File(codFilePath);</span><br><span class="line">  		if(!file.exists())&#123;</span><br><span class="line">   			System.out.println(<span class="string">"The serialization file does not exist, which will be created right now!"</span>);</span><br><span class="line">   			file.createNewFile();</span><br><span class="line">  		&#125;</span><br><span class="line">     	Student stu = new Student(<span class="string">"zhangsan"</span>, 17, <span class="keyword">Gender</span>.MALE, <span class="string">"CSU"</span>);</span><br><span class="line">     	Coder coder = new Coder(<span class="string">"lisi"</span>, 18, <span class="keyword">Gender</span>.FEMALE, <span class="string">"JAVA"</span>);</span><br><span class="line">        FileInputStream fis = new FileInputStream(file);</span><br><span class="line">       	FileOutputStream fos = new FileOutputStream(file);</span><br><span class="line">  </span><br><span class="line">       	//following two stream can not be disordered, I have no idea why <span class="keyword">is</span> this</span><br><span class="line">        ObjectOutputStream oos = new ObjectOutputStream(fos);</span><br><span class="line">        ObjectInputStream ois = new ObjectInputStream(fis);</span><br><span class="line">        serObj(oos,coder);</span><br><span class="line">        deSerObj(ois);</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line"> 	public static void serObj(ObjectOutputStream oos,Object obj) throws Exception &#123;</span><br><span class="line">  		oos.writeObject(obj);</span><br><span class="line">  		oos.close();</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line"> 	public static void deSerObj(ObjectInputStream ois) throws Exception &#123;</span><br><span class="line">  		<span class="keyword">Person</span> per = (<span class="keyword">Person</span>)ois.readObject();</span><br><span class="line">  		ois.close();</span><br><span class="line"> 		System.out.println(per);</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/**</span><br><span class="line"> * the enum type <span class="keyword">is</span> a special type in Java, which <span class="keyword">is</span> generated from </span><br><span class="line"> * class Enum by default and class Enum implements the interface Seralizable</span><br><span class="line"> * so it can be serialized and all member <span class="keyword">of</span> enum should be capital</span><br><span class="line"> */</span><br><span class="line">enum <span class="keyword">Gender</span>&#123;</span><br><span class="line"> 	MALE,FEMALE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * superclass should implement Serialzable</span><br><span class="line"> */</span><br><span class="line">class <span class="keyword">Person</span> implements Serializable&#123;</span><br><span class="line"> 	private String name;</span><br><span class="line"> 	private int age;</span><br><span class="line"> 	private <span class="keyword">Gender</span> <span class="keyword">gender</span>;</span><br><span class="line"> 	public <span class="keyword">Person</span>()&#123;</span><br><span class="line">  		System.out.println(<span class="string">"Non-Arg constructor be called!"</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>(String name, int age, <span class="keyword">Gender</span> <span class="keyword">gender</span>)&#123;</span><br><span class="line">  		System.out.println(<span class="string">"Arg constructor be called!"</span>);</span><br><span class="line">  		this.name = name;</span><br><span class="line">  		this.age = age;</span><br><span class="line">  		this.<span class="keyword">gender</span> = <span class="keyword">gender</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line">	public String getName() &#123;</span><br><span class="line">     	return this.name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public int getAge() &#123;</span><br><span class="line">     	return this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Gender</span> getGender()&#123;</span><br><span class="line">  		return this.<span class="keyword">gender</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">     	this.name = name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setAge(int age) &#123;</span><br><span class="line">     	this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setGender(<span class="keyword">Gender</span> <span class="keyword">gender</span>)&#123;</span><br><span class="line">  		this.<span class="keyword">gender</span> = <span class="keyword">gender</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"Per(name = "</span> + this.getName() + <span class="string">", age = "</span> </span><br><span class="line">  		+ this.getAge() + <span class="string">", gender = "</span> + this.getGender() +<span class="string">")"</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Student extends <span class="keyword">Person</span>&#123;</span><br><span class="line"> 	//use transient to avoid the field school be serialized</span><br><span class="line"> 	private transient String school;</span><br><span class="line"> 	public Student()&#123;</span><br><span class="line">  		super();</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public Student(String name, int age, <span class="keyword">Gender</span> <span class="keyword">gender</span>, String school)&#123;</span><br><span class="line">  		super(name, age, <span class="keyword">gender</span>);</span><br><span class="line">  		this.school = school;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line">	public String getSchool() &#123;</span><br><span class="line">	    return this.school;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setSchool(String school) &#123;</span><br><span class="line">     	this.school = school;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"Stu(name = "</span> + this.getName() + <span class="string">", age = "</span> + this.getAge() + </span><br><span class="line">  		<span class="string">", gender = "</span> + this.getGender() + <span class="string">", school = "</span> + this.getSchool() +<span class="string">")"</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	private void writeObject(ObjectOutputStream oos) throws IOException &#123;</span><br><span class="line">        oos.defaultWriteObject();//call super</span><br><span class="line">        oos.writeObject(school);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void readObject(ObjectInputStream ois) throws Exception&#123;</span><br><span class="line">        ois.defaultReadObject();//call super</span><br><span class="line">        this.school = (String)ois.readObject();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Coder extends <span class="keyword">Person</span> implements Externalizable &#123;</span><br><span class="line"> 	private String language;</span><br><span class="line"> 		public Coder()&#123;</span><br><span class="line">  		super();</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public Coder(String name, int age, <span class="keyword">Gender</span> <span class="keyword">gender</span>, String language)&#123;</span><br><span class="line">  		super(name, age, <span class="keyword">gender</span>);</span><br><span class="line">  		this.language = language;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String getLanguage() &#123;</span><br><span class="line">     	return this.language;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setLanguage(String language) &#123;</span><br><span class="line">     	this.language = language;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"Cod(name = "</span> + this.getName() + <span class="string">", age = "</span> + this.getAge() + </span><br><span class="line">  		<span class="string">", gender = "</span> + this.getGender() + <span class="string">", language = "</span> + this.getLanguage() +<span class="string">")"</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line">	/**</span><br><span class="line">	  * <span class="comment">[readExternal description]</span>serialize by this method should </span><br><span class="line">	  * specify field in readExternal and writeExternal method by user,</span><br><span class="line">	  * it <span class="keyword">is</span> completely different from Serialzable</span><br><span class="line">	  * @param  in                     <span class="comment">[description]</span></span><br><span class="line">	  * @throws IOException            <span class="comment">[description]</span></span><br><span class="line">	  * @throws ClassNotFoundException <span class="comment">[description]</span></span><br><span class="line">	 */</span><br><span class="line">    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException &#123;</span><br><span class="line">     	this.setName((String)in.readObject());</span><br><span class="line">     	this.setAge(in.readInt());</span><br><span class="line">     	this.setGender((<span class="keyword">Gender</span>)in.readObject());</span><br><span class="line">     	this.language = (String)in.readObject();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void writeExternal(ObjectOutput out) throws IOException &#123;</span><br><span class="line">     	out.writeObject(this.getName());</span><br><span class="line">     	out.writeInt(this.getAge());</span><br><span class="line">     	out.writeObject(this.getGender());</span><br><span class="line">     	out.writeObject(this.language);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-序列化与反序列化总结">4.序列化与反序列化总结</h2><p>上面的程序示例基本展示了Java对象序列化与反序列化的所有知识，还有一些相关知识，希望在这里啰嗦几句:</p>
+<ul>
+<li>enum属于Java中的特殊类型，凡是enum类型声明的变量都是默认继承自Enum类，且默认具有序列化特性。</li>
+<li>Java对象序列化采取级联机制，即如果一个对象引用了其它对象作为其属性，那么在序列化时，引用对象也将被序列化。</li>
+<li>要想从父类继承的成员也被序列化，则父类必须明确支持序列化特性，即继承Serializable接口。</li>
+<li>Java序列化的底层原理利用的是反射机制，这个将在后续介绍。</li>
+<li>从其他博客看到的一点，关于单例模式单例对象的序列化，要想实现反序列化后的对象与单例对象相等，一个解决方法就是替代序列化过程，在该类中添加一个readResolve方法：无论是实现Serializable接口，或是Externalizable接口，当从I/O流中读取对象时，readResolve()方法都会被调用到。实际上就是用readResolve()中返回的对象直接替换在反序列化过程中创建的对象，而被创建的对象则会被垃圾回收掉（这句话是别人的）。</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.zbvae.com/2015/07/11/Java-对象序列化与反序列化/" data-id="cijkqq11c000w8ohsm3p3yyzx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java学习/">Java学习</a></li></ul>
+
+        </footer>
+    </div>
+</article>
+
+<section id="comments">
+
+    <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+<script>
+var disqus_shortname = 'hexo-theme-hueman';
+
+
+var disqus_url = 'http://blog.zbvae.com/2015/07/11/Java-对象序列化与反序列化/';
+
+(function() {
+var dsq = document.createElement('script');
+dsq.type = 'text/javascript';
+dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+</section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/11/Java-对象克隆/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Java 对象克隆
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/07/11/Java-IO-学习/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java IO 学习</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="title">Java Web中文乱码问题解决方法</a></p>
+                            <p class="item-date"><time datetime="2015-07-31T08:31:52.000Z" itemprop="datePublished">2015-07-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/28/数据结构-内排序算法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/28/数据结构-内排序算法/" class="title">数据结构-内排序算法</a></p>
+                            <p class="item-date"><time datetime="2015-07-28T01:10:43.000Z" itemprop="datePublished">2015-07-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/26/数据结构-图/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/graph.png)" alt="数据结构-图" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/26/数据结构-图/" class="title">数据结构-图</a></p>
+                            <p class="item-date"><time datetime="2015-07-26T07:22:29.000Z" itemprop="datePublished">2015-07-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/23/数据结构-二叉树/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/bitree.png)" alt="数据结构-二叉树" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/23/数据结构-二叉树/" class="title">数据结构-二叉树</a></p>
+                            <p class="item-date"><time datetime="2015-07-23T03:15:09.000Z" itemprop="datePublished">2015-07-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/07/21/数据结构-多维数组和广义表/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/matrix.png)" alt="数据结构-多维数组和广义表" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/07/21/数据结构-多维数组和广义表/" class="title">数据结构-多维数组和广义表</a></p>
+                            <p class="item-date"><time datetime="2015-07-21T05:22:54.000Z" itemprop="datePublished">2015-07-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">22</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习/">Java学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术交流/">技术交流</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 10px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Bin Zhang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>
