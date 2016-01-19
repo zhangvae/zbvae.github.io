@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    
-    <title>XML 学习 | zbvae&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <meta name="keywords" content="技术交流" />
-    
-    <meta name="description" content="摘要：xml 作为一种可扩展的标记语言出现，其相对于html，主要是用于数据的保存，和数据结构信息的描述，标记格式并不固定，可以自行定制，但是必须要嵌套出现。下面介绍XML的基本格式和语法以及4种解析方式。">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="UNHn0suvw2" />
+  <meta name="google-site-verification" content="2AQ75-m5QPW0KN4FrtIw60tT9cSP-sf_6V5Md4QyzaU" />
+  
+  <title>XML 学习 | zbvae&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要：xml 作为一种可扩展的标记语言出现，其相对于html，主要是用于数据的保存，和数据结构信息的描述，标记格式并不固定，可以自行定制，但是必须要嵌套出现。下面介绍XML的基本格式和语法以及4种解析方式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XML 学习">
 <meta property="og:url" content="http://blog.zbvae.com/2015/07/11/XML-学习/index.html">
@@ -18,106 +17,215 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XML 学习">
 <meta name="twitter:description" content="摘要：xml 作为一种可扩展的标记语言出现，其相对于html，主要是用于数据的保存，和数据结构信息的描述，标记格式并不固定，可以自行定制，但是必须要嵌套出现。下面介绍XML的基本格式和语法以及4种解析方式。">
-
-    
-
-    
-
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
-
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
-    
-    
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
-    
-    
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
-    
-    
-    
-
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
-
 <body>
-    <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a href="/" class="logo"></a>
-                    </h1>
-                    
-                        <h2 class="subtitle-wrap">
-                            <p class="subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
-                        </h2>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/">主页</a>
-                                </li>
-                            
-                                        
-                                    
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/hexo-theme-hueman/about/index.html">关于</a>
-                                </li>
-                            
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div style="z-index:9999; position: absolute; top: 10px; left: 125px;">
+			<object width="160" height="70" align="middle" id="honehoneclock" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"><PARAM NAME="_cx" VALUE="4233"><PARAM NAME="_cy" VALUE="1852"><PARAM NAME="FlashVars" VALUE=""><PARAM NAME="Movie" VALUE="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><PARAM NAME="Src" VALUE="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><PARAM NAME="WMode" VALUE="Transparent"><PARAM NAME="Play" VALUE="0"><PARAM NAME="Loop" VALUE="-1"><PARAM NAME="Quality" VALUE="High"><PARAM NAME="SAlign" VALUE=""><PARAM NAME="Menu" VALUE="-1"><PARAM NAME="Base" VALUE=""><PARAM NAME="AllowScriptAccess" VALUE="always"><PARAM NAME="Scale" VALUE="ShowAll"><PARAM NAME="DeviceFont" VALUE="0"><PARAM NAME="EmbedMovie" VALUE="0"><PARAM NAME="BGColor" VALUE="FFFFFF"><PARAM NAME="SWRemote" VALUE=""><PARAM NAME="MovieData" VALUE=""><PARAM NAME="SeamlessTabbing" VALUE="1"><PARAM NAME="Profile" VALUE="0"><PARAM NAME="ProfileAddress" VALUE=""><PARAM NAME="ProfilePort" VALUE="0"><PARAM NAME="AllowNetworking" VALUE="all"><PARAM NAME="AllowFullScreen" VALUE="false"><PARAM NAME="AllowFullScreenInteractive" VALUE="false"><PARAM NAME="IsDependent" VALUE="0">
+				<param name="allowScriptAccess" value="always">
+				<param name="movie" value="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf">
+				<param name="quality" value="high">
+				<param name="bgcolor" value="#ffffff">
+				<param name="wmode" value="transparent">
+				<embed name="honehoneclock" width="160" height="70" align="middle" pluginspage="http://www.macromedia.com/go/getflashplayer" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" type="application/x-shockwave-flash" wmode="transparent" quality="high" bgcolor="#ffffff" allowscriptaccess="always">
+			</object>
+		</div>
+		<a href="https://github.com/zbvae">
+			<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png">
+		</a>
+  
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/zbvae.JPG" class="js-avatar">
+			
+		</a>
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://blog.zbvae.com"></form>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Bin Zhang</a></h1>
+		</hgroup>
 
+		
+		<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主頁</a></li>
+				        
+							<li><a href="/archives">歸檔</a></li>
+				        
+							<li><a href="/MyAlbum">相冊</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 10px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">中南大学09级学生，现为2013级研究生，写论文中，求职中，待毕业中！</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
 </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-</header>
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
-    
-    未分类
-    </h1>
-</div>
-                        <div class="main-body-content">
-                            <article id="post-XML-学习" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-    
-        <h1 class="article-title" itemprop="name">
-        XML 学习
-        </h1>
-    
-
-            </header>
-        
-        <p class="article-byline">
-            <a href="/2015/07/11/XML-学习/" class="article-date">
-    <time datetime="2015-07-11T05:44:06.000Z" itemprop="datePublished">2015-07-11</time>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Bin Zhang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/zbvae.JPG" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Bin Zhang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主頁</a></li>
+		        
+					<li><a href="/archives">歸檔</a></li>
+		        
+					<li><a href="/MyAlbum">相冊</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-XML-学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/11/XML-学习/" class="article-date">
+  	<time datetime="2015-07-11T05:44:06.000Z" itemprop="datePublished">2015-07-11</time>
 </a>
-        </p>
-        <div class="article-entry" itemprop="articleBody">
-            <p><strong>摘要</strong>：xml 作为一种可扩展的标记语言出现，其相对于html，主要是用于数据的保存，和数据结构信息的描述，标记格式并不固定，可以自行定制，但是必须要嵌套出现。下面介绍XML的基本格式和语法以及4种解析方式。<a id="more"></a></p>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      XML 学习
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术交流/">技术交流</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>摘要</strong>：xml 作为一种可扩展的标记语言出现，其相对于html，主要是用于数据的保存，和数据结构信息的描述，标记格式并不固定，可以自行定制，但是必须要嵌套出现。下面介绍XML的基本格式和语法以及4种解析方式。<a id="more"></a></p>
 <h2 id="1-XML文件">1.XML文件</h2><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;users&gt;</span><br><span class="line"> 	&lt;user id=<span class="string">"1"</span>&gt;</span><br><span class="line">  		&lt;name&gt;Andrea&lt;/name&gt;</span><br><span class="line">  		&lt;age&gt;10&lt;/age&gt;</span><br><span class="line">  		&lt;<span class="keyword">gender</span>&gt;Male&lt;/<span class="keyword">gender</span>&gt;</span><br><span class="line"> 	&lt;/user&gt;</span><br><span class="line"> 	&lt;user id=<span class="string">"2"</span>&gt;</span><br><span class="line">  		&lt;name&gt;Bell&lt;/name&gt;</span><br><span class="line">  		&lt;age&gt;20&lt;/age&gt;</span><br><span class="line">  		&lt;<span class="keyword">gender</span>&gt;Male&lt;/<span class="keyword">gender</span>&gt;</span><br><span class="line"> 	&lt;/user&gt;</span><br><span class="line"> 	&lt;user id=<span class="string">"3"</span>&gt;</span><br><span class="line">  		&lt;name&gt;Calinda&lt;/name&gt;</span><br><span class="line">  		&lt;age&gt;30&lt;/age&gt;</span><br><span class="line">  		&lt;<span class="keyword">gender</span>&gt;Female&lt;/<span class="keyword">gender</span>&gt;</span><br><span class="line"> 	&lt;/user&gt;</span><br><span class="line">&lt;/users&gt;</span><br></pre></td></tr></table></figure>
 <p>上面即使基本的XML文件，一个XML文件分为<strong>头信息</strong>和<strong>数据区</strong>，头信息即上述XML文件的第一行，<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</code>该头信息指定XML文件的版本和字符编码。除去第一行之后的内容都属于本XML文件的数据区，即数据保存部分。其中根元素为users，又包含3个user元素，user元素有id属性和3个标签元素，分别是name,age和gender。</p>
 <h2 id="2-XML解析">2.XML解析</h2><p>　　下面介绍XML文件的四种解析方式，DOM方式，SAX解析，JDOM方式以及DOM4J方式，以简单工厂设计模式，先定义一个基本的XML解析接口作为产品接口,包含解析xml，和生成xml文件两个抽象方法，再定义4个具体的产品类即4种XML解析方式，以枚举方式描述。定义解析工厂如下。</p>
@@ -136,371 +244,136 @@
 <h3 id="2-3JDOM解析">2.3JDOM解析</h3><p>　　第三种方式JDOM方式，JDOM解析方式=DOM可以修改+SAX大文件读取，相对DOM解析方式，更加简单灵活，统一以Element组织。需要注意的是以下的JDOM和DOM4J解析都需要额外的jar包支持，下载之后放到某个目录，设置CLASSPATH环境变量即可使用。这两个jar包都非常容易下载到，所以这里就不再提供了，具体版本可根据你需要选择，一般不会有太大差别。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="markdown">/**</span><br><span class="line"> * JDomHelper, another XmlHelper product</span><br><span class="line"> */</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JDomHelper</span> <span class="keyword">implements</span> <span class="title">XmlHelper</span> </span>&#123;</span><br><span class="line">	public <span class="keyword">void</span> parseXml(<span class="built_in">String</span> fileName) throws Exception &#123;</span><br><span class="line">		SAXBuilder builder = <span class="keyword">new</span> SAXBuilder();</span><br><span class="line">		org.jdom2.Document <span class="built_in">document</span> = builder.build(<span class="keyword">new</span> File(fileName));</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">Element</span> users = <span class="built_in">document</span>.getRootElement();</span><br><span class="line">		<span class="built_in">List</span>&lt;<span class="built_in">Element</span>&gt; userList = users.getChildren();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;userList.size();i++)&#123;</span><br><span class="line">			<span class="built_in">Element</span> user = (<span class="built_in">Element</span>)userList.<span class="literal">get</span>(i);</span><br><span class="line">			<span class="built_in">List</span>&lt;Attribute&gt; userAttr = user.getAttributes();</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>;j&lt;userAttr.size();j++)&#123;</span><br><span class="line">				Attribute attr = userAttr.<span class="literal">get</span>(j);</span><br><span class="line">				System.out.<span class="built_in">print</span>(attr.getName()+<span class="string">":"</span>+attr.getValue());</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">			</span><br><span class="line">			<span class="built_in">List</span>&lt;<span class="built_in">Element</span>&gt; userInfo = user.getChildren();</span><br><span class="line">			<span class="keyword">for</span>(<span class="built_in">int</span> k=<span class="number">0</span>;k&lt;userInfo.size();k++)&#123;</span><br><span class="line">				<span class="built_in">Element</span> userMeta = userInfo.<span class="literal">get</span>(k);</span><br><span class="line">				System.out.println(userMeta.getName()+<span class="string">":"</span>+userMeta.getValue());</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public <span class="keyword">void</span> writeXml(<span class="built_in">String</span> fileName) throws Exception &#123;</span><br><span class="line">		<span class="built_in">Element</span> users = <span class="keyword">new</span> <span class="built_in">Element</span>(<span class="string">"users"</span>);</span><br><span class="line">		<span class="built_in">Element</span> user = <span class="keyword">new</span> <span class="built_in">Element</span>(<span class="string">"user"</span>);</span><br><span class="line">		<span class="built_in">Element</span> name = <span class="keyword">new</span> <span class="built_in">Element</span>(<span class="string">"name"</span>);</span><br><span class="line">		<span class="built_in">Element</span> age = <span class="keyword">new</span> <span class="built_in">Element</span>(<span class="string">"age"</span>);</span><br><span class="line">		<span class="built_in">Element</span> gender = <span class="keyword">new</span> <span class="built_in">Element</span>(<span class="string">"gender"</span>);</span><br><span class="line"></span><br><span class="line">		Attribute id = <span class="keyword">new</span> Attribute(<span class="string">"id"</span>,<span class="string">"1"</span>);</span><br><span class="line">		</span><br><span class="line">		name.setText(<span class="string">"zhangsan"</span>);</span><br><span class="line">		age.setText(<span class="string">"10"</span>);</span><br><span class="line">		gender.setText(<span class="string">"Male"</span>);</span><br><span class="line"></span><br><span class="line">		user.setAttribute(id);</span><br><span class="line">		user.addContent(name);</span><br><span class="line">		user.addContent(age);</span><br><span class="line">		user.addContent(gender);</span><br><span class="line"></span><br><span class="line">		users.addContent(user);</span><br><span class="line"></span><br><span class="line">		org.jdom2.Document <span class="built_in">document</span> = <span class="keyword">new</span> org.jdom2.Document(users);</span><br><span class="line">		XMLOutputter out = <span class="keyword">new</span> XMLOutputter();</span><br><span class="line">		out.setFormat(out.getFormat().setEncoding(<span class="string">"utf-8"</span>));</span><br><span class="line">		out.output(<span class="built_in">document</span>,<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(fileName)));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="2-4DOM4J解析">2.4DOM4J解析</h3><p>　　第四种方式为DOM4J方式，Hibernate和Spring等框架都采用DOM4J方式支持XML文件的解析。生成xml文件时，Document对象是依靠DocumentHelper的createDocument完成</p>
 <figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Dom4JHelper, another XmlHelper product</span><br><span class="line"> */</span></span><br><span class="line">class Dom4JHelper implements XmlHelper &#123;</span><br><span class="line">	public void parseXml<span class="params">(String fileName)</span> throws Exception&#123;</span><br><span class="line">		SAXReader reader = new SAXReader<span class="params">()</span>;</span><br><span class="line">		org.dom4j.Document document = reader.read<span class="params">(new File<span class="params">(fileName)</span>)</span>;</span><br><span class="line">		</span><br><span class="line">		org.dom4j.Element users = document.getRootElement<span class="params">()</span>;</span><br><span class="line">		Iterator&lt;org.dom4j.Element&gt; userIter = users.elementIterator<span class="params">()</span>;</span><br><span class="line">		</span><br><span class="line">		while <span class="params">(userIter.hasNext<span class="params">()</span>)</span> &#123;</span><br><span class="line">			org.dom4j.Element user = userIter.next<span class="params">()</span>;</span><br><span class="line">			List&lt;org.dom4j.Attribute&gt; userAttr = user.attributes<span class="params">()</span>;</span><br><span class="line">			<span class="keyword">for</span><span class="params">(int i=<span class="number">0</span>;i&lt;userAttr.size<span class="params">()</span>;i++)</span>&#123;</span><br><span class="line">				org.dom4j.Attribute attr = userAttr.get<span class="params">(i)</span>;</span><br><span class="line">				System.out.println<span class="params">(attr.getName<span class="params">()</span>+<span class="string">":"</span>+attr.getValue<span class="params">()</span>)</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			Iterator&lt;org.dom4j.Element&gt; infoIter = user.elementIterator<span class="params">()</span>;</span><br><span class="line">			while<span class="params">(infoIter.hasNext<span class="params">()</span>)</span>&#123;</span><br><span class="line">				org.dom4j.Element info = infoIter.next<span class="params">()</span>;</span><br><span class="line">				System.out.println<span class="params">(info.getName<span class="params">()</span>+<span class="string">":"</span>+info.getText<span class="params">()</span>)</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println<span class="params">()</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void writeXml<span class="params">(String fileName)</span> throws Exception &#123;</span><br><span class="line">		org.dom4j.Document document = DocumentHelper.createDocument<span class="params">()</span>;</span><br><span class="line">		org.dom4j.Element users = document.addElement<span class="params">(<span class="string">"users"</span>)</span>;</span><br><span class="line">		org.dom4j.Element user = users.addElement<span class="params">(<span class="string">"user"</span>)</span>;</span><br><span class="line">		org.dom4j.Element name = user.addElement<span class="params">(<span class="string">"name"</span>)</span>;</span><br><span class="line">		org.dom4j.Element age = user.addElement<span class="params">(<span class="string">"age"</span>)</span>;</span><br><span class="line">		org.dom4j.Element gender = user.addElement<span class="params">(<span class="string">"gender"</span>)</span>;</span><br><span class="line">		</span><br><span class="line">		user.addAttribute<span class="params">(<span class="string">"id"</span>, <span class="string">"1"</span>)</span>;</span><br><span class="line">		</span><br><span class="line">		name.setText<span class="params">(<span class="string">"zhangsan"</span>)</span>;</span><br><span class="line">		age.setText<span class="params">(<span class="string">"20"</span>)</span>;</span><br><span class="line">		gender.setText<span class="params">(<span class="string">"Male"</span>)</span>;</span><br><span class="line">		</span><br><span class="line">		OutputFormat format = OutputFormat.createPrettyPrint<span class="params">()</span>;	</span><br><span class="line">		format.setEncoding<span class="params">(<span class="string">"utf-8"</span>)</span>;</span><br><span class="line">		XMLWriter writer = new XMLWriter<span class="params">(new FileOutputStream<span class="params">(new File<span class="params">(fileName)</span>)</span>)</span>;</span><br><span class="line">		writer.write<span class="params">(document)</span>;</span><br><span class="line">		writer.close<span class="params">()</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="http://blog.zbvae.com/2015/07/11/XML-学习/" data-id="cijkqq10l000p8ohs779xtqyp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-            
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术交流/">技术交流</a></li></ul>
-
-        </footer>
-    </div>
-</article>
-
-<section id="comments">
-
-    <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-<script>
-var disqus_shortname = 'hexo-theme-hueman';
-
-
-var disqus_url = 'http://blog.zbvae.com/2015/07/11/XML-学习/';
-
-(function() {
-var dsq = document.createElement('script');
-dsq.type = 'text/javascript';
-dsq.async = true;
-dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-</section>
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
-    <div class="sidebar-top">
-        <p>关注我 :</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
-                        <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
-                        <i class="icon fa fa-google-plus"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
-                        <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/" target="_blank">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
+      
     </div>
     
-        
+  </div>
+  
+    
 <nav id="article-nav">
-    
-        <a href="/2015/07/11/正则表达式/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
+  
+    <a href="/2015/07/11/正则表达式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
         
-            正则表达式
+          正则表达式
         
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+      </div>
     </a>
-    
-    
-        <a href="/2015/07/11/Java-JDBC-学习/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Java JDBC 学习</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
+  
+  
+    <a href="/2015/07/11/Java-JDBC-学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java JDBC 学习</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
 </nav>
 
-    
-    <div class="widgets-container">
-        
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">最新文章</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="title">Java Web中文乱码问题解决方法</a></p>
-                            <p class="item-date"><time datetime="2015-07-31T08:31:52.000Z" itemprop="datePublished">2015-07-31</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2015/07/28/数据结构-内排序算法/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/07/28/数据结构-内排序算法/" class="title">数据结构-内排序算法</a></p>
-                            <p class="item-date"><time datetime="2015-07-28T01:10:43.000Z" itemprop="datePublished">2015-07-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2015/07/26/数据结构-图/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/graph.png)" alt="数据结构-图" class="thumbnail-image"></span>
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/07/26/数据结构-图/" class="title">数据结构-图</a></p>
-                            <p class="item-date"><time datetime="2015-07-26T07:22:29.000Z" itemprop="datePublished">2015-07-26</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2015/07/23/数据结构-二叉树/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/bitree.png)" alt="数据结构-二叉树" class="thumbnail-image"></span>
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/07/23/数据结构-二叉树/" class="title">数据结构-二叉树</a></p>
-                            <p class="item-date"><time datetime="2015-07-23T03:15:09.000Z" itemprop="datePublished">2015-07-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2015/07/21/数据结构-多维数组和广义表/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/matrix.png)" alt="数据结构-多维数组和广义表" class="thumbnail-image"></span>
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/07/21/数据结构-多维数组和广义表/" class="title">数据结构-多维数组和广义表</a></p>
-                            <p class="item-date"><time datetime="2015-07-21T05:22:54.000Z" itemprop="datePublished">2015-07-21</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="XML-学习" data-title="XML 学习" data-url="http://blog.zbvae.com/2015/07/11/XML-学习/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zbbk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Bin Zhang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
     </div>
-
-            
-                
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">22</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">标签</h3>
-        <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习/">Java学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术交流/">技术交流</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">7</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">标签云</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/技术交流/" style="font-size: 10px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">链接</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-            
-        
-    </div>
-</aside>
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="/" class="logo"></a>
-                </h1>
-                <p>&copy; 2016 Bin Zhang</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
-            </div>
-        </div>
-    </div>
+  </div>
 </footer>
-        
+    </div>
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-    
-
-    
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
-        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
-    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
 
-<!-- Custom Scripts -->
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
-    </div>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+  
 </body>
 </html>
