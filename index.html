@@ -124,7 +124,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/技术交流/" style="font-size: 13.33px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/云服务器/" style="font-size: 10px;">云服务器</a> <a href="/tags/微信公众号/" style="font-size: 10px;">微信公众号</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/技术交流/" style="font-size: 13.33px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -189,6 +189,140 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Java微信公众号应用部署在阿里云ECS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/17/Java微信公众号应用部署在阿里云ECS/" class="article-date">
+  	<time datetime="2016-03-17T01:39:57.000Z" itemprop="datePublished">2016-03-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/17/Java微信公众号应用部署在阿里云ECS/">Java微信公众号应用部署在阿里云ECS</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_背景">1. 背景</h3><hr>
+<p>之前鼓捣了一个微信公众号应用，<strong>wdxz_2015</strong>，大家有兴趣可以关注一下，主要是查询校招信息的，目前只是个人订阅号，没有认证，所以功能和界面上可能不太完备。</p>
+<p>之前的公众号应用通过git一键部署在百度云BAE上的，新建应用引擎，选择基本配置tomcat+jdk（后台应用是Java写的）,BAE提供自动发布的功能，这样通过将本地打包形成的war包上传上去即可。</p>
+<p>本文假设前提是，你已经有了自己Java写好的微信公众号应用。&lt;—more—&gt;</p>
+<h3 id="2-云服务器介绍">2.云服务器介绍</h3><hr>
+<p>本文申请的是阿里云服务器学生版ECS，价格很便宜，只要9.9/月，本人购买的是Linux版本，Centos 6.5 64位，1G内存,1核CPU，带宽1G，配置虽然不是很高，但供我们经营一个非商业的微信公众号应用是足够了的。</p>
+<p>购买完成之后，会有一个公网IP地址，这个IP地址当然是最重要的。如果MAC或linux电脑可以直接使用终端登录，Windows系统的电脑可以下载一个putty软件实现远程登录，这种登录方式基于ssh协议，而一般linux服务器或主机都自带安装有ssh server,且自动打开，如果没有的话，就自行安装吧。</p>
+<h3 id="3-云服务器安装和配置">3.云服务器安装和配置</h3><hr>
+<p>刚购买的阿里云学生版ECS上并没有为我们安装tomcat和jdk相关的软件和运行环境，所以我们必须自己手动安装，当然你还有另外一种选择就是在云市场上花钱购买，有一键安装web环境，php和java的都有，也只要1元钱，但我想能自己安装走一遍，何乐而不为呢！</p>
+<p><a href="http://www.cnblogs.com/sixiweb/archive/2012/11/26/2789458.html" target="_blank" rel="external">Centos上安装Tomcat</a>，这篇博客上介绍的非常详细，可以参考一下。这里面包括tomcat的基本配置，以及设置tomcat为系统服务方式，并设置开机启动。</p>
+<p>关于Linux系统环境变量的配置，如果只是某个用户的环境变量，可以直接编辑用户主目录下的.bashrc文件，如果要配置系统环境变量，则需要使用root用户编辑/etc/profile。</p>
+<h3 id="4-部署应用到云服务器">4.部署应用到云服务器</h3><hr>
+<p>这时候已经完成了云服务器上Tomcat Web服务器的安装和配置，我们在自己的windows平台上通过使用Filezilla工具（ftp客户端软件）上传我们打包好的war到Tomcat的webapps目录下。</p>
+<p>重新启动Tomcat，这样就可以自动解压上传的war包，并生成基本的项目目录，由于本项目只是微信公众号后台应用，而微信公众平台接口验证那里需要输入后台应用的url，来进行token验证。这里的url是后台主servlet的地址。</p>
+<p>使用自己的微信公众平台账号登陆到公众平台上，选择开发模式，进入开发配置那里，输入token验证的url，我们尝试输入<a href="http://ECS公网ip地址（如果你绑定了域名，且域名经过备案，这里你也可以使用域名）:8080/webapps下的项目目录名/主Servlet名。输入之后，提示url非法，只能接收80或443端口。" target="_blank" rel="external">http://ECS公网ip地址（如果你绑定了域名，且域名经过备案，这里你也可以使用域名）:8080/webapps下的项目目录名/主Servlet名。输入之后，提示url非法，只能接收80或443端口。</a></p>
+<p>首先想到的解决办法就是将tomcat端口改为80，这确实能够解决，但是80端口是一个稀缺资源，最后不要这样就给占了，所以我选择通过nginx进行反向代理配置，实现动静分离。</p>
+<h3 id="5-安装ngnix服务器">5.安装ngnix服务器</h3><hr>
+<p><a href="http://www.cnblogs.com/sixiweb/archive/2012/11/26/2789458.html" target="_blank" rel="external">Cenos下nginx服务器的下载与安装</a>，nginx服务器的安装可以参考这篇博客的内容，这里面详细介绍如何将nginx设为系统服务，并随开机启动，假设您现在已经设置完成。接下来对nginx服务器的配置，让它真正实现动静分离。</p>
+<p>修改nginx.conf文件（在nginx安装目录下的conf目录下），配置server_name为公网ip地址，或者你已经绑定备案了的域名，通过location下的proxy_pass实现反向代理，重启nginx服务，然后直接输入<a href="http://ip/index.jsp已经进入tomcat目录，说明实现了向tomcat服务器的代理服务。" target="_blank" rel="external">http://ip/index.jsp已经进入tomcat目录，说明实现了向tomcat服务器的代理服务。</a></p>
+<p>接下来，我们就将新的不带8080端口的url进行微信公众平台的token验证，此时，顺利通过验证，很高兴，我的公众号经历了百度云到阿里云的搬家，现在又可以使用了。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云服务器/">云服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-CENTOS-6-5安装vncserver" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/08/CENTOS-6-5安装vncserver/" class="article-date">
+  	<time datetime="2016-03-08T14:04:11.000Z" itemprop="datePublished">2016-03-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/08/CENTOS-6-5安装vncserver/">CENTOS 6.5安装vncserver</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>centos 6.5安装vncserver 并开启远程桌面    vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。<br>1、下载vncserver </p>
+<p>yum install tigervnc tigervnc-server -y 2、配置 vncserver  </p>
+<p>cd  /etc/sysconfig vi  vncserver将文件中的</p>
+<h1 id="VNCSERVERS=”2:myusername”#_VNCSERVERARGS[2]=”-geometry_800x600_-nolisten_tcp_-localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是">VNCSERVERS=”2:myusername”# VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是</h1><p>VNCSERVERS=”2:root”VNCSERVERARGS[2]=”-geometry 1024x768  -nolisten tcp -localhost”    vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。<br>1、下载vncserver </p>
+<p>yum install tigervnc tigervnc-server -y 2、配置 vncserver  </p>
+<p>cd  /etc/sysconfig vi  vncserver将文件中的</p>
+<h1 id="VNCSERVERS=”2:myusername”#_VNCSERVERARGS[2]=”-geometry_800x600_-nolisten_tcp_-localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是-1">VNCSERVERS=”2:myusername”# VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是</h1><p>VNCSERVERS=”2:root”VNCSERVERARGS[2]=”-geometry 1024x768  -nolisten tcp -localhost”3、配置当前用户的vnc登陆密码，连续输入两次即可。这个密码是vnc连接密码，和系统密码没有关系。可以不一样。<br>[root@localhost ~]# vncpasswd Password:Verify:[root@localhost ~]# 4、启动vncserver服务。 第一次启动时这样操作  直接输入 vncserver &amp;<br>系统会自动建立相关的配置文件和日志文件。启动后系统会提示出一个进程号为1的窗口。如果需要启动两个窗口的话则再次执行VNCSERVER 命令即可。<br>[root@localhost X11]# vncserver &amp;[1] 26864[root@localhost X11]# xauth:  creating new authority file /root/.XauthorityNew ‘localhost.localdomain:1 (root)’ desktop is localhost.localdomain:1Creating default startup script /root/.vnc/xstartupStarting applications specified in /root/.vnc/xstartupLog file is /root/.vnc/localhost.localdomain:1.log5、客户端使用vncviewer 以  “ip:1”的形式连接，输入密码后进入到vncserver中。<br>6、如果需要让vnc服务开机启动的话执行如下命令。<br>chkconfig  vncserver  —level 345  on</p>
+<p>提示：<br>1、若进入后系统显示灰屏的话需要修改  ~/.vnc/xstartup  文件，找到最后一行，<br>将  #twm &amp; #注释掉这一行<br>gnome-session &amp; #添加这一行<br>2、如果需要以图形界面控制服务器的话就需要安装gnome界面。 方法如下<br>yum groupinstall “Desktop”yum groupinstall “X Window System”yum groupinstall “Chinese Support”startx  完成后重启vncserver服务后重新登陆即可。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-新新新年" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -468,124 +602,6 @@
       
         <p class="article-more-link">
           <a  href="/2015/07/23/数据结构-二叉树/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-数据结构-多维数组和广义表" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/21/数据结构-多维数组和广义表/" class="article-date">
-  	<time datetime="2015-07-21T05:22:54.000Z" itemprop="datePublished">2015-07-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/21/数据结构-多维数组和广义表/">数据结构-多维数组和广义表</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>摘要</strong> 多维数组和广义表属于数据结构中非线性结构的基础内容。虽然较线性结构相对复杂，但是，从其递归意义上来说，组成它们的基础也是线性数据结构。本文主要以稀疏矩阵为代表探讨多维数组和广义表数据结构的存储和计算。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/21/数据结构-多维数组和广义表/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-数据结构-串" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/20/数据结构-串/" class="article-date">
-  	<time datetime="2015-07-20T07:00:00.000Z" itemprop="datePublished">2015-07-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/20/数据结构-串/">数据结构-串</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>摘要</strong> 串是一种数据元素类型只能为字符的线性数据结构，可以理解为字符序列。按存储结构也可以分为顺序串和链式串，一般以顺序串为代表，定义在串上的操作，如求串长，判断空串，判断串是否为满，指定位置插入字符，指定位置删除字符，这些操作与线性表中一模一样，所以，有兴趣的读者可以参照本系列博客数据结构-线性表进行阅读。对于串，主要算法有模式匹配，而本文所讲的重点也是串的KMP模式匹配算法。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/20/数据结构-串/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
