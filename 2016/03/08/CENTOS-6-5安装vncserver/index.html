@@ -7,25 +7,22 @@
   
   <title>CENTOS 6.5安装vncserver | zbvae&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="centos 6.5安装vncserver 并开启远程桌面    vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。1、下载vncserver 
-yum install tigervnc tigervnc-server -y 2、配置 vncserver  
-cd  /etc/sysconfig vi  vncserver将文件中的
-V">
+  <meta name="description" content="vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。
+1.下载vncserveryum install tigervnc tigervnc-server -y 
+2.配置 vncservercd  /etc/sysconfig vi  vncserver将文件中的#VNCSERVERS=”2:myusername”和#VNCSERVERA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CENTOS 6.5安装vncserver">
 <meta property="og:url" content="http://blog.zbvae.com/2016/03/08/CENTOS-6-5安装vncserver/index.html">
 <meta property="og:site_name" content="zbvae's blog">
-<meta property="og:description" content="centos 6.5安装vncserver 并开启远程桌面    vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。1、下载vncserver 
-yum install tigervnc tigervnc-server -y 2、配置 vncserver  
-cd  /etc/sysconfig vi  vncserver将文件中的
-V">
-<meta property="og:updated_time" content="2016-03-08T14:07:17.062Z">
+<meta property="og:description" content="vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。
+1.下载vncserveryum install tigervnc tigervnc-server -y 
+2.配置 vncservercd  /etc/sysconfig vi  vncserver将文件中的#VNCSERVERS=”2:myusername”和#VNCSERVERA">
+<meta property="og:updated_time" content="2016-03-17T03:30:20.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CENTOS 6.5安装vncserver">
-<meta name="twitter:description" content="centos 6.5安装vncserver 并开启远程桌面    vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。1、下载vncserver 
-yum install tigervnc tigervnc-server -y 2、配置 vncserver  
-cd  /etc/sysconfig vi  vncserver将文件中的
-V">
+<meta name="twitter:description" content="vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。
+1.下载vncserveryum install tigervnc tigervnc-server -y 
+2.配置 vncservercd  /etc/sysconfig vi  vncserver将文件中的#VNCSERVERS=”2:myusername”和#VNCSERVERA">
   
   
     <link rel="icon" href="/favicon.png">
@@ -134,7 +131,7 @@ V">
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/云服务器/" style="font-size: 10px;">云服务器</a> <a href="/tags/微信公众号/" style="font-size: 10px;">微信公众号</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/技术交流/" style="font-size: 13.33px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/云服务器/" style="font-size: 12.5px;">云服务器</a> <a href="/tags/微信公众号/" style="font-size: 10px;">微信公众号</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/技术交流/" style="font-size: 15px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 17.5px;">数据结构</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -223,6 +220,10 @@ V">
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云服务器/">云服务器</a></li></ul>
+	</div>
+
         
 
         <div class="clearfix"></div>
@@ -231,14 +232,26 @@ V">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>centos 6.5安装vncserver 并开启远程桌面    vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。<br>1、下载vncserver </p>
-<p>yum install tigervnc tigervnc-server -y 2、配置 vncserver  </p>
-<p>cd  /etc/sysconfig vi  vncserver将文件中的</p>
-<h1 id="VNCSERVERS=”2:myusername”#_VNCSERVERARGS[2]=”-geometry_800x600_-nolisten_tcp_-localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是">VNCSERVERS=”2:myusername”# VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是</h1><p>VNCSERVERS=”2:root”VNCSERVERARGS[2]=”-geometry 1024x768  -nolisten tcp -localhost”    vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。<br>1、下载vncserver </p>
-<p>yum install tigervnc tigervnc-server -y 2、配置 vncserver  </p>
-<p>cd  /etc/sysconfig vi  vncserver将文件中的</p>
-<h1 id="VNCSERVERS=”2:myusername”#_VNCSERVERARGS[2]=”-geometry_800x600_-nolisten_tcp_-localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是-1">VNCSERVERS=”2:myusername”# VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是</h1><p>VNCSERVERS=”2:root”VNCSERVERARGS[2]=”-geometry 1024x768  -nolisten tcp -localhost”3、配置当前用户的vnc登陆密码，连续输入两次即可。这个密码是vnc连接密码，和系统密码没有关系。可以不一样。<br>[root@localhost ~]# vncpasswd Password:Verify:[root@localhost ~]# 4、启动vncserver服务。 第一次启动时这样操作  直接输入 vncserver &amp;<br>系统会自动建立相关的配置文件和日志文件。启动后系统会提示出一个进程号为1的窗口。如果需要启动两个窗口的话则再次执行VNCSERVER 命令即可。<br>[root@localhost X11]# vncserver &amp;[1] 26864[root@localhost X11]# xauth:  creating new authority file /root/.XauthorityNew ‘localhost.localdomain:1 (root)’ desktop is localhost.localdomain:1Creating default startup script /root/.vnc/xstartupStarting applications specified in /root/.vnc/xstartupLog file is /root/.vnc/localhost.localdomain:1.log5、客户端使用vncviewer 以  “ip:1”的形式连接，输入密码后进入到vncserver中。<br>6、如果需要让vnc服务开机启动的话执行如下命令。<br>chkconfig  vncserver  —level 345  on</p>
-<p>提示：<br>1、若进入后系统显示灰屏的话需要修改  ~/.vnc/xstartup  文件，找到最后一行，<br>将  #twm &amp; #注释掉这一行<br>gnome-session &amp; #添加这一行<br>2、如果需要以图形界面控制服务器的话就需要安装gnome界面。 方法如下<br>yum groupinstall “Desktop”yum groupinstall “X Window System”yum groupinstall “Chinese Support”startx  完成后重启vncserver服务后重新登陆即可。</p>
+        <p>vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。</p>
+<h3 id="1-下载vncserver">1.下载vncserver</h3><p>yum install tigervnc tigervnc-server -y </p>
+<h3 id="2-配置_vncserver">2.配置 vncserver</h3><p>cd  /etc/sysconfig vi  vncserver将文件中的#VNCSERVERS=”2:myusername”和#VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是<br>VNCSERVERS=”2:root”VNCSERVERARGS[2]=”-geometry 1024x768  -nolisten tcp -localhost”</p>
+<h3 id="3-配置当前用户的vnc登陆密码">3.配置当前用户的vnc登陆密码</h3><p>连续输入两次即可。这个密码是vnc连接密码，和系统密码没有关系。可以不一样。<a id="more"></a><br>[root@localhost ~]# vncpasswd Password:<br>Verify:[root@localhost ~]# </p>
+<h3 id="4-启动vncserver服务">4.启动vncserver服务</h3><p>第一次启动时这样操作  直接输入 vncserver &amp; 系统会自动建立相关的配置文件和日志文件。启动后系统会提示出一个进程号为1的窗口。如果需要启动两个窗口的话则再次执行VNCSERVER 命令即可。<br>[root@localhost X11]# vncserver &amp;[1] 26864[root@localhost X11]# xauth:<br>creating new authority file /root/.XauthorityNew ‘localhost.localdomain:1 (root)’ desktop is localhost.localdomain:1Creating default startup script /root/.vnc/xstartupStarting applications specified in /root/.vnc/xstartupLog file is /root/.vnc/localhost.localdomain:1.log</p>
+<h3 id="5-客户端使用vncviewer">5.客户端使用vncviewer</h3><p>以 “ip:1”的形式连接，输入密码后进入到vncserver中。 </p>
+<h3 id="6-让vnc服务开机启动">6.让vnc服务开机启动</h3><p>chkconfig  vncserver  —level 345  on</p>
+<p>提示：</p>
+<blockquote>
+<ul>
+<li>若进入后系统显示灰屏的话需要修改  ~/.vnc/xstartup  文件，找到最后一行，<br>将 <blockquote>
+<ul>
+<li>twm &amp; #注释掉这一行</li>
+<li>gnome-session &amp; #添加这一行</li>
+</ul>
+</blockquote>
+</li>
+<li>如果需要以图形界面控制服务器的话就需要安装gnome界面。 方法如下<br>yum groupinstall “Desktop”yum groupinstall “X Window System”yum groupinstall “Chinese Support”startx  完成后重启vncserver服务后重新登陆即可。</li>
+</ul>
+</blockquote>
 
       
     </div>
