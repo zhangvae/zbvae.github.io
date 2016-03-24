@@ -2,13 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.zbvae.com/MyAlbum/index.html</loc>
-    <lastmod>2016-03-24T08:40:09.065Z</lastmod>
+    <loc>http://blog.zbvae.com/search/index.html</loc>
+    <lastmod>2016-03-24T09:14:42.068Z</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.zbvae.com/search/index.html</loc>
-    <lastmod>2016-03-24T08:36:42.336Z</lastmod>
+    <loc>http://blog.zbvae.com/books/index.html</loc>
+    <lastmod>2016-03-24T08:59:17.850Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.zbvae.com/music/index.html</loc>
+    <lastmod>2016-03-24T08:58:38.227Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.zbvae.com/MyAlbum/index.html</loc>
+    <lastmod>2016-03-24T08:40:09.065Z</lastmod>
   </url>
   
   <url>

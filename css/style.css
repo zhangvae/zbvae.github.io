@@ -470,9 +470,11 @@ a {
 }
 .header-author {
   text-align: center;
+  text-decoration: underline;
   margin: 0.67em 0;
   font-family: Roboto, "Roboto", serif;
   font-size: 30px;
+  font-weight: 600;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
