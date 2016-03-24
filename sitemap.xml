@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zbvae.com/search/index.html</loc>
+    <lastmod>2016-03-24T08:36:42.336Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zbvae.com/2016/03/08/CENTOS-6-5%E5%AE%89%E8%A3%85vncserver/</loc>
     <lastmod>2016-03-17T03:30:20.736Z</lastmod>
   </url>
