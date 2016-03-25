@@ -58,7 +58,7 @@ require([], function (){
 		require(['/fancybox/jquery.fancybox.js'], function(pc){
 			var isFancy = $(".isFancy");
 			if(isFancy.length != 0){
-				var imgArr = $(".article-inner img[class!='no-fancy']");
+				var imgArr = $(".article-inner img");
 				for(var i=0,len=imgArr.length;i<len;i++){
 					var src = imgArr.eq(i).attr("src");
 					var title = imgArr.eq(i).attr("alt");

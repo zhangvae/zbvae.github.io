@@ -5,7 +5,6 @@
   <meta name="baidu-site-verification" content="UNHn0suvw2" />
   <meta name="google-site-verification" content="2AQ75-m5QPW0KN4FrtIw60tT9cSP-sf_6V5Md4QyzaU" />
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>使用Echarts制作散点图(Excel 导入数据方式) | zbvae&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="摘要：Echarts是一款有效的js制图工具很多时候，其主要优势在于网页浏览时，具有非常炫酷的效果，但是将其保存为静态图像也很美观。我们在写工作报告或写论文的时候，都需要制作基本的统计图表以直观展示结果数据，虽然Excel提供的图表制作工具能满足要求，但美观度欠佳，也许可以调整，但还是需要很大的工作量，今天给大家介绍一款非常实用的且有效的制图工具，相信，您亲自使用之后就知道它有多妙了！">
@@ -21,21 +20,16 @@
 <meta name="twitter:title" content="使用Echarts制作散点图(Excel 导入数据方式)">
 <meta name="twitter:description" content="摘要：Echarts是一款有效的js制图工具很多时候，其主要优势在于网页浏览时，具有非常炫酷的效果，但是将其保存为静态图像也很美观。我们在写工作报告或写论文的时候，都需要制作基本的统计图表以直观展示结果数据，虽然Excel提供的图表制作工具能满足要求，但美观度欠佳，也许可以调整，但还是需要很大的工作量，今天给大家介绍一款非常实用的且有效的制图工具，相信，您亲自使用之后就知道它有多妙了！">
   
-    <link rel="alternative" href="/atom.xml" title="zbvae&#39;s blog" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-
 </head>
-
 <body>
   <div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
-
 	<header id="header" class="inner">
 		<div style="z-index:9999; position: absolute; top: 10px; left: 75px;">
 			<object width="160" height="70" align="middle" id="honehoneclock" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"><PARAM NAME="_cx" VALUE="4233"><PARAM NAME="_cy" VALUE="1852"><PARAM NAME="FlashVars" VALUE=""><PARAM NAME="Movie" VALUE="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><PARAM NAME="Src" VALUE="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><PARAM NAME="WMode" VALUE="Transparent"><PARAM NAME="Play" VALUE="0"><PARAM NAME="Loop" VALUE="-1"><PARAM NAME="Quality" VALUE="High"><PARAM NAME="SAlign" VALUE=""><PARAM NAME="Menu" VALUE="-1"><PARAM NAME="Base" VALUE=""><PARAM NAME="AllowScriptAccess" VALUE="always"><PARAM NAME="Scale" VALUE="ShowAll"><PARAM NAME="DeviceFont" VALUE="0"><PARAM NAME="EmbedMovie" VALUE="0"><PARAM NAME="BGColor" VALUE="FFFFFF"><PARAM NAME="SWRemote" VALUE=""><PARAM NAME="MovieData" VALUE=""><PARAM NAME="SeamlessTabbing" VALUE="1"><PARAM NAME="Profile" VALUE="0"><PARAM NAME="ProfileAddress" VALUE=""><PARAM NAME="ProfilePort" VALUE="0"><PARAM NAME="AllowNetworking" VALUE="all"><PARAM NAME="AllowFullScreen" VALUE="false"><PARAM NAME="AllowFullScreenInteractive" VALUE="false"><PARAM NAME="IsDependent" VALUE="0">
@@ -47,6 +41,11 @@
 				<embed name="honehoneclock" width="160" height="70" align="middle" pluginspage="http://www.macromedia.com/go/getflashplayer" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" type="application/x-shockwave-flash" wmode="transparent" quality="high" bgcolor="#ffffff" allowscriptaccess="always">
 			</object>
 		</div>
+		<!--
+		<a href="https://github.com/zbvae">
+			<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png">
+		</a>-->
+  
 		<a href="/" class="profilepic">
 			
 			<img lazy-src="/img/zbvae.JPG" class="js-avatar">
@@ -60,23 +59,7 @@
 		
 		<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
 		
-		
-		<div height="5px;"></div>
-		
-		<script>
-			(function() {
-				var cx = '003537491362573777623:y5dsfktbv3a';
-				var gcse = document.createElement('script');
-				gcse.type = 'text/javascript';
-				gcse.async = true;
-				gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-						'//cse.google.com/cse.js?cx=' + cx;
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(gcse, s);
-			})();
-		</script>
-		<gcse:searchbox-only></gcse:searchbox-only>
-		
+
 		
 			<div class="switch-btn">
 				<div class="icon">
@@ -96,16 +79,16 @@
 						</div>
 						
 					</div>
-
+					
 				</div>
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>標籤</li>
+						<li>标签</li>
 						
 						
-						<li>關於</li>
+						<li>关于我</li>
 						
 					</ul>
 				</div>
@@ -124,35 +107,23 @@
 				        
 							<li><a href="/MyAlbum">相冊</a></li>
 				        
-							<li><a href="/books/">閱讀</a></li>
-				        
-							<li><a href="/music/">音樂</a></li>
-				        
 						</ul>
 					</nav>
 					<nav class="header-nav">
 						<div class="social">
 							
-								<a target="_blank" href="https://github.com/zbvae/" title="github">
-									<i class="iconfont icon-github"></i>
-								</a>
+								<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
 					        
-								<a target="_blank" href="http://weibo.com/zbvae/" title="weibo">
-									<i class="iconfont icon-weibo"></i>
-								</a>
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
 					        
-								<a target="_blank" href="mailto:zbbk@zbvae.com" title="mail">
-									<i class="iconfont icon-mail"></i>
-								</a>
+								<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
 					        
-								<a target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">
-									<i class="iconfont icon-zhihu"></i>
-								</a>
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
 					        
 						</div>
 					</nav>
 				</section>
-
+				
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
@@ -160,7 +131,7 @@
 					</div>
 				</section>
 				
-
+				
 				
 
 				
@@ -172,9 +143,8 @@
 				
 			</div>
 		</div>
-	</header>
+	</header>				
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -185,9 +155,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-			
 				<img lazy-src="/img/zbvae.JPG" class="js-avatar">
-			
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Bin Zhang</h1>
@@ -204,40 +172,27 @@
 		        
 					<li><a href="/MyAlbum">相冊</a></li>
 		        
-					<li><a href="/books/">閱讀</a></li>
-		        
-					<li><a href="/music/">音樂</a></li>
-		        
 		        <div class="clearfix"></div>
 				</ul>
 			</nav>
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a target="_blank" href="https://github.com/zbvae/" title="github">
-							<i class="iconfont icon-github"></i>
-						</a>
+						<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
 			        
-						<a target="_blank" href="http://weibo.com/zbvae/" title="weibo">
-							<i class="iconfont icon-weibo"></i>
-						</a>
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
 			        
-						<a target="_blank" href="mailto:zbbk@zbvae.com" title="mail">
-							<i class="iconfont icon-mail"></i>
-						</a>
+						<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
 			        
-						<a target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">
-							<i class="iconfont icon-zhihu"></i>
-						</a>
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
 			        
 				</div>
 			</nav>
 		</header>				
 	</div>
 </nav>
-
       <div class="body-wrap"><article id="post-使用Echarts制作散点图-Excel-导入数据方式" class="article article-type-post" itemscope itemprop="blogPost">
-    
+  
     <div class="article-meta">
       <a href="/2015/07/11/使用Echarts制作散点图-Excel-导入数据方式/" class="article-date">
   	<time datetime="2015-07-11T02:34:53.000Z" itemprop="datePublished">2015-07-11</time>
@@ -273,22 +228,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-        <!-- Table of Contents -->
-        
-          
-            <div id="toc" class="article-toc">
-            <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Echarts简介"><span class="toc-number">1.</span> <span class="toc-text">1.Echarts简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Echarts使用"><span class="toc-number">2.</span> <span class="toc-text">2.Echarts使用</span></a></li></ol>
-            </div>
-            <script type="text/javascript">
-              var _article = document.getElementsByClassName('article')[0];
-              <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
-              setTimeout("_article.className += ' article2'",0);
-              setTimeout("document.getElementById('toc').style.right = '15px'", 0);
-            </script>
-          
-        
         <p><strong>摘要</strong>：Echarts是一款有效的js制图工具很多时候，其主要优势在于网页浏览时，具有非常炫酷的效果，但是将其保存为静态图像也很美观。我们在写工作报告或写论文的时候，都需要制作基本的统计图表以直观展示结果数据，虽然Excel提供的图表制作工具能满足要求，但美观度欠佳，也许可以调整，但还是需要很大的工作量，今天给大家介绍一款非常实用的且有效的制图工具，相信，您亲自使用之后就知道它有多妙了！<a id="more"></a></p>
 <h2 id="1-Echarts简介">1.Echarts简介</h2><p>　　Echarts相当于一款JS插件，可以制作出绚丽多彩的图表，其支持制作的图表类型和可以使用的样式都非常丰富。本文以Echarts制作散点图为例，向大家展示该工具的实用性。</p>
 <h2 id="2-Echarts使用">2.Echarts使用</h2><p>　　Echarts的使用门槛非常简单，但使用条件必须符合规则，在<a href="http://echarts.baidu.com/" target="_blank" rel="external">官网</a>上下载开发包之后，自己准备一个项目主文件夹，在该文件夹新建一个js文件夹（名称自选），将开发包下的build文件夹下的dist文件夹拷贝到js文件夹下，便可以开始使用了。</p>
@@ -309,7 +248,6 @@
     </div>
     
   </div>
-
   
     
 <nav id="article-nav">
@@ -331,38 +269,26 @@
   
 </nav>
 
-    <p style="height: 10px;"></p>
-<span id="busuanzi_container_page_pv"
-      style="display: inline;vertical-align: middle;width: 100%; position:absolute; bottom:0; text-align:center;font-size: x-small;color: darkcyan;margin-bottom: 8px;">
-  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-</span>
-<p style="height: 10px;"></p>
-
-
-    
-</article>
-<div class="share">
   
-  <div class="share_jia">
+</article>
+
+
+<div class="share">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_weixin">微信</a>
-		<a class="jiathis_button_cqq">QQ好友</a>
-		<a class="jiathis_button_qzone">QQ空间</a>
-		<a class="jiathis_button_tsina">新浪微博</a>
-		<a href="http://www.jiathis.com/share?uid=2080230" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-		<a class="jiathis_counter_style"></a>
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2080230" charset="utf-8"></script>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
-<!-- JiaThis Button BEGIN -->
 
-  
 
-  
-</div>
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
@@ -386,6 +312,7 @@
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -394,29 +321,20 @@
     		&copy; 2016 Bin Zhang
     	</div>
       	<div class="footer-right">
-      		由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动  主題: <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> 来自 Litten
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
-        <div>
-        <span id="busuanzi_container_site_pv">
-            本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        </div>
     </div>
   </div>
 </footer>
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-  <script src="/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
-  <script src="/gallery/gallery.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="/gallery/gallery.css" type="text/css">
 
 
 <script>
 	var yiliaConfig = {
 		fancybox: true,
-		mathjax: false,
+		mathjax: true,
 		animate: true,
 		isHome: false,
 		isPost: true,
@@ -438,7 +356,7 @@
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-51346799-2', 'auto');
+ga('create', 'true', 'auto');
 ga('send', 'pageview');
 
 </script>
@@ -447,14 +365,28 @@ ga('send', 'pageview');
 
 
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
 
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
-
   </div>
-
+  
 </body>
 </html>
