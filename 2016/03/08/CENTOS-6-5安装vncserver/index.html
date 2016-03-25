@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="google-site-verification" content="L7DZey-VzL2bKf5vFj4Krbt4hxw_x6v7Sq4tPAzcUp4" />
+
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="UNHn0suvw2" />
-  <meta name="google-site-verification" content="2AQ75-m5QPW0KN4FrtIw60tT9cSP-sf_6V5Md4QyzaU" />
   
   <title>CENTOS 6.5安装vncserver | zbvae&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,188 +25,83 @@
 1.下载vncserveryum install tigervnc tigervnc-server -y 
 2.配置 vncservercd  /etc/sysconfig vi  vncserver将文件中的#VNCSERVERS=”2:myusername”和#VNCSERVERA">
   
+    <link rel="alternative" href="/atom.xml" title="zbvae&#39;s blog" type="application/atom+xml">
   
-    <link rel="icon" href="/favicon.png">
+  
+    <link href="/favicon.ico" rel="icon" type="image/x-ico">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
 </head>
 <body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<div style="z-index:9999; position: absolute; top: 10px; left: 75px;">
-			<object width="160" height="70" align="middle" id="honehoneclock" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"><PARAM NAME="_cx" VALUE="4233"><PARAM NAME="_cy" VALUE="1852"><PARAM NAME="FlashVars" VALUE=""><PARAM NAME="Movie" VALUE="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><PARAM NAME="Src" VALUE="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><PARAM NAME="WMode" VALUE="Transparent"><PARAM NAME="Play" VALUE="0"><PARAM NAME="Loop" VALUE="-1"><PARAM NAME="Quality" VALUE="High"><PARAM NAME="SAlign" VALUE=""><PARAM NAME="Menu" VALUE="-1"><PARAM NAME="Base" VALUE=""><PARAM NAME="AllowScriptAccess" VALUE="always"><PARAM NAME="Scale" VALUE="ShowAll"><PARAM NAME="DeviceFont" VALUE="0"><PARAM NAME="EmbedMovie" VALUE="0"><PARAM NAME="BGColor" VALUE="FFFFFF"><PARAM NAME="SWRemote" VALUE=""><PARAM NAME="MovieData" VALUE=""><PARAM NAME="SeamlessTabbing" VALUE="1"><PARAM NAME="Profile" VALUE="0"><PARAM NAME="ProfileAddress" VALUE=""><PARAM NAME="ProfilePort" VALUE="0"><PARAM NAME="AllowNetworking" VALUE="all"><PARAM NAME="AllowFullScreen" VALUE="false"><PARAM NAME="AllowFullScreenInteractive" VALUE="false"><PARAM NAME="IsDependent" VALUE="0">
-				<param name="allowScriptAccess" value="always">
-				<param name="movie" value="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf">
-				<param name="quality" value="high">
-				<param name="bgcolor" value="#ffffff">
-				<param name="wmode" value="transparent">
-				<embed name="honehoneclock" width="160" height="70" align="middle" pluginspage="http://www.macromedia.com/go/getflashplayer" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" type="application/x-shockwave-flash" wmode="transparent" quality="high" bgcolor="#ffffff" allowscriptaccess="always">
-			</object>
-		</div>
-		<!--
-		<a href="https://github.com/zbvae">
-			<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png">
-		</a>-->
-  
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="/img/zbvae.JPG" class="js-avatar">
-			
-		</a>
-
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Bin Zhang</a></h1>
-		</hgroup>
-
-		
-		<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
-		
-
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
-			</div>
-		
-
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主頁</a></li>
-				        
-							<li><a href="/archives">歸檔</a></li>
-				        
-							<li><a href="/MyAlbum">相冊</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
-					        
-								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-					        
-								<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
-					        
-								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Java学习/" style="font-size: 20px;">Java学习</a> <a href="/tags/云服务器/" style="font-size: 12.5px;">云服务器</a> <a href="/tags/微信公众号/" style="font-size: 10px;">微信公众号</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/技术交流/" style="font-size: 15px;">技术交流</a> <a href="/tags/数据结构/" style="font-size: 17.5px;">数据结构</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
-					</div>
-				</section>
-				
-				
-				
-
-				
-				
-				<section class="switch-part switch-part3">
-				
-					<div id="js-aboutme">中南大学09级学生，现为2013级研究生，写论文中，求职中，待毕业中！</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
-</div>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zbvae&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</a>
+        </h2>
+      
     </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">Bin Zhang</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img lazy-src="/img/zbvae.JPG" class="js-avatar">
-			</div>
-			<hgroup>
-			  <h1 class="header-author">Bin Zhang</h1>
-			</hgroup>
-			
-			<p class="header-subtitle">这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!</p>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主頁</a></li>
-		        
-					<li><a href="/archives">歸檔</a></li>
-		        
-					<li><a href="/MyAlbum">相冊</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="weibo" target="_blank" href="http://weibo.com/zbvae" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-			        
-						<a class="sitemap" target="_blank" href="/sitemap.xml" title="sitemap">sitemap</a>
-			        
-						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zbvae" title="zhihu">zhihu</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
-</nav>
-      <div class="body-wrap"><article id="post-CENTOS-6-5安装vncserver" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/08/CENTOS-6-5安装vncserver/" class="article-date">
-  	<time datetime="2016-03-08T14:04:11.000Z" itemprop="datePublished">2016-03-08</time>
-</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+          <a class="main-nav-link" href="/404">404音乐电台</a>
+        
+          <a class="main-nav-link" href="/quotations">原创语录</a>
+        
+      </nav>
+      <nav id="sub-nav">	   	  
+       <a class="nav-icon-social" href="http://www.jianshu.com/users/e2bf41f8a517/latest_articles" title="简书" target="_blank"><img src="/images/jianshu.png"></a>
+	   
+	   <a class="nav-icon-social" href="http://www.zhihu.com/people/istarsky" title="知乎" target="_blank"><img src="/images/zhihu.png"></a>
+	   
+	   <a class="nav-icon-social" href="http://weibo.com/istarsky" title="微博" target="_blank"><img src="/images/weibo.png"></a>
+	   
+	   <a class="nav-icon-social" href="https://github.com/jerry011235" title="Github" target="_blank"><img src="/images/github.png"></a>
+	   
+        		
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>	
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zbvae.com"></form>
+      </div>
     </div>
-  
-  <div class="article-inner">
+  </div>
+  <script>
     
-      <input type="hidden" class="isFancy" />
+    var number_of_banners = 6;
+    var randnum = Math.floor(Math.random() * number_of_banners + 1);
+    document.getElementById("banner").style.backgroundImage = "url(/css/images/banner" + randnum + ".jpg)";
+    
+</script>
+
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-CENTOS-6-5安装vncserver" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/08/CENTOS-6-5安装vncserver/" class="article-date">
+  <time datetime="2016-03-08T14:04:11.000Z" itemprop="datePublished">2016-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
     
     
       <header class="article-header">
@@ -217,21 +113,11 @@
   
 
       </header>
-      
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云服务器/">云服务器</a></li></ul>
-	</div>
-
-        
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
+	  <!-- Table of Contents -->
+
         <p>vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。</p>
 <h3 id="1-下载vncserver">1.下载vncserver</h3><p>yum install tigervnc tigervnc-server -y </p>
 <h3 id="2-配置_vncserver">2.配置 vncserver</h3><p>cd  /etc/sysconfig vi  vncserver将文件中的#VNCSERVERS=”2:myusername”和#VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是<br>VNCSERVERS=”2:root”VNCSERVERARGS[2]=”-geometry 1024x768  -nolisten tcp -localhost”</p>
@@ -254,15 +140,35 @@
 </blockquote>
 
       
+
     </div>
-    
+    <footer class="article-footer">
+      
+        <a data-url="http://blog.zbvae.com/2016/03/08/CENTOS-6-5安装vncserver/" data-id="cim62d31u001pzshsavpls1ii" class="article-share-link">分享到</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云服务器/">云服务器</a></li></ul>
+
+    </footer>
   </div>
   
     
+<div class="article-end-text-wrap">
+  <div class="article-end-text">
+<p>每晚一问：你今天都做了些什么？</p>
+  </div>
+</div>
+
+
+
+
 <nav id="article-nav">
   
     <a href="/2016/03/17/Java微信公众号应用部署在阿里云ECS/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
           Java微信公众号应用部署在阿里云ECS
@@ -272,8 +178,8 @@
   
   
     <a href="/2016/02/24/新新新年/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">新新新年</div>
-      <strong class="article-nav-caption">></strong>
     </a>
   
 </nav>
@@ -281,121 +187,152 @@
   
 </article>
 
-
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CENTOS-6-5安装vncserver" data-title="CENTOS 6.5安装vncserver" data-url="http://blog.zbvae.com/2016/03/08/CENTOS-6-5安装vncserver/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"zbbk"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
-
-
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2016 Bin Zhang
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
-    </div>
-  </div>
-</footer>
-    </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-
-
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
-
-
-
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'true', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-  </div>
+</section>
+      
+      <aside id="sidebar">
   
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/17/Java微信公众号应用部署在阿里云ECS/">Java微信公众号应用部署在阿里云ECS</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/CENTOS-6-5安装vncserver/">CENTOS 6.5安装vncserver</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/24/新新新年/">新新新年</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/31/Java-Web中文乱码问题解决方法/">Java Web中文乱码问题解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/28/数据结构-内排序算法/">数据结构-内排序算法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">2016年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">2016年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年 07月</a><span class="archive-list-count">22</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/技术交流/" style="font-size: 19px; color: #cc0080">技术交流</a> <a href="/tags/随笔/" style="font-size: 15px; color: #90f">随笔</a> <a href="/tags/心情/" style="font-size: 15px; color: #90f">心情</a> <a href="/tags/数据结构/" style="font-size: 21px; color: #e60040">数据结构</a> <a href="/tags/微信公众号/" style="font-size: 15px; color: #90f">微信公众号</a> <a href="/tags/云服务器/" style="font-size: 17px; color: #b300bf">云服务器</a> <a href="/tags/Java学习/" style="font-size: 23px; color: #f00">Java学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://www.chriszheng.science/" target="_blank">M-x Chris-An-Emacser</a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/jerry011235/hexoblog" target="_blank">本博客源代码</a>
+          </li>
+        
+          <li>
+            <a href="http://jasonxiang.com/landscape-plus/" target="_blank">landscape-plus主题演示</a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/xiangming/landscape-plus" target="_blank">landscape-plus主题github地址</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习/">Java学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云服务器/">云服务器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信公众号/">微信公众号</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术交流/">技术交流</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">    
+     
+   <div class="outer">
+    <div id="footer-info" class="inner">	  
+	  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png" alt="知识共享许可协议"></a><br>
+      &copy; 2016 Bin Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      , hosted on <a href="https://gitcafe.com" target="_blank">gitcafe</a><br>
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a><br>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	  </script>
+      <span id="busuanzi_container_site_uv">您是本站的第<span id="busuanzi_value_site_uv">
+	  </span>个小伙伴：） 
+   </div>
+  <div class="footer-text1">认真过好每一天的生活。</div> 
+  <div class="footer-text2">——璀璨星空</div> 
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+    <a href="/404" class="mobile-nav-link">404音乐电台</a>
+  
+    <a href="/quotations" class="mobile-nav-link">原创语录</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+</div>
 </body>
 </html>
