@@ -55,33 +55,73 @@
     <link href="http://blog.zbvae.com/2016/03/08/CENTOS-6-5%E5%AE%89%E8%A3%85vncserver/"/>
     <id>http://blog.zbvae.com/2016/03/08/CENTOS-6-5安装vncserver/</id>
     <published>2016-03-08T14:04:11.000Z</published>
-    <updated>2016-03-17T03:30:20.736Z</updated>
+    <updated>2016-04-09T13:21:26.867Z</updated>
     <content type="html"><![CDATA[<p>vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。</p>
-<h3 id="1-下载vncserver">1.下载vncserver</h3><p>yum install tigervnc tigervnc-server -y </p>
-<h3 id="2-配置_vncserver">2.配置 vncserver</h3><p>cd  /etc/sysconfig vi  vncserver将文件中的#VNCSERVERS=”2:myusername”和#VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是<br>VNCSERVERS=”2:root”VNCSERVERARGS[2]=”-geometry 1024x768  -nolisten tcp -localhost”</p>
-<h3 id="3-配置当前用户的vnc登陆密码">3.配置当前用户的vnc登陆密码</h3><p>连续输入两次即可。这个密码是vnc连接密码，和系统密码没有关系。可以不一样。<a id="more"></a><br>[root@localhost ~]# vncpasswd Password:<br>Verify:[root@localhost ~]# </p>
-<h3 id="4-启动vncserver服务">4.启动vncserver服务</h3><p>第一次启动时这样操作  直接输入 vncserver &amp; 系统会自动建立相关的配置文件和日志文件。启动后系统会提示出一个进程号为1的窗口。如果需要启动两个窗口的话则再次执行VNCSERVER 命令即可。<br>[root@localhost X11]# vncserver &amp;[1] 26864[root@localhost X11]# xauth:<br>creating new authority file /root/.XauthorityNew ‘localhost.localdomain:1 (root)’ desktop is localhost.localdomain:1Creating default startup script /root/.vnc/xstartupStarting applications specified in /root/.vnc/xstartupLog file is /root/.vnc/localhost.localdomain:1.log</p>
-<h3 id="5-客户端使用vncviewer">5.客户端使用vncviewer</h3><p>以 “ip:1”的形式连接，输入密码后进入到vncserver中。 </p>
-<h3 id="6-让vnc服务开机启动">6.让vnc服务开机启动</h3><p>chkconfig  vncserver  —level 345  on</p>
-<p>提示：</p>
+<p>[toc]</p>
+<h3 id="安装vncserver">安装vncserver</h3><p>输入命令：<code>yum -y install tigervnc-server</code></p>
+<h3 id="配置_vncserver">配置 vncserver</h3><p>编辑/etc/sysconfig/vncservers文件,找到</p>
 <blockquote>
+<p>VNCSERVERS=”2:myusername”<br>VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”</p>
+</blockquote>
+<p>修改为：</p>
+<blockquote>
+<p>VNCSERVERS=”1:root”<br>VNCSERVERARGS[1]=”-geometry 1024x768” <a id="more"></a></p>
+</blockquote>
+<h3 id="设置远程登陆密码">设置远程登陆密码</h3><p>输入<code>vncserver</code>命令，系统会检测到您是第一次输入，提示您设置密码，连续输入两次即可。这个密码是vnc连接密码，和系统密码没有关系。可以不一样。</p>
+<blockquote>
+<p>[root@localhost ~]# vncpasswd Password:<br>Verify:[root@localhost ~]# </p>
+</blockquote>
+<p>后期可以通过输入vncpasswd命令，来设置vnc用户登录密码</p>
+<h3 id="启动和关闭vncserver">启动和关闭vncserver</h3><p>第一次启动时直接输入<code>vncserver</code>系统会自动建立相关的配置文件和日志文件。启动后系统会提示出一个进程号为1的窗口。如果需要启动两个窗口的话则再次执行<code>vncserver</code>命令即可。</p>
+<p>通过输入命令<code>vncserver -kill :1</code>来关闭刚刚启动的1号窗口服务，可以通过输入命令<code>vncserver :1</code>来再次启动1号窗口提供vnc远程登录服务。</p>
+<h3 id="让vnc服务开机启动">让vnc服务开机启动</h3><p>输入命令<code>chkconfig  vncserver  --level 345  on</code>或者直接输入<code>chkconfig vncserver on</code></p>
+<p>再通过输入<code>chkconfig --list</code>查看所有的开机启动服务里有没有vncserver.</p>
+<h3 id="客户端使用vncviewer">客户端使用vncviewer</h3><p>安装vncviewer之后，打开软件，以 “ip:1”的形式连接，输入密码后进入到vncserver中。 </p>
+<h3 id="问题及解决方法">问题及解决方法</h3><p>若进入后系统显示灰屏的话需要修改<strong>~/.vnc/xstartup</strong>文件，找到最后一行，将</p>
+<blockquote>
+<p>twm &amp; #注释掉这一行<br>gnome-session &amp; #添加这一行</p>
+</blockquote>
+<p>输入<code>service vncserver restart</code>重启vncserver服务，再次使用vncviewer登录，如果还是灰屏，则查看日志 <code>cat ~.vnc/name:1.log</code>，查看其中出现的错误，一般是还未安装gnome环境，则通过网络安装即可：<code>yum -y install gnome-session</code>,<code>yum -y install xterm</code>,<code>yum -y install xsetroot</code>.</p>
+<p>安装完以上，这时候登录进去，不再是灰屏，可能是空白桌面，也就是没有图标，这时候，再次查看日子，发现错误，最后发现没有安装任务栏和桌面插件,通过网络安装即可<code>yum -y install gnome-panel</code>.</p>
+<p>解决桌面图标问题之后，有可能还会发现，浏览中文显示乱码的问题，那是因为桌面环境是英文的，可以通过echo $LANG,来确定，通过网络安装中文支持包<code>yum groupinstall chinese-support</code>，安装完成之后，修改/etc/sysconfig/i18n文件，设置<code>LANG=zh_CN.UTF-8</code>。</p>
+<p>以上这些解决是通过查看日志，发现问题，逐项解决，可以通过以下系统方案解决。</p>
+<blockquote>
+<p>安装图形桌面环境</p>
 <ul>
-<li>若进入后系统显示灰屏的话需要修改  ~/.vnc/xstartup  文件，找到最后一行，<br>将 <blockquote>
-<ul>
-<li>twm &amp; #注释掉这一行</li>
-<li>gnome-session &amp; #添加这一行</li>
-</ul>
+<li>要安装 KDE 桌面环境，执行指令，<blockquote>
+<blockquote>
+<p><code>yum groupinstall &quot;X Window System&quot; &quot;KDE Desktop&quot; Desktop</code>即可，同时安装了 3 个软件包。注意，因为 KDE Desktop 和  X Window System 两个软件包名称中间都包含空格，需要用引号引起来才行。</p>
+</blockquote>
 </blockquote>
 </li>
-<li>如果需要以图形界面控制服务器的话就需要安装gnome界面。 方法如下<br>yum groupinstall “Desktop”yum groupinstall “X Window System”yum groupinstall “Chinese Support”startx  完成后重启vncserver服务后重新登陆即可。</li>
+<li>要安装 Gnome 桌面环境，执行指令，<blockquote>
+<blockquote>
+<p><code>yum groupinstall &quot;X Window System&quot; &quot;Desktop Platform&quot; Desktop</code>即可，也是同时安装了 3 个软件包，其中 X Window System 是必须的，不管是 Gnome 还是 KDE。</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<p>既然是桌面环境，可能还需要诸如字体、管理工具之类的，如，</p>
+<ul>
+<li>yum -y groupinstall “Graphical Administration Tools”</li>
+<li>yum -y groupinstall “Internet Browser”</li>
+<li>yum -y groupinstall “General Purpose Desktop”</li>
+<li>yum -y groupinstall “Office Suite and Productivity”</li>
+<li>yum -y groupinstall “Graphics Creation Tools”</li>
 </ul>
 </blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>vnc是一款使用广泛的服务器管理软件，可以实现图形化管理，下面简单介绍一下如何在centos6.5下安装vnc。</p>
-<h3 id="1-下载vncserver">1.下载vncserver</h3><p>yum install tigervnc tigervnc-server -y </p>
-<h3 id="2-配置_vncserver">2.配置 vncserver</h3><p>cd  /etc/sysconfig vi  vncserver将文件中的#VNCSERVERS=”2:myusername”和#VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”前面的#去掉，并根据个人需要修改用户名和显示器分辨率，我的结果是<br>VNCSERVERS=”2:root”VNCSERVERARGS[2]=”-geometry 1024x768  -nolisten tcp -localhost”</p>
-<h3 id="3-配置当前用户的vnc登陆密码">3.配置当前用户的vnc登陆密码</h3><p>连续输入两次即可。这个密码是vnc连接密码，和系统密码没有关系。可以不一样。]]>
+<p>[toc]</p>
+<h3 id="安装vncserver">安装vncserver</h3><p>输入命令：<code>yum -y install tigervnc-server</code></p>
+<h3 id="配置_vncserver">配置 vncserver</h3><p>编辑/etc/sysconfig/vncservers文件,找到</p>
+<blockquote>
+<p>VNCSERVERS=”2:myusername”<br>VNCSERVERARGS[2]=”-geometry 800x600 -nolisten tcp -localhost”</p>
+</blockquote>
+<p>修改为：</p>
+<blockquote>
+<p>VNCSERVERS=”1:root”<br>VNCSERVERARGS[1]=”-geometry 1024x768”]]>
     
     </summary>
     
