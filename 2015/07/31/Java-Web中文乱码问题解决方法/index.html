@@ -31,12 +31,11 @@ ga('send', 'pageview');</script></head><body><input type="checkbox" id="sidebar-
 <p>为了方便从ISO-8859-1编码转换到GBK编码，我们编写一个工具方法，如下：</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> toGBK(<span class="keyword">String</span> <span class="built_in">str</span>) <span class="keyword">throws</span> java.io.UnsupportedEncodingException&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">String</span>(<span class="built_in">str</span>.getBytes(<span class="string">"ISO-8859-1"</span>), <span class="string">"GBK"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-总结">3.总结</h2><p>在实际的Web应用中，乱码问题产生的原因多种多样，然而只要我们理解了字符编码转换过程，仔细地分析乱码产生的原因，找到问题的关键，就能对症下药，解决问题。</p>
-</div></article></div><div class="tags"><a href="/tags/技术交流/">技术交流</a></div><div class="paginator"><a href="/2016/02/24/新新新年/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2015/07/28/数据结构-内排序算法/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div id="disqus_thread"></div></section><script type="text/javascript">(function() {
-var d = document, s = d.createElement('script');
-
-s.src = '//ahonn.disqus.com/embed.js';
-
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://blog.zbvae.com">Bin Zhang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><div class="menu"></div></label><label class="back2top"> <a href="#top"><div class="arrow"></div></a></label></body></html>
+</div></article></div><div class="tags"><a href="/tags/技术交流/">技术交流</a></div><div class="paginator"><a href="/2016/02/24/新新新年/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2015/07/28/数据结构-内排序算法/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://blog.zbvae.com/2015/07/31/Java-Web中文乱码问题解决方法/index.html" data-title="Java Web中文乱码问题解决方法" data-url="http://blog.zbvae.com/2015/07/31/Java-Web中文乱码问题解决方法/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "zbbk" };
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></section><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://blog.zbvae.com">Bin Zhang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><div class="menu"></div></label><label class="back2top"> <a href="#top"><div class="arrow"></div></a></label></body></html>

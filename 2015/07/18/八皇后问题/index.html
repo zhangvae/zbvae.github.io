@@ -41,12 +41,11 @@ ga('send', 'pageview');</script></head><body><input type="checkbox" id="sidebar-
 <p>我们在主函数中从第0列开始进行回溯，可以得到共有92组解。</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">int</span> result_num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> QUEEN_NUM = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args)&#123;</span><br><span class="line">	<span class="built_in">int</span> cols[] = <span class="keyword">new</span> <span class="built_in">int</span>[QUEEN_NUM];</span><br><span class="line">	solveEightQueen(cols, <span class="number">0</span>);</span><br><span class="line">	System.out.<span class="built_in">println</span>(result_num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-总结">3.总结</h2><p>从以上代码，可以发现回溯法可以轻松解决复杂的八皇后问题，回溯法的解决关键在于深度优先递归搜索。我们可以将问题规模改为任意，即10皇后也可以适用。</p>
-</div></article></div><div class="tags"><a href="/tags/技术交流/">技术交流</a></div><div class="paginator"><a href="/2015/07/19/数据结构-线性表/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2015/07/12/Java-NIO-学习/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div id="disqus_thread"></div></section><script type="text/javascript">(function() {
-var d = document, s = d.createElement('script');
-
-s.src = '//ahonn.disqus.com/embed.js';
-
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://blog.zbvae.com">Bin Zhang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><div class="menu"></div></label><label class="back2top"> <a href="#top"><div class="arrow"></div></a></label></body></html>
+</div></article></div><div class="tags"><a href="/tags/技术交流/">技术交流</a></div><div class="paginator"><a href="/2015/07/19/数据结构-线性表/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2015/07/12/Java-NIO-学习/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://blog.zbvae.com/2015/07/18/八皇后问题/index.html" data-title="八皇后问题" data-url="http://blog.zbvae.com/2015/07/18/八皇后问题/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "zbbk" };
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></section><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://blog.zbvae.com">Bin Zhang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><div class="menu"></div></label><label class="back2top"> <a href="#top"><div class="arrow"></div></a></label></body></html>
