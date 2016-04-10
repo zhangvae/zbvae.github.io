@@ -1,24 +1,52 @@
-extends partial/layout
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>八皇后问题 · zbvae's blog</title><meta name="description" content="八皇后问题 - Bin Zhang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"><!-- baidu analytics--><script type="text/javascript">var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?9e0cbea7d3319c6c94c71dfb93c151b8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><!-- google analytics--><script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-block site_title
-    != page.title + " · " + config.title
+ga('create', 'UA-74273646-1', 'auto');
+ga('send', 'pageview');</script></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Bin Zhang</h2></div><div class="post-toc"><span class="toc-title">Directory</span><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-回溯法"><span class="toc-text">1.回溯法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-八皇后问题求解"><span class="toc-text">2.八皇后问题求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-总结"><span class="toc-text">3.总结</span></a></li></ol></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">zbvae's blog</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">关于</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">八皇后问题</h1><div class="post-time">2015年7月18日</div><div class="post-content"><p><strong>摘要</strong> 八皇后问题是一个古老而著名的问题，是回溯算法的经典问题。该问题由高斯提出：在8*8的国际象棋上摆放8个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行，同一列或同一斜线上，问总共有多少种摆法。现代数学中，把八皇后问题当成一个经典的递归算法例题。<a id="more"></a></p>
+<h2 id="1-回溯法">1.回溯法</h2><p>下面我们尝试用回溯法解决八皇后问题。回溯法实际上是一个类似枚举的搜索尝试过程。用回溯法解决问题的一般步骤是：</p>
+<ol>
+<li>针对所给问题，确定问题的解空间</li>
+<li>确定结点的扩展搜索空间</li>
+<li>以深度优先方式搜索解空间，并在搜索过程中用剪枝函数避免无效搜索。</li>
+</ol>
+<h2 id="2-八皇后问题求解">2.八皇后问题求解</h2><p>从以上三点，来阐述八皇后问题的求解。从问题的定义出发，可以分析出八皇后问题可以归结为：八个皇后之间满足以下关系：</p>
+<ul>
+<li>不在同一行</li>
+<li>不在同一列</li>
+<li>不在同一斜线上</li>
+<li>不在同一反斜线上</li>
+</ul>
+<p>针对回溯法的一般步骤，我们需要先确定解空间。从列的方向进行回溯（选择列向还是行向按自己习惯，思路一样），对于某一列col，我们确定解空间即为，当前列，八皇后能摆放的位置，即能摆放在哪一行。对于当前列能摆放在哪一行的问题，需要参考前面的列所摆放的位置，具体分析如下：</p>
+<p>如果当前列col=3，第2列摆放的皇后位置为第5行，那么我们可以确定第3列一定不能摆放的位置有：第5行，第6行和第4行，因为首先不能和第2列摆在同一行，所以一定不能摆在第5行，其次不能摆在与前一列第5行所在的斜线位置即第6行，再其次也不能摆在与前一列第5行所在的反斜线位置上，即不能摆在第4行。这只是根据第2列的摆放位置来确定的局部解，还要根据第1列的摆放情况，才能最终确定第3列的皇后能摆放的位置，即当前的解空间。那么确定当前解空间可以归纳为以下算法：</p>
+<blockquote>
+<p>我们用rows数组表示当前列所能放置的行的位置，rows是一个大小为8的boolean数组，rows[i]=false表示当前列第i行不能摆放，初始化下为所有行都能摆放即为true。另外我们用cols数组表示每一列棋子摆放的行数，如以上第2列摆放在第5行可以表示为cols[2]=5。在确定解空间的过程中，我们就是要根据当前列之前的所有列的cols来确定当前列的摆放位置。</p>
+<ul>
+<li>前1列摆放位置为第5行，那么当前不能摆放的行有：5,5+1,5-1</li>
+<li>前i列摆放位置为第row行，那么当前不能摆放的行有：row,row+i(row+i<8),row-i(row-i>=0)</8),row-i(row-i></li>
+</ul>
+</blockquote>
+<p>以下函数就是根据当前列号以及当前cols数组确定当前列可以摆放的行的位置：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * [getAccessRows description]</span><br><span class="line"> * <span class="doctag">@param</span>  cols [array of every row num of queen in each col]</span><br><span class="line"> * <span class="doctag">@param</span>  col  [current col]</span><br><span class="line"> * <span class="doctag">@return</span>      [current col can be placed in which rows]</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span>[] getAccessRows(<span class="keyword">int</span>[] cols, <span class="keyword">int</span> col)&#123;</span><br><span class="line">	<span class="keyword">boolean</span> rows[] = <span class="keyword">new</span> <span class="keyword">boolean</span>[QUEEN_NUM];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;QUEEN_NUM;i++)&#123;</span><br><span class="line">		rows[i] = <span class="keyword">true</span>;<span class="comment">// all rows can be placed</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;col;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> row = cols[i];</span><br><span class="line">		<span class="keyword">int</span> d = col - i;<span class="comment">// forward d col</span></span><br><span class="line">		rows[row] = <span class="keyword">false</span>;</span><br><span class="line">		<span class="keyword">if</span>((row+d) &lt; QUEEN_NUM)</span><br><span class="line">			rows[row+d] = <span class="keyword">false</span>;</span><br><span class="line">		<span class="keyword">if</span>((row-d) &gt;= <span class="number">0</span>)</span><br><span class="line">			rows[row-d] = <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> rows;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了当前列可以摆放的行位置数组，即确定了当前解空间，依据回溯法，确定扩展搜索空间，选的当前列的某一行作为当前最优解，进行深度优先搜索，回溯下一列能摆放的位置，直到确定所有列的摆放位置，即得到一组解，下面给出从当前列出发进行回溯的代码作为参考：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * [solveEightQueen description]</span><br><span class="line"> * <span class="doctag">@param</span> cols[] [array of row num of each col]</span><br><span class="line"> * <span class="doctag">@param</span> col    [current col]</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">solveEightQueen</span><span class="params">(<span class="keyword">int</span> cols[], <span class="keyword">int</span> col)</span></span>&#123;</span><br><span class="line">	<span class="keyword">boolean</span> rows[] = getAccessRows(cols, col);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> row=<span class="number">0</span>; row&lt;QUEEN_NUM; row++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(rows[row] == <span class="keyword">false</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		cols[col] = row;</span><br><span class="line">		<span class="keyword">if</span>(col == QUEEN_NUM - <span class="number">1</span>)</span><br><span class="line">			result_num++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			solveEightQueen(cols, col+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在主函数中从第0列开始进行回溯，可以得到共有92组解。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">int</span> result_num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> QUEEN_NUM = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args)&#123;</span><br><span class="line">	<span class="built_in">int</span> cols[] = <span class="keyword">new</span> <span class="built_in">int</span>[QUEEN_NUM];</span><br><span class="line">	solveEightQueen(cols, <span class="number">0</span>);</span><br><span class="line">	System.out.<span class="built_in">println</span>(result_num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-总结">3.总结</h2><p>从以上代码，可以发现回溯法可以轻松解决复杂的八皇后问题，回溯法的解决关键在于深度优先递归搜索。我们可以将问题规模改为任意，即10皇后也可以适用。</p>
+</div></article></div><div class="tags"><a href="/tags/技术交流/">技术交流</a></div><div class="paginator"><a href="/2015/07/19/数据结构-线性表/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2015/07/12/Java-NIO-学习/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div id="disqus_thread"></div></section><script type="text/javascript">(function() {
+var d = document, s = d.createElement('script');
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+s.src = '//ahonn.disqus.com/embed.js';
 
-block container
-    include mixins/post
-    +post()
-
-block tags
-    include mixins/tags
-    +tags()
-
-block pagination
-    include mixins/paginator
-    +post()
-
-block comment
-    include mixins/comment
-    +comment()
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://blog.zbvae.com">Bin Zhang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><div class="menu"></div></label><label class="back2top"> <a href="#top"><div class="arrow"></div></a></label></body></html>

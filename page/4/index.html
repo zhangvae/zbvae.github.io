@@ -1,21 +1,14 @@
-extends partial/layout
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>zbvae's blog</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"><!-- baidu analytics--><script type="text/javascript">var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?9e0cbea7d3319c6c94c71dfb93c151b8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><!-- google analytics--><script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-block site_title
-    != config.title
-
-block description
-    if config.description
-        - desc = config.description;
-        meta(name="description", content=desc)
-
-block container
-    include mixins/post
-    +posts()
-
-block pagination
-    include mixins/paginator
-    +home()
-
-block social
-    include mixins/social
-    +social_icon()
+ga('create', 'UA-74273646-1', 'auto');
+ga('send', 'pageview');</script></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Bin Zhang</h2></div><div class="social"><span class="title">Social</span><ul class="links"><li class="link-item"><a href="mailto:ahonn95@outlook.com">email</a></li><li class="link-item"><a href="https://github.com/ahonn">github</a></li><li class="link-item"><a href="http://weibo.com/ahonn">weibo</a></li><li class="link-item"><a href="https://www.zhihu.com/people/ahonn">zhihu</a></li></ul></div><div class="friends"><span class="title">Friends Link</span><ul class="links"><li class="link-item"><a href="http://www.yzz1995.cn">Yzzting</a></li><li class="link-item"><a href="http://henbukexue.science">XenK0u</a></li><li class="link-item"><a href="https://www.ileyar.com">Leyar</a></li></ul></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">zbvae's blog</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">关于</a></li></ul></div></header><section class="container"><ul class="home post-list"><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2015/07/11/Java-对象克隆/" class="post-title-link">Java 对象克隆</a></h2><div class="post-time">2015年7月11日</div><div class="post-content"><p><strong>摘要</strong>：Java最大的简洁性在于去除了指针，以引用来代替，在函数传参过程中，一般分为<strong>值传递</strong>和<strong>引用传递</strong>，值传递是直接拷贝一份值单元传递过去，原有值不会随被传递值改变而改变；引用传递则传递的是该引用数据类型变量的内存地址，因此原有对象属性值会随着传递引用变量对其的改变而达到间接改变的目的。Java中对所有复杂数据类型包括数组的传递都是引用传递方式，即传其地址，那么如何使Java具有像C和C++那样传递复杂数据类型，而不改变原有值的属性，这就需要利用到Java对象克隆知识了。</div><a href="/2015/07/11/Java-对象克隆/" class="read-more">阅读全文..</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2015/07/11/Java-对象序列化与反序列化/" class="post-title-link">Java 对象序列化与反序列化</a></h2><div class="post-time">2015年7月11日</div><div class="post-content"><p><strong>摘要</strong>：本文是关于Java对象序列化与反序列化知识的一个总结和概括，Java对象序列化与反序列提供了一种数据持久化的方式，掌握Java对象序列化与反序列对Java基础知识以及以后的框架学习都有很大的帮助。</div><a href="/2015/07/11/Java-对象序列化与反序列化/" class="read-more">阅读全文..</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2015/07/11/Java-IO-学习/" class="post-title-link">Java IO 学习</a></h2><div class="post-time">2015年7月11日</div><div class="post-content"><p><strong>摘要</strong>：IO无疑是学习每一门语言都要求掌握的编程知识点，一些大型项目都离不开IO的支持，因此掌握IO相关操作，对以后的学习和工作都是很有必要的。IO知识说难不难，但是每到用的时候，我们都需要查阅，本文从Java语言面向对象的特点出发，讲述Java IO的一些知识，仅供参考。</div><a href="/2015/07/11/Java-IO-学习/" class="read-more">阅读全文..</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2015/07/09/使用Hexo和Github搭建自己的个人博客网站/" class="post-title-link">使用Hexo和Github搭建自己的个人博客网站</a></h2><div class="post-time">2015年7月9日</div><div class="post-content"><p>　　最近花了几天时间利用<strong>Hexo</strong>和<strong>Github</strong>搭建自己的个人博客网站，虽然中间的过程也是折腾够了，但是结果还是非常令人满意的，毕竟现在网站已经跑起来，独乐乐不如众乐乐，所以决定写这篇文章，也给大家介绍一下经验，顺便也对<strong>Markdown</strong>写博客练一下手。好了，让我们进入正题吧!</div><a href="/2015/07/09/使用Hexo和Github搭建自己的个人博客网站/" class="read-more">阅读全文..</a></article></li></ul><div class="paginator"><a href="/page/3/" class="prev"> <i class="fa fa-chevron-left"></i><span> 上一页</span></a></div></section><footer><div class="social-icon"><a href="mailto:ahonn95@outlook.com" class="icon icon-email"></a><a href="https://github.com/ahonn" class="icon icon-github"></a><a href="http://weibo.com/ahonn" class="icon icon-weibo"></a><a href="https://www.zhihu.com/people/ahonn" class="icon icon-zhihu"></a></div><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://blog.zbvae.com">Bin Zhang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><div class="menu"></div></label><label class="back2top"> <a href="#top"><div class="arrow"></div></a></label></body></html>
