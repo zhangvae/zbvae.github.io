@@ -155,9 +155,8 @@
     <link href="http://blog.zbvae.com/2015/07/31/Java-Web%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
     <id>http://blog.zbvae.com/2015/07/31/Java-Web中文乱码问题解决方法/</id>
     <published>2015-07-31T08:31:52.000Z</published>
-    <updated>2016-04-10T13:48:22.844Z</updated>
-    <content type="html"><![CDATA[<p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。</p>
-<p>另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容器以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。<a id="more"></a></p>
+    <updated>2016-04-11T03:19:12.657Z</updated>
+    <content type="html"><![CDATA[<p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容器以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。<a id="more"></a></p>
 <h3 id="以POST方式提交的表单数据中含有中文">以POST方式提交的表单数据中含有中文</h3><p>由于Web容器默认的编码方式是ISO-8859-1。</p>
 <p>在Servlet/JSP程序中，通过请求对象<strong>getParameter</strong>方法得到的字符串是以ISO-8859-1转换而来，这是导致乱码产生的原因之一。</p>
 <p>为了避免容器以ISO-8859-1编码方式返回字符串，对于以POST提交的表单数据，可以在获取请求参数之前，调用<code>request.setCharacterEncoding(&quot;GBK&quot;)</code>，明确指定正文使用的编码方式是GBK。<br>在向浏览器回送中文数据html页面时，调用<code>response.setContentType(&quot;text/html;charset=GBK&quot;)</code>，指定输出内容的编码方式是GBK。</p>
@@ -181,8 +180,7 @@
 <h3 id="总结">总结</h3><p>在实际的Web应用中，乱码问题产生的原因多种多样，然而只要我们理解了字符编码转换过程，仔细地分析乱码产生的原因，找到问题的关键，就能对症下药，解决问题。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。</p>
-<p>另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容器以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。]]>
+    <![CDATA[<p><strong>摘要</strong> 所有基于Java的应用程序都面临着一个让初学者非常头痛的问题-中文乱码。由于Java的内核和.class文件都是基于Unicode的，这使得Java程序具有良好的跨平台特性，但却容易造成中文乱码。另外，Web容器的默认编码方式是ISO-8859-1，所以在Java Web程序中用户在客户端输入以GBK方式编码的中文传输到服务器端，由Web容器以ISO-8859-1方式包装编码，并以该编码形式的html页面回送到本地客户端，这样都会造成中文乱码的问题，本文就Java Web中文乱码问题提出一些解决方案。]]>
     
     </summary>
     
@@ -195,7 +193,7 @@
     <link href="http://blog.zbvae.com/2015/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%86%85%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
     <id>http://blog.zbvae.com/2015/07/28/数据结构-内排序算法/</id>
     <published>2015-07-28T01:10:43.000Z</published>
-    <updated>2016-04-11T02:05:26.963Z</updated>
+    <updated>2016-04-11T03:20:07.555Z</updated>
     <content type="html"><![CDATA[<p><strong>摘要</strong> 排序是数据结构中非常重要的内容，也是公司笔试面试经常会考的内容。掌握所有的排序并不是必须的，关键是知道在什么情况下，使用什么排序算法，效率更高，知道哪种排序算法是稳定的，以及该排序算法的时间复杂度。排序要求的数据结构一般都是静态数组的形式，如果单单去背诵某一排序算法的实现，你可能这段时间能够记住，但不能保证过段时间你还能记住，因此，要想彻底记住这些排序算法，必须从它的实现法则上去记忆。<a id="more"></a></p>
 <h3 id="排序算法简介">排序算法简介</h3><p>本文主要讲述的是内排序算法，关乎外排序需要与外存交互，因此这里不做考虑。</p>
 <p>所有的内排序算法可以分为五类：选择排序，插入排序，交换排序，归并排序，基数排序。</p>
@@ -211,7 +209,7 @@
 <table>
 <thead>
 <tr>
-<th>排序算法</th>
+<th style="text-align:center">排序算法</th>
 <th style="text-align:center">时间复杂度</th>
 <th style="text-align:center">空间复杂度</th>
 <th style="text-align:center">稳定性</th>
@@ -219,49 +217,49 @@
 </thead>
 <tbody>
 <tr>
-<td>简单选择排序</td>
+<td style="text-align:center">简单选择排序</td>
 <td style="text-align:center">$$$O(n^2)$$$</td>
 <td style="text-align:center">$$$O(1)$$$</td>
 <td style="text-align:center">不稳定</td>
 </tr>
 <tr>
-<td>堆排序</td>
+<td style="text-align:center">堆排序</td>
 <td style="text-align:center">$$$O(nlgn)$$$</td>
 <td style="text-align:center">$$$O(1)$$$</td>
 <td style="text-align:center">不稳定</td>
 </tr>
 <tr>
-<td>直接插入排序</td>
+<td style="text-align:center">直接插入排序</td>
 <td style="text-align:center">$$$O(n^2)$$$</td>
 <td style="text-align:center">$O(1)$$$</td>
 <td style="text-align:center">稳定</td>
 </tr>
 <tr>
-<td>希尔排序</td>
+<td style="text-align:center">希尔排序</td>
 <td style="text-align:center">$$$O(n^{1.4})$$$</td>
 <td style="text-align:center">$$$O(1)$$$</td>
 <td style="text-align:center">不稳定</td>
 </tr>
 <tr>
-<td>冒泡排序</td>
+<td style="text-align:center">冒泡排序</td>
 <td style="text-align:center">$$$O(n^2)$$$</td>
 <td style="text-align:center">$$$O(1)$$$</td>
 <td style="text-align:center">稳定</td>
 </tr>
 <tr>
-<td>快速排序</td>
+<td style="text-align:center">快速排序</td>
 <td style="text-align:center">$$$O(nlgn)$$$</td>
 <td style="text-align:center">$$$O(n)$$$</td>
 <td style="text-align:center">不稳定</td>
 </tr>
 <tr>
-<td>归并排序</td>
+<td style="text-align:center">归并排序</td>
 <td style="text-align:center">$$$O(nlgn)$$$</td>
 <td style="text-align:center">$$$O(n)$$$</td>
 <td style="text-align:center">稳定</td>
 </tr>
 <tr>
-<td>基数排序</td>
+<td style="text-align:center">基数排序</td>
 <td style="text-align:center">$$$O(n)$$$</td>
 <td style="text-align:center">$$$O(n)$$$</td>
 <td style="text-align:center">稳定</td>
@@ -1071,7 +1069,7 @@
     <link href="http://blog.zbvae.com/2015/07/11/Java-%E7%B1%BB%E9%9B%86/"/>
     <id>http://blog.zbvae.com/2015/07/11/Java-类集/</id>
     <published>2015-07-11T07:11:39.000Z</published>
-    <updated>2016-04-10T13:49:33.873Z</updated>
+    <updated>2016-04-11T03:22:03.817Z</updated>
     <content type="html"><![CDATA[<p><strong>摘要</strong>：Java中的类集实际上是动态对象数组，没有长度限制，可以任意扩充和丰富。从JDK1.5后，类集中添加了泛型声明，保证了类集使用的安全，所有的类集都位于java.util包下，类集有其继承结构，掌握好类集的使用对我们的程序开发有极大地帮助。<a id="more"></a></p>
 <h3 id="类集概述">类集概述</h3><p>Java中的类集，可分为单值操作集合，一对值的操作集合，输出集合。</p>
 <p>其中Collection是最大的单值集合操作接口，Map是最大的一对值集合操作接口，Iterator是最大的输出接口。 </p>
@@ -1081,53 +1079,53 @@
 <thead>
 <tr>
 <th>方法</th>
-<th style="text-align:center">描述</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>boolean add(E e)</td>
-<td style="text-align:center">添加元素</td>
+<td>添加元素</td>
 </tr>
 <tr>
 <td>boolean addAll(Collection&lt;? extends E&gt; c)</td>
-<td style="text-align:center">添加一组元素，子集合</td>
+<td>添加一组元素，子集合</td>
 </tr>
 <tr>
 <td>void clear()</td>
-<td style="text-align:center">清空集合内容</td>
+<td>清空集合内容</td>
 </tr>
 <tr>
 <td>boolean contains(Object o)</td>
-<td style="text-align:center">判断集合中是否包含对象o</td>
+<td>判断集合中是否包含对象o</td>
 </tr>
 <tr>
 <td>boolean containsAll(Collection&lt;?&gt; c)</td>
-<td style="text-align:center">判断集合中是否包含子集合</td>
+<td>判断集合中是否包含子集合</td>
 </tr>
 <tr>
 <td>boolean isEmpty()</td>
-<td style="text-align:center">判断集合是否为空</td>
+<td>判断集合是否为空</td>
 </tr>
 <tr>
 <td>Iterator<e> iterator()</e></td>
-<td style="text-align:center">为Iterator接口实例化对象，以访问该集合</td>
+<td>为Iterator接口实例化对象，以访问该集合</td>
 </tr>
 <tr>
 <td>boolean remove(Object o)</td>
-<td style="text-align:center">删除指定对象</td>
+<td>删除指定对象</td>
 </tr>
 <tr>
 <td>boolean removeAll(Collection&lt;?&gt; c)</td>
-<td style="text-align:center">删除一组元素，子集合</td>
+<td>删除一组元素，子集合</td>
 </tr>
 <tr>
 <td>int size()</td>
-<td style="text-align:center">返回集合大小，集合当前元素个数</td>
+<td>返回集合大小，集合当前元素个数</td>
 </tr>
 <tr>
 <td>Object[] toArray()</td>
-<td style="text-align:center">返回该集合的静态对象数组形式</td>
+<td>返回该集合的静态对象数组形式</td>
 </tr>
 </tbody>
 </table>
@@ -1138,45 +1136,45 @@
 <thead>
 <tr>
 <th>方法</th>
-<th style="text-align:center">描述</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>void add(int index,E element)</td>
-<td style="text-align:center">在集合指定位置插入元素</td>
+<td>在集合指定位置插入元素</td>
 </tr>
 <tr>
 <td>boolean addAll(int index, Collection&lt;? extends E&gt; c)</td>
-<td style="text-align:center">在集合指定位置插入子集合</td>
+<td>在集合指定位置插入子集合</td>
 </tr>
 <tr>
 <td>E get(int index)</td>
-<td style="text-align:center">取得索引位置集合内容</td>
+<td>取得索引位置集合内容</td>
 </tr>
 <tr>
 <td>int indexOf(Object o)</td>
-<td style="text-align:center">返回指定对象在集合中的索引，-1为不存在</td>
+<td>返回指定对象在集合中的索引，-1为不存在</td>
 </tr>
 <tr>
 <td>int lastIndexOf(Object o)</td>
-<td style="text-align:center">返回指定对象最后一次出现在集合中的位置</td>
+<td>返回指定对象最后一次出现在集合中的位置</td>
 </tr>
 <tr>
 <td>ListIterator<e> listIterator()</e></td>
-<td style="text-align:center">判实例化ListIterator对象，便于List集合输出</td>
+<td>判实例化ListIterator对象，便于List集合输出</td>
 </tr>
 <tr>
 <td>E remove(int index)</td>
-<td style="text-align:center">删除指定索引位置的元素</td>
+<td>删除指定索引位置的元素</td>
 </tr>
 <tr>
 <td>E set(int index,  E element)</td>
-<td style="text-align:center">修改指定索引位置的元素</td>
+<td>修改指定索引位置的元素</td>
 </tr>
 <tr>
 <td>List<e> subList(int fromIndex, int toIndex)</e></td>
-<td style="text-align:center">截取子集合，从指定起始位置到结束位置</td>
+<td>截取子集合，从指定起始位置到结束位置</td>
 </tr>
 </tbody>
 </table>
