@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>数据结构-内排序算法 · zbvae's blog</title><meta name="description" content="数据结构-内排序算法 - Bin Zhang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"><!-- baidu analytics--><script type="text/javascript">var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?9e0cbea7d3319c6c94c71dfb93c151b8";
+  hm.src = "//hm.baidu.com/hm.js?b14d789e412d4c43dc7a714e82589bcd";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
@@ -35,50 +35,50 @@ ga('send', 'pageview');</script></head><body><input type="checkbox" id="sidebar-
 <tbody>
 <tr>
 <td>简单选择排序</td>
-<td style="text-align:center">$O(n^2)$</td>
-<td style="text-align:center">$O(1)$</td>
+<td style="text-align:center">$$$O(n^2)$$$</td>
+<td style="text-align:center">$$$O(1)$$$</td>
 <td style="text-align:center">不稳定</td>
 </tr>
 <tr>
 <td>堆排序</td>
-<td style="text-align:center">$O(nlgn)$</td>
-<td style="text-align:center">$O(1)$</td>
+<td style="text-align:center">$$$O(nlgn)$$$</td>
+<td style="text-align:center">$$$O(1)$$$</td>
 <td style="text-align:center">不稳定</td>
 </tr>
 <tr>
 <td>直接插入排序</td>
-<td style="text-align:center">$O(n^2)$</td>
-<td style="text-align:center">$O(1)$</td>
+<td style="text-align:center">$$$O(n^2)$$$</td>
+<td style="text-align:center">$O(1)$$$</td>
 <td style="text-align:center">稳定</td>
 </tr>
 <tr>
 <td>希尔排序</td>
-<td style="text-align:center">$O(n^{1.4})$</td>
-<td style="text-align:center">$O(1)$</td>
+<td style="text-align:center">$$$O(n^{1.4})$$$</td>
+<td style="text-align:center">$$$O(1)$$$</td>
 <td style="text-align:center">不稳定</td>
 </tr>
 <tr>
 <td>冒泡排序</td>
-<td style="text-align:center">$O(n^2)$</td>
-<td style="text-align:center">$O(1)$</td>
+<td style="text-align:center">$$$O(n^2)$$$</td>
+<td style="text-align:center">$$$O(1)$$$</td>
 <td style="text-align:center">稳定</td>
 </tr>
 <tr>
 <td>快速排序</td>
-<td style="text-align:center">$O(nlgn)$</td>
-<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$$$O(nlgn)$$$</td>
+<td style="text-align:center">$$$O(n)$$$</td>
 <td style="text-align:center">不稳定</td>
 </tr>
 <tr>
 <td>归并排序</td>
-<td style="text-align:center">$O(nlgn)$</td>
-<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$$$O(nlgn)$$$</td>
+<td style="text-align:center">$$$O(n)$$$</td>
 <td style="text-align:center">稳定</td>
 </tr>
 <tr>
 <td>基数排序</td>
-<td style="text-align:center">$O(n)$</td>
-<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$$$O(n)$$$</td>
+<td style="text-align:center">$$$O(n)$$$</td>
 <td style="text-align:center">稳定</td>
 </tr>
 </tbody>
@@ -88,18 +88,18 @@ ga('send', 'pageview');</script></head><body><input type="checkbox" id="sidebar-
 <ul>
 <li>时间复杂度<blockquote>
 <ul>
-<li>$O(n^2)$:简单选择排序、直接插入排序、冒泡排序</li>
-<li>$O(nlgn)$:堆排序、快速排序、归并排序</li>
-<li>$O(n^{1.4})$:希尔排序</li>
-<li>$O(n)$:基数排序</li>
+<li>$$$O(n^2)$$$:简单选择排序、直接插入排序、冒泡排序</li>
+<li>$$$O(nlgn)$$$:堆排序、快速排序、归并排序</li>
+<li>$$$O(n^{1.4})$$$:希尔排序</li>
+<li>$$$O(n)$$$:基数排序</li>
 </ul>
 </blockquote>
 </li>
 <li>空间复杂度<blockquote>
 <ul>
-<li>快速排序和归并排序都需要额外的$O(n)$的辅助栈空间用于递归。</li>
-<li>基数排序用空间换时间。空间复杂度也为$O(n)$</li>
-<li>其余排序算法都是就地排序，空间复杂度为$O(1)$</li>
+<li>快速排序和归并排序都需要额外的$$$O(n)$$$的辅助栈空间用于递归。</li>
+<li>基数排序用空间换时间。空间复杂度也为$$$O(n)$$$</li>
+<li>其余排序算法都是就地排序，空间复杂度为$$$O(1)$$$</li>
 </ul>
 </blockquote>
 </li>
@@ -165,8 +165,8 @@ ga('send', 'pageview');</script></head><body><input type="checkbox" id="sidebar-
 <h4 id="基数排序">基数排序</h4><p>思想：基数排序属于一种空间换时间的策略，要了解基数排序，最好先了解桶排序思想。</p>
 <p>桶排序：将数据序列分到有限数量的桶子里。每个桶子再分别排序，桶子内部的排序算法可采用上述基本排序算法中的任意一种，排序完成之后，依次输出每个桶子里的数字，且每个桶子的数字从小到大输出，这样就得到数字排好序的序列了。</p>
 <p>假设有n个关键字，有m个桶，如果数字是平均分布的，则每个桶子平均有n/m个数字，如果对每个桶采用快速排序，那么整个算法的时间复杂度是：</p>
-<p>$$O(n+m*n/m*lg(n/m)) = O(n+nlgn-nlgm)$$</p>
-<p>从上式可以看出，当m接近n时，，桶排序复杂度接近$O(n)$。</p>
+<p>$$<br>O(n+m*n/m*lg(n/m)) = O(n+nlgn-nlgm)<br>$$</p>
+<p>从上式可以看出，当m接近n时，，桶排序复杂度接近$$$O(n)$$$。</p>
 <p>基数排序：按照低位先排序，然后搜集；再按照高位排序，然后搜集；依次类推，直到最高位。基数排序是分别排序，分别搜集，所以是稳定的。具体实现，请读者自行查阅。</p>
 </div></article></div><div class="tags"><a href="/tags/数据结构/">数据结构</a></div><div class="paginator"><a href="/2015/07/31/Java-Web中文乱码问题解决方法/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2015/07/26/数据结构-图/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://blog.zbvae.com/2015/07/28/数据结构-内排序算法/index.html" data-title="数据结构-内排序算法" data-url="http://blog.zbvae.com/2015/07/28/数据结构-内排序算法/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "zbbk" };
 (function() {
