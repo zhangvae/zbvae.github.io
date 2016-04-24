@@ -5,7 +5,7 @@
   <subtitle><![CDATA[这个世界怎么了，明明可以靠才华吃饭，偏要靠脸!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zbvae.com//"/>
-  <updated>2016-04-10T13:50:35.222Z</updated>
+  <updated>2016-04-24T08:42:27.336Z</updated>
   <id>http://blog.zbvae.com//</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[pycharm速度优化方案]]></title>
+    <link href="http://blog.zbvae.com/2016/04/24/pycharm%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/"/>
+    <id>http://blog.zbvae.com/2016/04/24/pycharm速度优化方案/</id>
+    <published>2016-04-24T08:32:06.000Z</published>
+    <updated>2016-04-24T08:42:27.336Z</updated>
+    <content type="html"><![CDATA[<p>pycharm是一款非常优秀的python跨平台编辑器，但是其安装之后的启动速度和编辑时的响应速度一直为人所诟病。</p>
+<p>本文长沙从两个方面去优化pycharm编辑器的速度，使它能更好地提升我们的效率。</p>
+<h3 id="关闭节电模式">关闭节电模式</h3><p>这个可以直接在编辑器的[file]-&gt;[power save mode]，将其勾选上即可，这个已经可以很大程度上提升pycharm的响应速度了，因为它是关闭了我们在编写代码时候的提示。 <a id="more"></a></p>
+<h3 id="插件管理">插件管理</h3><p>对于pycharm编辑器，我们使用的主要目的当然是为了编写python程序，所以为了进一步优化，我们需要对编辑器的插件进行管理，只加载需要的插件。</p>
+<p>[File]-&gt;[Settings]-&gt;[Pluggins],只保留python和spell插件。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>pycharm是一款非常优秀的python跨平台编辑器，但是其安装之后的启动速度和编辑时的响应速度一直为人所诟病。</p>
+<p>本文长沙从两个方面去优化pycharm编辑器的速度，使它能更好地提升我们的效率。</p>
+<h3 id="关闭节电模式">关闭节电模式</h3><p>这个可以直接在编辑器的[file]-&gt;[power save mode]，将其勾选上即可，这个已经可以很大程度上提升pycharm的响应速度了，因为它是关闭了我们在编写代码时候的提示。]]>
+    
+    </summary>
+    
+      <category term="python" scheme="http://blog.zbvae.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Java微信公众号应用部署在阿里云ECS]]></title>
@@ -1769,77 +1792,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p><strong>摘要</strong>：Java是一门支持多线程的语言，其对多线程操作提供了很大的方便，而多线程在现在很多的程序甚至企业级项目中都会使用到，因此，学好Java多线程知识对提高自己的编程和应用水平都有很大的帮助。]]>
-    
-    </summary>
-    
-      <category term="Java学习" scheme="http://blog.zbvae.com/tags/Java%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Java 反射]]></title>
-    <link href="http://blog.zbvae.com/2015/07/11/Java-%E5%8F%8D%E5%B0%84/"/>
-    <id>http://blog.zbvae.com/2015/07/11/Java-反射/</id>
-    <published>2015-07-11T02:58:50.000Z</published>
-    <updated>2016-04-10T13:49:22.916Z</updated>
-    <content type="html"><![CDATA[<p><strong>摘要</strong>：Java反射知识是Java基础学习中非常重要的知识点之一，初期还体会不到反射机制的强大和神奇，到了后期Java Web和各种框架，包括Java对象反序列化等，这些都是以Java反射作为支撑，因此掌握Java反射是非常有必要的。<a id="more"></a></p>
-<h3 id="引例">引例</h3><p>在学习Java反射知识之前，先看一个基本例子，这个例子展示了，Java对象最普通的构造和使用方式，也是Java基础学习最初期需要掌握的部分。</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class TestReflection&#123;</span><br><span class="line"> 	public static void main(String<span class="comment">[]</span> args) &#123;</span><br><span class="line">  		<span class="keyword">Person</span> per = new <span class="keyword">Person</span>(<span class="string">"zhangsan"</span>, 20);</span><br><span class="line">  		System.out.println(per);</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class <span class="keyword">Person</span>&#123;</span><br><span class="line"> 	private String name;</span><br><span class="line"> 	private int age;</span><br><span class="line"> 	public <span class="keyword">Person</span>()&#123;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public <span class="keyword">Person</span>(String name, int age)&#123;</span><br><span class="line">  		this.name = name;</span><br><span class="line">  		this.age = age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public String getName() &#123;</span><br><span class="line">     	return this.name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public int getAge() &#123;</span><br><span class="line">     	return this.age;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setName(String name) &#123;</span><br><span class="line">     	this.name = name;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	public void setAge(int age) &#123;</span><br><span class="line">     	this.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line"> 	public String toString()&#123;</span><br><span class="line">  		return <span class="string">"Per(name = "</span> + this.getName() + <span class="string">", age = "</span> + this.getAge() + <span class="string">")"</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序输出如下内容：</p>
-<blockquote>
-<p>Per(name = zhangsan, age = 20)</p>
-</blockquote>
-<h3 id="Java_反射">Java 反射</h3><p>以上这种方式相信任何一个学习过Java的都很容易看懂，也容易理解的正常方式，即先有类，然后实例化出对象；如果由一个对象得到关于该类的所有信息，这就是反射所在。</p>
-<p>修改main函数如下：</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class TestReflection&#123;</span><br><span class="line">  	public static void main(String<span class="comment">[]</span> args) &#123;</span><br><span class="line">   		<span class="keyword">Person</span> per = new <span class="keyword">Person</span>();</span><br><span class="line">   		System.out.println(per.getClass().getName());</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序将打印出<code>Person</code>，说明成功地由对象信息反射得到类信息。实际上per.getClass()得到的是<em>Class</em>实例，可以这么说，<strong>Java中的所有对象都是Class类的实例</strong>，得到某个对象的Class类实例对象，便可以反射出该对象所属类的所有信息，例如所有的构造方法，方法，属性，修饰符，接口，异常等信息，这些都有反射专属类的支持，Constructor类，Method类，Field类，Modifer类,，Interface类，这些类都为与java.lang.reflect包里，因此使用的时候，别忘了导入包。</p>
-<p>而通常获取一个对象Class实例的方式有三种：</p>
-<ol>
-<li>per.getClass()</li>
-<li>Person.class</li>
-<li>Class.forName(“Person”)//实际中需要指定包名</li>
-</ol>
-<p>这三种方式以第三种使用最多。重新修改main方法：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> TestReflection&#123;</span><br><span class="line">  	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">   		<span class="keyword">Class</span> c;</span><br><span class="line">  	 	c = <span class="keyword">Class</span>.forName(<span class="string">"Person"</span>);</span><br><span class="line">   		System.out.<span class="keyword">println</span>(c.getName());</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序同样能打印出Person信息，现在尝试用c实例化Person对象：</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class TestReflection&#123;</span><br><span class="line">  	public static void main(String<span class="comment">[]</span> args) throws Exception &#123;</span><br><span class="line">   		Class c = null;</span><br><span class="line">   		c = Class.forName(<span class="string">"Person"</span>);</span><br><span class="line">   		<span class="keyword">Person</span> per = (<span class="keyword">Person</span>)c.newInstance();</span><br><span class="line">   		System.out.println(per);</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序成功输出：</p>
-<blockquote>
-<p>Per(name = null, age = 0)</p>
-</blockquote>
-<p>如果将Person类的无参构造函数去掉的话，这时就会出现异常：</p>
-<blockquote>
-<p>Exception in thread “main” java.lang.InstantiationException: Person<br> at java.lang.Class.newInstance(Unknown Source)<br> at TestReflection.main(TestReflection.java:5)</p>
-</blockquote>
-<p>显然程序是通过反射调用无参构造函数来实现Person类对象的实例化，所以一般我们都需要手动为一个类加上无参构造函数。</p>
-<p>现在利用Class实例对象输出Person类的所有构造函数：</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import java.lang.reflect.*;</span><br><span class="line">public class TestReflection&#123;</span><br><span class="line"> 	public static void main(String<span class="comment">[]</span> args) throws Exception &#123;</span><br><span class="line">  		Class c = null;</span><br><span class="line">  		c = Class.forName(<span class="string">"Person"</span>);</span><br><span class="line">  		//<span class="keyword">Person</span> per = (<span class="keyword">Person</span>)c.newInstance();</span><br><span class="line">  		Constructor cons<span class="comment">[]</span> = c.getConstructors();</span><br><span class="line">  		for(int i=0;i&lt;cons.length;i++)&#123;</span><br><span class="line">   			System.out.println(cons<span class="comment">[i]</span>);</span><br><span class="line">  		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出如下：</p>
-<blockquote>
-<p>public Person()<br>public Person(java.lang.String,int)</p>
-</blockquote>
-<p>发现以上输出方法参数中没有修饰符，使用Modifier类调整输出如下：</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestReflection</span>&#123;</span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws Exception </span>&#123;</span><br><span class="line">  		Class c = <span class="keyword">null</span>;</span><br><span class="line">  		c = Class.forName(<span class="string">"Person"</span>);</span><br><span class="line">  		<span class="comment">//Person per = (Person)c.newInstance();</span></span><br><span class="line">  		Constructor cons[] = c.getConstructors();</span><br><span class="line">  		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cons.length;i++)&#123;</span><br><span class="line">   			Class <span class="keyword">params</span>[] = cons[i].getParameterTypes();</span><br><span class="line">   			<span class="keyword">int</span> mod = cons[i].getModifiers();</span><br><span class="line">   			System.<span class="keyword">out</span>.print(Modifier.toString(mod) + <span class="string">" "</span> + cons[i].getName() + <span class="string">"("</span>);</span><br><span class="line"> </span><br><span class="line">   			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="keyword">params</span>.length;j++)&#123;</span><br><span class="line">    			System.<span class="keyword">out</span>.print(<span class="keyword">params</span>[j].getName() + <span class="string">" "</span> + <span class="string">"arg-"</span> + j);</span><br><span class="line">    			<span class="keyword">if</span>(j &lt; <span class="keyword">params</span>.length-<span class="number">1</span>)&#123;</span><br><span class="line">     				System.<span class="keyword">out</span>.print(<span class="string">", "</span>);</span><br><span class="line">    			&#125;</span><br><span class="line">   			&#125;</span><br><span class="line">   			System.<span class="keyword">out</span>.print(<span class="string">")"</span>);</span><br><span class="line">   			System.<span class="keyword">out</span>.println();</span><br><span class="line">  		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>经过调整之后，输出如下的合理信息：</p>
-<blockquote>
-<p>public Person()<br>public Person(java.lang.String arg-0, int arg-1)</p>
-</blockquote>
-<p>现在换一种实例化Person对象的方式，采用Class实例对象得到的构造函数来实例化Person对象，如下：</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Person</span> per1 = (<span class="keyword">Person</span>)cons<span class="comment">[0]</span>.newInstance();</span><br><span class="line"><span class="keyword">Person</span> per2 = (<span class="keyword">Person</span>)cons<span class="comment">[1]</span>.newInstance(<span class="string">"zhangsan"</span>, 20);</span><br><span class="line">System.out.println(per1);</span><br><span class="line">System.out.println(per2);</span><br></pre></td></tr></table></figure>
-<p>输出如下：</p>
-<blockquote>
-<p>Per(name = null, age = 0)<br>Per(name = zhangsan, age = 20)</p>
-</blockquote>
-<p>说明此种方式可以有效地针对构造函数的不同实例化对象，下面再介绍由Class实例对象反射得到Person类的其他方法以及调用的方式。获得Method实例，使用invoke方法实现调用。</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method <span class="keyword">m</span> = c.getDeclaredMethod(<span class="string">"say"</span>,String.<span class="keyword">class</span>);</span><br><span class="line"><span class="keyword">m</span>.invoke(per2,<span class="string">"hello !!!"</span>);</span><br></pre></td></tr></table></figure>
-<p>成功输出如下：</p>
-<blockquote>
-<p>Per(name = zhangsan, age = 20) say hello !!!</p>
-</blockquote>
-<p>好了，其他的诸如接口，属性，这里就不再赘述了，总之，反射，就是利用Class类实例，获取其他类的结构信息。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><strong>摘要</strong>：Java反射知识是Java基础学习中非常重要的知识点之一，初期还体会不到反射机制的强大和神奇，到了后期Java Web和各种框架，包括Java对象反序列化等，这些都是以Java反射作为支撑，因此掌握Java反射是非常有必要的。]]>
     
     </summary>
     
